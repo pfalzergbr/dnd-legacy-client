@@ -13,7 +13,7 @@ interface LoginInputs {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().required(),
+  email: yup.string().required().email('That’s not a valid email address. It should contain a @'),
   password: yup.string().required(),
 });
 
@@ -25,7 +25,7 @@ const Login: React.FC<LoginProps> = () => {
     control,
   } = useForm<LoginInputs>({
     resolver: yupResolver(schema),
-    mode: 'all'
+    mode: 'onTouched'
   });
   const { isValid } = useFormState({ control });
   const onSubmit = (data: LoginInputs) => {
