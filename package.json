@@ -10,6 +10,7 @@
     "@types/react-dom": "^17.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.2"
@@ -26,7 +27,8 @@
       "react-app/jest"
     ],
     "plugins": [
-      "testing-library", "jest-dom"
+      "testing-library",
+      "jest-dom"
     ],
     "rules": {
       "testing-library/await-async-query": "error",
@@ -54,6 +56,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/user-event": "^13.1.8",
+    "@types/react-router-dom": "^5.1.7",
     "eslint-plugin-jest-dom": "^3.8.1",
     "eslint-plugin-testing-library": "^3.10.2"
   }
