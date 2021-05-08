@@ -5,26 +5,35 @@ import Loading from '../Components/Loading';
 import NotFound from '../Pages/NotFound';
 
 const Login = lazy(() => import('../Pages/Login'));
-const Register = lazy(() => import('../Pages/Login'));
+const Register = lazy(() => import('../Pages/Register'));
 
 const AppRouter = () => {
   const publicRoutes = (
     <Switch>
-      <Suspense fallback={<Loading />}>
-        <Route exact={true} path='/'>
-          <Start />
-        </Route>
-        <Route exact={true} path='/login'>
+      <Route exact path='/'>
+        <Start />
+      </Route>
+      <Route path='/login'>
+        <Suspense fallback={<Loading />}>
           <Login />
-        </Route>
-        <Route exact={true} path='/register'>
+        </Suspense>
+      </Route>
+      <Route path='/register'>
+        <Suspense fallback={<Loading />}>
           <Register />
-        </Route>
-      </Suspense>
+        </Suspense>
+      </Route>
+      <Route path='*'>
+        <NotFound />
+      </Route>
     </Switch>
   );
 
-  return <Router></Router>;
+  return (
+    <>
+      <Router>{publicRoutes}</Router>
+    </>
+  );
 };
 
 export default AppRouter;
