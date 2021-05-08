@@ -13,8 +13,8 @@ interface LoginInputs {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().required().email('That’s not a valid email address. It should contain a @'),
-  password: yup.string().required(),
+  email: yup.string().required('That’s not a valid email address. It should contain a @').email('That’s not a valid email address. It should contain a @'),
+  password: yup.string().required('required field - need a validation feedback message here! :)'),
 });
 
 const Login: React.FC<LoginProps> = () => {
