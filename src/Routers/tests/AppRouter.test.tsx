@@ -22,8 +22,11 @@ describe('Router navigation', () => {
     expect(welcomeMessage).toBeInTheDocument();
     const loginLink = screen.getByRole('link', { name: /log in/i });
     userEvent.click(loginLink);
-    const loginTitle = await waitFor(() => screen.getByText(/login page/i));
-    expect(loginTitle).toBeInTheDocument();
+    const emailField = await waitFor(() => screen.getByText(/e-mail/i));
+    const passwordField = await waitFor(() => screen.getByText(/password/i));
+    expect(emailField).toBeInTheDocument();
+    expect(passwordField).toBeInTheDocument();
+    expect(loginLink).toHaveClass('active')
   });
 
   test('should render the right page if you click on register link', async () => {

@@ -7,8 +7,17 @@ const Login: React.FC<LoginProps> = () => {
   return (
     <AuthTemplate>
       <AuthHeader />
-      Login page
-      </AuthTemplate>
+      <form action='submit'>
+        <div className='formControl'>
+          <label htmlFor='email'>E-mail</label>
+          <input type='text' name='email' id='email' />
+        </div>
+        <div className='formControl'>
+          <label htmlFor='password'>Password</label>
+          <input type='password' name='password' id='password' />
+        </div>
+      </form>
+    </AuthTemplate>
   );
 };
 
