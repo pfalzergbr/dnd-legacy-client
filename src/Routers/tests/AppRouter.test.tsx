@@ -20,12 +20,13 @@ describe('Router navigation', () => {
     render(<AppRouter />, { wrapper: MemoryRouter });
     const welcomeMessage = screen.getByText(/3.5/i);
     expect(welcomeMessage).toBeInTheDocument();
-    const loginLink = screen.getByRole('link', { name: /log in/i });
-    userEvent.click(loginLink);
+    const loginButton = screen.getByRole('link', { name: /log in/i });
+    userEvent.click(loginButton);
     const emailField = await waitFor(() => screen.getByText(/e-mail/i));
-    const passwordField = await waitFor(() => screen.getByText(/password/i));
+    const passwordField = await waitFor(() => screen.getAllByText(/password/i));
     expect(emailField).toBeInTheDocument();
-    expect(passwordField).toBeInTheDocument();
+    expect(passwordField[0]).toBeInTheDocument();
+    const loginLink = screen.getByRole('link', { name: /log in/i });
     expect(loginLink).toHaveClass('active')
   });
 

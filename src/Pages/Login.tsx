@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 
@@ -16,7 +17,11 @@ const Login: React.FC<LoginProps> = () => {
           <label htmlFor='password'>Password</label>
           <input type='password' name='password' id='password' />
         </div>
+        <button disabled={true}>Log In</button>
       </form>
+      <footer>
+        <Link to='#'>I forgot my password</Link>
+      </footer>
     </AuthTemplate>
   );
 };
