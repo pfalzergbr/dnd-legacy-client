@@ -10,7 +10,7 @@ describe('Router navigation', () => {
 
   test('should render a loading component on lazy loaded routes', async () => {
     render(<AppRouter />, { wrapper: MemoryRouter });
-    const loginLink = screen.getByRole('link', { name: /login/i });
+    const loginLink = screen.getByRole('link', { name: /log in/i });
     userEvent.click(loginLink);
     const loadingMessage = await screen.findByText(/loading/i);
     expect(loadingMessage).toBeInTheDocument();
@@ -18,17 +18,21 @@ describe('Router navigation', () => {
 
   test('should render the right page if you click on login link', async () => {
     render(<AppRouter />, { wrapper: MemoryRouter });
-    const welcomeMessage = screen.getByText(/hello dungeon/i);
+    const welcomeMessage = screen.getByText(/3.5/i);
     expect(welcomeMessage).toBeInTheDocument();
-    const loginLink = screen.getByRole('link', { name: /login/i });
-    userEvent.click(loginLink);
-    const loginTitle = await waitFor(() => screen.getByText(/login page/i));
-    expect(loginTitle).toBeInTheDocument();
+    const loginButton = screen.getByRole('link', { name: /log in/i });
+    userEvent.click(loginButton);
+    const emailField = await waitFor(() => screen.getByText(/e-mail/i));
+    const passwordField = await waitFor(() => screen.getAllByText(/password/i));
+    expect(emailField).toBeInTheDocument();
+    expect(passwordField[0]).toBeInTheDocument();
+    const loginLink = screen.getByRole('link', { name: /log in/i });
+    expect(loginLink).toHaveClass('active')
   });
 
   test('should render the right page if you click on register link', async () => {
     render(<AppRouter />, { wrapper: MemoryRouter });
-    const welcomeMessage = await screen.findByText(/hello dungeon/i);
+    const welcomeMessage = await screen.findByText(/3.5/i);
     expect(welcomeMessage).toBeInTheDocument();
     const registerLink = screen.getByRole('link', { name: /register/i });
     userEvent.click(registerLink);

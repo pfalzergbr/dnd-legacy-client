@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Start from '../Pages/Start';
 import Loading from '../Components/Loading';
 import NotFound from '../Pages/NotFound';
@@ -29,10 +29,6 @@ const AppRouter = () => {
   return (
     <>
       <Router>
-        <div className='dummynav'>
-          <Link to={'/login'}>Login</Link>
-          <Link to={'/register'}>Register</Link>
-        </div>
         {publicRoutes}
       </Router>
     </>

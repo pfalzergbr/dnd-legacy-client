@@ -1,9 +1,15 @@
-export interface RegisterProps {
-  
-}
- 
+import AuthHeader from '../Components/Auth/AuthHeader';
+import AuthTemplate from '../Templates/AuthTemplate';
+
+export interface RegisterProps {}
+
 const Register: React.FC<RegisterProps> = () => {
-  return ( <div>Register Page</div> );
-}
- 
+  return (
+    <AuthTemplate>
+      <AuthHeader />
+      Register page
+    </AuthTemplate>
+  );
+};
+
 export default Register;
