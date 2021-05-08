@@ -29,10 +29,6 @@ const AppRouter = () => {
   return (
     <>
       <Router>
-        <div className='dummynav'>
-          <Link to={'/login'}>Login</Link>
-          <Link to={'/register'}>Register</Link>
-        </div>
         {publicRoutes}
       </Router>
     </>
