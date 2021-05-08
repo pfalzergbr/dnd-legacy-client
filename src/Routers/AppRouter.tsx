@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Start from '../Pages/Start';
 import Loading from '../Components/Loading';
 import NotFound from '../Pages/NotFound';
+import RouteWithSuspense from './RouteWithSuspense'
 
 const Login = lazy(() => import('../Pages/Login'));
 const Register = lazy(() => import('../Pages/Register'));
@@ -13,16 +14,12 @@ const AppRouter = () => {
       <Route exact path='/'>
         <Start />
       </Route>
-      <Route path='/login'>
-        <Suspense fallback={<Loading />}>
+      <RouteWithSuspense fallback={<Loading />} path='/login'>
           <Login />
-        </Suspense>
-      </Route>
-      <Route path='/register'>
-        <Suspense fallback={<Loading />}>
+      </RouteWithSuspense>
+      <RouteWithSuspense fallback={<Loading />} path='/register'>
           <Register />
-        </Suspense>
-      </Route>
+      </RouteWithSuspense>
       <Route path='*'>
         <NotFound />
       </Route>
