@@ -4,10 +4,10 @@ export interface AuthNavProps {}
 
 const AuthNav: React.FC<AuthNavProps> = () => {
   return (
-    <div className='dummynav'>
+    <nav className='dummynav'>
       <Link to={'/login'}>Login</Link>
       <Link to={'/register'}>Register</Link>
-    </div>
+    </nav>
   );
 };
 export default AuthNav;

@@ -1,13 +1,10 @@
-import AuthNav from '../Components/AuthNav';
+import AuthTemplate from '../Templates/AuthTemplate';
 
 export interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
   return (
-    <div>
-      <AuthNav />
-      <p>Login Page</p>
-    </div>
+    <AuthTemplate>Login page</AuthTemplate>
   );
 };
 
