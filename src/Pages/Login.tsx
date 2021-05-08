@@ -1,10 +1,14 @@
+import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 
 export interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
   return (
-    <AuthTemplate>Login page</AuthTemplate>
+    <AuthTemplate>
+      <AuthHeader />
+      Login page
+      </AuthTemplate>
   );
 };
 

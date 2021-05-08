@@ -1,4 +1,4 @@
-import AuthNav from '../Components/AuthNav';
+import AuthNav from '../Components/Auth/AuthNav';
 
 export interface AuthTemplateProps {
   children: React.ReactNode
