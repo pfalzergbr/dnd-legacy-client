@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
+import { useShowPassword } from '../Hooks/useShowPassword';
 
 //TODO - Add error message after failed request
 
@@ -30,6 +31,8 @@ const Login: React.FC<LoginProps> = () => {
     mode: 'onTouched'
   });
   const { isValid } = useFormState({ control });
+  const {isVisible, toggleVisible} = useShowPassword(false)
+
   const onSubmit = (data: LoginInputs) => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
@@ -45,7 +48,8 @@ const Login: React.FC<LoginProps> = () => {
         </div>
         <div className='formControl'>
           <label htmlFor='password'>Password</label>
-          <input type='password' id='password' {...register('password')} />
+          <input type={isVisible ? 'text':'password'} id='password' {...register('password')} />
+          <button onClick={toggleVisible}>Show</button>
           <p role='alert'>{errors.password?.message}</p>
         </div>
         <button disabled={!isValid}>Log In</button>

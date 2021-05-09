@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 import { useValidation } from '../Hooks/useValidation';
+import { useShowPassword } from '../Hooks/useShowPassword';
 import './temp-css.css'
 
 interface RegisterInputs {
@@ -36,7 +37,7 @@ const Register: React.FC = () => {
   const { isValid } = useFormState({ control });
   const watchPassword = watch('password');
   const { validationState: { length, symbol, number, upperCase, lowerCase} } = useValidation(watchPassword);
-  
+  const {isVisible, toggleVisible} = useShowPassword(false)
   
   const onSubmit = (data: RegisterInputs) => {
     alert(`email: ${data.email}, password: ${data.password}`);
@@ -53,7 +54,8 @@ const Register: React.FC = () => {
         </div>
         <div className='formControl'>
           <label htmlFor='password'>Create Password</label>
-          <input type='password' id='password' {...register('password')} />
+          <input type={isVisible ? 'text':'password'} id='password' {...register('password')} />
+          <button onClick={toggleVisible}>Show</button>
           {/* <p role='alert'>{errors.password?.message}</p> */}
           <ul>
             <li className={length ? 'verified' : ''}>At least 8 characters</li>
