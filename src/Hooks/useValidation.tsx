@@ -29,10 +29,10 @@ const authReducer: Reducer<ValidationState, ActionType> = (
 ): ValidationState => {
   switch (action.type) {
     case 'LOWERCASE': {
-      return state;
+      return { ...state, lowerCase: action.payload };
     }
     case 'UPPERCASE': {
-      return state;
+      return { ...state, upperCase: action.payload };
     }
     case 'SYMBOL': {
       return { ...state, symbol: action.payload };
@@ -80,6 +80,15 @@ export const useValidation = (
       dispatch({ type: 'NUMBER', payload: true});
     } else {
       dispatch({ type: 'NUMBER', payload: false});
+    }
+  }, [target]);
+
+  useEffect(() => {
+    const pattern = new RegExp(/[A-Z]/g)
+    if (target && pattern.test(target)) {
+      dispatch({ type: 'UPPERCASE', payload: true});
+    } else {
+      dispatch({ type: 'UPPERCASE', payload: false});
     }
   }, [target]);
 

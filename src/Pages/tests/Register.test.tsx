@@ -57,10 +57,21 @@ describe('Password validation', () => {
     const numberText = await screen.findByText(/number/i);
     expect(numberText).not.toHaveClass('verified');
     const passwordInput = await screen.findByLabelText(/create password/i)
-    userEvent.type(passwordInput, 'abc12')
+    userEvent.type(passwordInput, 'abc42')
     await waitFor(() => expect(numberText).toHaveClass('verified'));
     userEvent.clear(passwordInput)
     await waitFor(() => expect(numberText).not.toHaveClass('verified'));
+  });
+
+  test('should flip class of uppercase if text input includes uppercase letter', async () => {
+    render(<Register />, { wrapper: MemoryRouter });
+    const upperCaseText = await screen.findByText(/uppercase/i);
+    expect(upperCaseText).not.toHaveClass('verified');
+    const passwordInput = await screen.findByLabelText(/create password/i)
+    userEvent.type(passwordInput, 'aBc')
+    await waitFor(() => expect(upperCaseText).toHaveClass('verified'));
+    userEvent.clear(passwordInput)
+    await waitFor(() => expect(upperCaseText).not.toHaveClass('verified'));
   });
 
 });

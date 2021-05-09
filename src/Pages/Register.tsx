@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 import { useValidation } from '../Hooks/useValidation';
+import './temp-css.css'
 
 interface RegisterInputs {
   email: string;
@@ -37,8 +38,8 @@ const Register: React.FC = () => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
   const watchPassword = watch('password');
-  const { validationState } = useValidation(watchPassword);
-  const { length, symbol, number} = validationState;
+  const { validationState: { length, symbol, number, upperCase} } = useValidation(watchPassword);
+  // const { length, symbol, number, upperCase} = validationState;
 
   return (
     <AuthTemplate>
@@ -56,7 +57,7 @@ const Register: React.FC = () => {
           <ul>
             <li className={length ? 'verified' : ''}>At least 8 characters</li>
             <li className={symbol ? 'verified' : ''}>Symbol</li>
-            <li>Uppercase letter</li>
+            <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
             <li>Lowercase letter</li>
             <li className={number ? 'verified' : ''}>A number</li>
           </ul>
