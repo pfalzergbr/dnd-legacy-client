@@ -34,11 +34,13 @@ const Register: React.FC = () => {
     mode: 'onTouched',
   });
   const { isValid } = useFormState({ control });
+  const watchPassword = watch('password');
+  const { validationState: { length, symbol, number, upperCase, lowerCase} } = useValidation(watchPassword);
+  
+  
   const onSubmit = (data: RegisterInputs) => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
-  const watchPassword = watch('password');
-  const { validationState: { length, symbol, number, upperCase, lowerCase} } = useValidation(watchPassword);
 
   return (
     <AuthTemplate>

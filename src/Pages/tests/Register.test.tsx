@@ -13,6 +13,19 @@ describe('Register component', () => {
     expect(email).toBeInTheDocument();
     expect(password).toBeInTheDocument();
   });
+
+  test('should send a request with the correct data when the form is filled', async () => {
+    render(<Register />, { wrapper: MemoryRouter });
+ 
+    const emailInput = await screen.findByLabelText(/e-mail/i)
+    const passwordInput = await screen.findByLabelText(/create password/i)
+    const registerButton = await screen.findByRole('button', {name: /register/i})
+    userEvent.type(emailInput, 'gimli@moria.me')
+    userEvent.type(passwordInput, 'My@xe1sYourz')
+    userEvent.click(registerButton)
+    //TODO - ADD testing the call
+  })
+  
 });
 
 describe('Password validation', () => {
