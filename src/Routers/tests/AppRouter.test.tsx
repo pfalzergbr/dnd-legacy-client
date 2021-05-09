@@ -34,12 +34,11 @@ describe('Router navigation', () => {
     render(<AppRouter />, { wrapper: MemoryRouter });
     const welcomeMessage = await screen.findByText(/3.5/i);
     expect(welcomeMessage).toBeInTheDocument();
-    const registerLink = screen.getByRole('link', { name: /register/i });
+    const registerLink = await screen.findByRole('link', { name: /register/i });
     userEvent.click(registerLink);
-    const registerTitle = await waitFor(() =>
-      screen.getByText(/register page/i)
-    );
-    expect(registerTitle).toBeInTheDocument();
+    const registerButton = await screen.findByRole('button', { name: /register/i });
+    expect(registerButton).toBeInTheDocument()
+    // expect(registerLink).toHaveClass('active')
   });
 
 
