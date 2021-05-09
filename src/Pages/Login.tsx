@@ -5,6 +5,8 @@ import * as yup from 'yup';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 
+//TODO - Add error message after failed request
+
 export interface LoginProps {}
 
 interface LoginInputs {
