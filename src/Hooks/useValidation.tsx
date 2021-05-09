@@ -95,9 +95,9 @@ export const useValidation = (
   useEffect(() => {
     const pattern = new RegExp(/[a-z]/g)
     if (target && pattern.test(target)) {
-      dispatch({ type: 'UPPERCASE', payload: true});
+      dispatch({ type: 'LOWERCASE', payload: true});
     } else {
-      dispatch({ type: 'UPPERCASE', payload: false});
+      dispatch({ type: 'LOWERCASE', payload: false});
     }
   }, [target]);
 
