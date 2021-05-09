@@ -1,11 +1,9 @@
-
 import { useForm, useFormState } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
-
-export interface RegisterProps {}
+import { useValidation } from '../Hooks/useValidation';
 
 interface RegisterInputs {
   email: string;
@@ -13,11 +11,17 @@ interface RegisterInputs {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().required('That’s not a valid email address. It should contain a @').email('That’s not a valid email address. It should contain a @'),
-  password: yup.string().required().matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
+  email: yup
+    .string()
+    .required('That’s not a valid email address. It should contain a @')
+    .email('That’s not a valid email address. It should contain a @'),
+  password: yup
+    .string()
+    .required()
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
 });
 
-const Register: React.FC<RegisterProps> = () => {
+const Register: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -26,14 +30,15 @@ const Register: React.FC<RegisterProps> = () => {
     control,
   } = useForm<RegisterInputs>({
     resolver: yupResolver(schema),
-    mode: 'onTouched'
+    mode: 'onTouched',
   });
   const { isValid } = useFormState({ control });
   const onSubmit = (data: RegisterInputs) => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
-  const watchPassword = watch(["password"])
-  // console.log(watchPassword)
+  const watchPassword = watch('password');
+  const { validationState } = useValidation(watchPassword);
+  const { length, symbol} = validationState;
 
   return (
     <AuthTemplate>
@@ -49,8 +54,8 @@ const Register: React.FC<RegisterProps> = () => {
           <input type='password' id='password' {...register('password')} />
           {/* <p role='alert'>{errors.password?.message}</p> */}
           <ul>
-            <li>At least 8 characters</li>
-            <li>Symbol</li>
+            <li className={length ? 'verified' : ''}>At least 8 characters</li>
+            <li className={symbol ? 'verified' : ''}>Symbol</li>
             <li>Uppercase letter</li>
             <li>Lowercase letter</li>
             <li>A number</li>
