@@ -38,7 +38,7 @@ const Register: React.FC = () => {
   };
   const watchPassword = watch('password');
   const { validationState } = useValidation(watchPassword);
-  const { length, symbol} = validationState;
+  const { length, symbol, number} = validationState;
 
   return (
     <AuthTemplate>
@@ -58,7 +58,7 @@ const Register: React.FC = () => {
             <li className={symbol ? 'verified' : ''}>Symbol</li>
             <li>Uppercase letter</li>
             <li>Lowercase letter</li>
-            <li>A number</li>
+            <li className={number ? 'verified' : ''}>A number</li>
           </ul>
         </div>
         <button disabled={!isValid}>Register</button>

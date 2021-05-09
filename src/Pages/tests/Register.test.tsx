@@ -41,7 +41,7 @@ describe('Password validation', () => {
     await waitFor(() => expect(lengthText).not.toHaveClass('verified'));
   });
 
-  test('should flip class of at least 8 characters to verified, if it includes a symbol', async () => {
+  test('should flip class of symbol if it includes a symbol', async () => {
     render(<Register />, { wrapper: MemoryRouter });
     const symbolText = await screen.findByText(/symbol/i);
     expect(symbolText).not.toHaveClass('verified');
@@ -51,4 +51,16 @@ describe('Password validation', () => {
     userEvent.clear(passwordInput)
     await waitFor(() => expect(symbolText).not.toHaveClass('verified'));
   });
+
+  test('should flip class of number if text input includes number', async () => {
+    render(<Register />, { wrapper: MemoryRouter });
+    const numberText = await screen.findByText(/number/i);
+    expect(numberText).not.toHaveClass('verified');
+    const passwordInput = await screen.findByLabelText(/create password/i)
+    userEvent.type(passwordInput, 'abc12')
+    await waitFor(() => expect(numberText).toHaveClass('verified'));
+    userEvent.clear(passwordInput)
+    await waitFor(() => expect(numberText).not.toHaveClass('verified'));
+  });
+
 });

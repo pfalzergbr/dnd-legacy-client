@@ -38,7 +38,7 @@ const authReducer: Reducer<ValidationState, ActionType> = (
       return { ...state, symbol: action.payload };
     }
     case 'NUMBER': {
-      return state;
+      return { ...state, number: action.payload };
     }
     case 'LENGTH': {
       return { ...state, length: action.payload };
@@ -71,6 +71,15 @@ export const useValidation = (
       dispatch({ type: 'SYMBOL', payload: true});
     } else {
       dispatch({ type: 'SYMBOL', payload: false});
+    }
+  }, [target]);
+
+  useEffect(() => {
+    const pattern = new RegExp(/\d/g)
+    if (target && pattern.test(target)) {
+      dispatch({ type: 'NUMBER', payload: true});
+    } else {
+      dispatch({ type: 'NUMBER', payload: false});
     }
   }, [target]);
 
