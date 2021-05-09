@@ -55,7 +55,7 @@ const Login: React.FC<LoginProps> = () => {
         <button disabled={!isValid}>Log In</button>
       </form>
       <footer>
-        <Link to='#'>I forgot my password</Link>
+        <Link to='/forgot-password'>I forgot my password</Link>
       </footer>
     </AuthTemplate>
   );

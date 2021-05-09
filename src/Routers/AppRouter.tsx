@@ -7,6 +7,7 @@ import RouteWithSuspense from './RouteWithSuspense'
 
 const Login = lazy(() => import('../Pages/Login'));
 const Register = lazy(() => import('../Pages/Register'));
+const ForgotPassword = lazy(() => import('../Pages/ForgotPassword'))
 
 const AppRouter = () => {
   const publicRoutes = (
@@ -19,6 +20,9 @@ const AppRouter = () => {
       </RouteWithSuspense>
       <RouteWithSuspense fallback={<Loading />} path='/register'>
           <Register />
+      </RouteWithSuspense>
+      <RouteWithSuspense fallback={<Loading />} path='/forgot-password'>
+          <ForgotPassword />
       </RouteWithSuspense>
       <Route path='*'>
         <NotFound />
