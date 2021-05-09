@@ -74,4 +74,15 @@ describe('Password validation', () => {
     await waitFor(() => expect(upperCaseText).not.toHaveClass('verified'));
   });
 
+  test('should flip class of lowerrcase if text input includes lowercase letter', async () => {
+    render(<Register />, { wrapper: MemoryRouter });
+    const lowerCaseText = await screen.findByText(/uppercase/i);
+    expect(lowerCaseText).not.toHaveClass('verified');
+    const passwordInput = await screen.findByLabelText(/create password/i)
+    userEvent.type(passwordInput, 'LOWercase')
+    await waitFor(() => expect(lowerCaseText).toHaveClass('verified'));
+    userEvent.clear(passwordInput)
+    await waitFor(() => expect(lowerCaseText).not.toHaveClass('verified'));
+  });
+
 });

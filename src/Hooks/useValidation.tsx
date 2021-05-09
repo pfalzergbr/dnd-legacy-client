@@ -92,5 +92,14 @@ export const useValidation = (
     }
   }, [target]);
 
+  useEffect(() => {
+    const pattern = new RegExp(/[a-z]/g)
+    if (target && pattern.test(target)) {
+      dispatch({ type: 'UPPERCASE', payload: true});
+    } else {
+      dispatch({ type: 'UPPERCASE', payload: false});
+    }
+  }, [target]);
+
   return { validationState, dispatch };
 };

@@ -38,8 +38,7 @@ const Register: React.FC = () => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
   const watchPassword = watch('password');
-  const { validationState: { length, symbol, number, upperCase} } = useValidation(watchPassword);
-  // const { length, symbol, number, upperCase} = validationState;
+  const { validationState: { length, symbol, number, upperCase, lowerCase} } = useValidation(watchPassword);
 
   return (
     <AuthTemplate>
@@ -58,7 +57,7 @@ const Register: React.FC = () => {
             <li className={length ? 'verified' : ''}>At least 8 characters</li>
             <li className={symbol ? 'verified' : ''}>Symbol</li>
             <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
-            <li>Lowercase letter</li>
+            <li className={lowerCase ? 'verified' : ''}>Lowercase letter</li>
             <li className={number ? 'verified' : ''}>A number</li>
           </ul>
         </div>
