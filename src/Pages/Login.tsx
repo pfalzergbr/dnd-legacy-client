@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+// import { useLazyQuery } from '@apollo/client'
+import { useShowPassword } from '../Hooks/useShowPassword';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
-import { useShowPassword } from '../Hooks/useShowPassword';
+// import { LOGIN } from '../GraphQL/authQueries';
 
 //TODO - Add error message after failed request
 
@@ -33,9 +35,18 @@ const Login: React.FC<LoginProps> = () => {
   const { isValid } = useFormState({ control });
   const {isVisible, toggleVisible} = useShowPassword(false)
 
+  // const [login, {loading, data}] = useLazyQuery(LOGIN, {variables: {
+  //   data: {
+  //     email: 'vesemir@kaer-morhen.com', password: '92klIae!'
+  //   }
+  // }})
+
+
+
   const onSubmit = (data: LoginInputs) => {
     alert(`email: ${data.email}, password: ${data.password}`);
   };
+
 
   return (
     <AuthTemplate>
