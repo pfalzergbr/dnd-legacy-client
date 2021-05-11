@@ -1,5 +1,5 @@
-import { screen, render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, render,  } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import ForgotPassword from '../ForgotPassword';
 
