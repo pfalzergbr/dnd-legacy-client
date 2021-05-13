@@ -16,6 +16,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export const client = new ApolloClient({
   // link: link,
-  uri: process.env.GRAPHQL_API,
+  uri: process.env.REACT_APP_GRAPHQL_API,
   cache: new InMemoryCache(),
 });
+
