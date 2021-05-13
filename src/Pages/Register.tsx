@@ -5,7 +5,10 @@ import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 import { useValidation } from '../Hooks/useValidation';
 import { useShowPassword } from '../Hooks/useShowPassword';
-import './temp-css.css'
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../GraphQL/authMutations';
+
+import './temp-css.css';
 
 interface RegisterInputs {
   email: string;
@@ -23,6 +26,7 @@ const schema = yup.object().shape({
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
 });
 
+
 const Register: React.FC = () => {
   const {
     register,
@@ -36,11 +40,20 @@ const Register: React.FC = () => {
   });
   const { isValid } = useFormState({ control });
   const watchPassword = watch('password');
-  const { validationState: { length, symbol, number, upperCase, lowerCase} } = useValidation(watchPassword);
-  const {isVisible, toggleVisible} = useShowPassword(false)
-  
-  const onSubmit = (data: RegisterInputs) => {
-    alert(`email: ${data.email}, password: ${data.password}`);
+  const {
+    validationState: { length, symbol, number, upperCase, lowerCase },
+  } = useValidation(watchPassword);
+  const { isVisible, toggleVisible } = useShowPassword(false);
+  const [createUser, {error}] = useMutation(CREATE_USER);
+ 
+  const onSubmit = (userData: RegisterInputs) => {
+    createUser({variables: {
+      data: userData
+    }})
+
+    if (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -54,7 +67,11 @@ const Register: React.FC = () => {
         </div>
         <div className='formControl'>
           <label htmlFor='password'>Create Password</label>
-          <input type={isVisible ? 'text':'password'} id='password' {...register('password')} />
+          <input
+            type={isVisible ? 'text' : 'password'}
+            id='password'
+            {...register('password')}
+          />
           <button onClick={toggleVisible}>Show</button>
           {/* <p role='alert'>{errors.password?.message}</p> */}
           <ul>
