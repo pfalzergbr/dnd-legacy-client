@@ -5,9 +5,9 @@ import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useShowPassword } from '../Hooks/useShowPassword';
-// Context 
-import { AuthActions } from '../Context/AuthContext'
-// Apollo Client 
+// Context
+import { AuthActions } from '../Context/AuthContext';
+// Apollo Client
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN } from '../GraphQL/authQueries';
 // Components
@@ -20,7 +20,6 @@ import { UserInput } from '../Typings/inputs';
 
 export interface LoginProps {}
 
-
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -32,6 +31,7 @@ const schema = yup.object().shape({
 });
 
 const Login: React.FC<LoginProps> = () => {
+  // React Hook Form
   const {
     register,
     handleSubmit,
@@ -43,14 +43,17 @@ const Login: React.FC<LoginProps> = () => {
   });
   const { isValid } = useFormState({ control });
   const { isVisible, toggleVisible } = useShowPassword(false);
-  const { login } = useContext(AuthActions)
-  const [loginQuery, { loading }] = useLazyQuery(LOGIN, { onCompleted: (data) => login(data.login)})
+  // Auth
+  const { login } = useContext(AuthActions);
+  const [loginQuery, { loading }] = useLazyQuery(LOGIN, {
+    onCompleted: (data) => login(data.login),
+  });
 
   const onSubmit = async (loginData: UserInput) => {
-    loginQuery({variables: {data: loginData}})
+    loginQuery({ variables: { data: loginData } });
   };
 
-  if (loading) return <Loading/>
+  if (loading) return <Loading />;
 
   return (
     <AuthTemplate>

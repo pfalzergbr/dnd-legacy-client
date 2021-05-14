@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext'
 import Start from '../Pages/Start';
 import Loading from '../Components/Loading';
 import NotFound from '../Pages/NotFound';
@@ -8,8 +10,12 @@ import RouteWithSuspense from './RouteWithSuspense'
 const Login = lazy(() => import('../Pages/Login'));
 const Register = lazy(() => import('../Pages/Register'));
 const ForgotPassword = lazy(() => import('../Pages/ForgotPassword'))
+const Home = lazy(() => import('../Pages/Home'))
 
 const AppRouter = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user)
+  
   const publicRoutes = (
     <Switch>
       <Route exact path='/'>
@@ -29,11 +35,20 @@ const AppRouter = () => {
       </Route>
     </Switch>
   );
+  
+  const privateRoutes = (
+    <Switch>
+      <RouteWithSuspense fallback={<Loading/>} path='/home'>
+      <Home />
+      </RouteWithSuspense>
+    </Switch>
+
+  )
 
   return (
     <>
       <Router>
-        {publicRoutes}
+        {user?.id && user?.email ? privateRoutes : publicRoutes}
       </Router>
     </>
   );
