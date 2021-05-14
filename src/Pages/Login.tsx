@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-// import { useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client';
 import { useShowPassword } from '../Hooks/useShowPassword';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
-// import { LOGIN } from '../GraphQL/authQueries';
+import { LOGIN } from '../GraphQL/authQueries';
+import Loading from '../Components/Loading';
 
 //TODO - Add error message after failed request
 
@@ -18,8 +19,13 @@ interface LoginInputs {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().required('That’s not a valid email address. It should contain a @').email('That’s not a valid email address. It should contain a @'),
-  password: yup.string().required('required field - need a validation feedback message here! :)'),
+  email: yup
+    .string()
+    .required('That’s not a valid email address. It should contain a @')
+    .email('That’s not a valid email address. It should contain a @'),
+  password: yup
+    .string()
+    .required('required field - need a validation feedback message here! :)'),
 });
 
 const Login: React.FC<LoginProps> = () => {
@@ -30,23 +36,19 @@ const Login: React.FC<LoginProps> = () => {
     control,
   } = useForm<LoginInputs>({
     resolver: yupResolver(schema),
-    mode: 'onTouched'
+    mode: 'onTouched',
   });
   const { isValid } = useFormState({ control });
-  const {isVisible, toggleVisible} = useShowPassword(false)
+  const { isVisible, toggleVisible } = useShowPassword(false);
 
-  // const [login, {loading, data}] = useLazyQuery(LOGIN, {variables: {
-  //   data: {
-  //     email: 'vesemir@kaer-morhen.com', password: '92klIae!'
-  //   }
-  // }})
+  const [login, { loading, data }] = useLazyQuery(LOGIN)
 
-
-
-  const onSubmit = (data: LoginInputs) => {
-    alert(`email: ${data.email}, password: ${data.password}`);
+  const onSubmit = (loginData: LoginInputs) => {
+    login({variables: {data: loginData}})
+    console.log(data)
   };
 
+  if (loading) return <Loading/>
 
   return (
     <AuthTemplate>
@@ -59,7 +61,11 @@ const Login: React.FC<LoginProps> = () => {
         </div>
         <div className='formControl'>
           <label htmlFor='password'>Password</label>
-          <input type={isVisible ? 'text':'password'} id='password' {...register('password')} />
+          <input
+            type={isVisible ? 'text' : 'password'}
+            id='password'
+            {...register('password')}
+          />
           <button onClick={toggleVisible}>Show</button>
           <p role='alert'>{errors.password?.message}</p>
         </div>

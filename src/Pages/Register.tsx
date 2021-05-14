@@ -7,6 +7,7 @@ import { useValidation } from '../Hooks/useValidation';
 import { useShowPassword } from '../Hooks/useShowPassword';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../GraphQL/authMutations';
+import Loading from '../Components/Loading';
 
 import './temp-css.css';
 
@@ -26,7 +27,6 @@ const schema = yup.object().shape({
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
 });
 
-
 const Register: React.FC = () => {
   const {
     register,
@@ -44,17 +44,21 @@ const Register: React.FC = () => {
     validationState: { length, symbol, number, upperCase, lowerCase },
   } = useValidation(watchPassword);
   const { isVisible, toggleVisible } = useShowPassword(false);
-  const [createUser, {error}] = useMutation(CREATE_USER);
- 
+  const [createUser, { loading, error }] = useMutation(CREATE_USER);
+
   const onSubmit = (userData: RegisterInputs) => {
-    createUser({variables: {
-      data: userData
-    }})
+    createUser({
+      variables: {
+        data: userData,
+      },
+    });
 
     if (error) {
-      console.log(error)
+      console.log(error);
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <AuthTemplate>
