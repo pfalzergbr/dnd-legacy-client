@@ -1,12 +1,15 @@
 import AppRouter from './Routers/AppRouter';
 import { ApolloProvider } from '@apollo/client/react';
 import { client } from './Services/client';
+import AuthProvider from './Context/AuthContext';
 
 function App() {
   return (
     <div className='App'>
       <ApolloProvider client={client}>
-        <AppRouter />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </ApolloProvider>
     </div>
   );

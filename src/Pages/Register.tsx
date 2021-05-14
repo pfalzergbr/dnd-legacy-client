@@ -1,19 +1,26 @@
+import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+// Reach Hook Form
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import AuthHeader from '../Components/Auth/AuthHeader';
-import AuthTemplate from '../Templates/AuthTemplate';
 import { useValidation } from '../Hooks/useValidation';
+import * as yup from 'yup';
 import { useShowPassword } from '../Hooks/useShowPassword';
+// Context 
+import { AuthActions } from '../Context/AuthContext';
+// Apollo Client
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../GraphQL/authMutations';
+// Components
+import AuthHeader from '../Components/Auth/AuthHeader';
+import AuthTemplate from '../Templates/AuthTemplate';
+import Loading from '../Components/Loading';
+//Types
+import { UserInput } from '../Typings/inputs';
 
 import './temp-css.css';
 
-interface RegisterInputs {
-  email: string;
-  password: string;
-}
+
 
 const schema = yup.object().shape({
   email: yup
@@ -26,7 +33,6 @@ const schema = yup.object().shape({
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
 });
 
-
 const Register: React.FC = () => {
   const {
     register,
@@ -34,7 +40,7 @@ const Register: React.FC = () => {
     watch,
     formState: { errors },
     control,
-  } = useForm<RegisterInputs>({
+  } = useForm<UserInput>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
@@ -44,17 +50,30 @@ const Register: React.FC = () => {
     validationState: { length, symbol, number, upperCase, lowerCase },
   } = useValidation(watchPassword);
   const { isVisible, toggleVisible } = useShowPassword(false);
-  const [createUser, {error}] = useMutation(CREATE_USER);
- 
-  const onSubmit = (userData: RegisterInputs) => {
-    createUser({variables: {
-      data: userData
-    }})
+  const history = useHistory()
+  const { handleLogin } = useContext(AuthActions)
+  const [createUser, { loading, error }] = useMutation(CREATE_USER, {
+    onCompleted: (data) => {
+      handleLogin(data.createUser)
+      history.push('/home')
+    }
+  });
+
+
+
+  const onSubmit = (userData: UserInput) => {
+    createUser({
+      variables: {
+        data: userData,
+      }
+    });
 
     if (error) {
-      console.log(error)
+      console.log(error);
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <AuthTemplate>
