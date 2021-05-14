@@ -15,9 +15,6 @@ const Home = lazy(() => import('../Pages/Home'));
 const AppRouter = () => {
   const { isAuth } = useContext(AuthContext);
 
-
-  console.log(isAuth);
-
   const publicRoutes = (
     <Switch>
       <Route exact path='/'>
