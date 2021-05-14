@@ -8,15 +8,12 @@ import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 import { LOGIN } from '../GraphQL/authQueries';
 import Loading from '../Components/Loading';
+import { UserInput } from '../Typings/inputs';
 
 //TODO - Add error message after failed request
 
 export interface LoginProps {}
 
-interface LoginInputs {
-  email: string;
-  password: string;
-}
 
 const schema = yup.object().shape({
   email: yup
@@ -34,7 +31,7 @@ const Login: React.FC<LoginProps> = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<LoginInputs>({
+  } = useForm<UserInput>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
@@ -43,7 +40,7 @@ const Login: React.FC<LoginProps> = () => {
 
   const [login, { loading, data }] = useLazyQuery(LOGIN)
 
-  const onSubmit = (loginData: LoginInputs) => {
+  const onSubmit = (loginData: UserInput) => {
     login({variables: {data: loginData}})
     console.log(data)
   };

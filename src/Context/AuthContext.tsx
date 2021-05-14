@@ -1,4 +1,5 @@
 import { createContext, useState, useCallback } from 'react';
+import { UserInput } from '../Typings/inputs';
 
 interface IAuthContext {
   user: {
@@ -8,7 +9,7 @@ interface IAuthContext {
 }
 
 interface IAuthActions {
-  login: () => void
+  login: (userData: UserInput) => void
   logout: () => void
 }
 
@@ -16,10 +17,10 @@ const AuthContext = createContext<IAuthContext>({ user: null });
 const AuthActions = createContext<IAuthActions>({} as IAuthActions)
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState({ user: null });
+  const [user, setUser] = useState({ user: null } as IAuthContext);
 
-  const login = useCallback(() => {
-    setUser({ user: null });
+  const login = useCallback(({id, email}) => {
+    setUser({ user: {id, email}});
   }, []);
 
   const logout = useCallback(() => {}, [])

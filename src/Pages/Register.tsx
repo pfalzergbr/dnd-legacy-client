@@ -7,14 +7,12 @@ import { useValidation } from '../Hooks/useValidation';
 import { useShowPassword } from '../Hooks/useShowPassword';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../GraphQL/authMutations';
+import { UserInput } from '../Typings/inputs';
 import Loading from '../Components/Loading';
 
 import './temp-css.css';
 
-interface RegisterInputs {
-  email: string;
-  password: string;
-}
+
 
 const schema = yup.object().shape({
   email: yup
@@ -34,7 +32,7 @@ const Register: React.FC = () => {
     watch,
     formState: { errors },
     control,
-  } = useForm<RegisterInputs>({
+  } = useForm<UserInput>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
@@ -46,7 +44,7 @@ const Register: React.FC = () => {
   const { isVisible, toggleVisible } = useShowPassword(false);
   const [createUser, { loading, error }] = useMutation(CREATE_USER);
 
-  const onSubmit = (userData: RegisterInputs) => {
+  const onSubmit = (userData: UserInput) => {
     createUser({
       variables: {
         data: userData,
