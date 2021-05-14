@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 // React Hook Form
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -43,10 +44,15 @@ const Login: React.FC<LoginProps> = () => {
   });
   const { isValid } = useFormState({ control });
   const { isVisible, toggleVisible } = useShowPassword(false);
+  //Router
+  const history = useHistory()
   // Auth
   const { login } = useContext(AuthActions);
   const [loginQuery, { loading }] = useLazyQuery(LOGIN, {
-    onCompleted: (data) => login(data.login),
+    onCompleted: (data) => {
+      login(data.login);
+      history.push('/home')
+    },
   });
 
   const onSubmit = async (loginData: UserInput) => {
