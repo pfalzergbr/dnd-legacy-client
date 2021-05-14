@@ -47,10 +47,10 @@ const Login: React.FC<LoginProps> = () => {
   //Router
   const history = useHistory()
   // Auth
-  const { login } = useContext(AuthActions);
+  const { handleLogin } = useContext(AuthActions);
   const [loginQuery, { loading }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
-      login(data.login);
+      handleLogin(data.login);
       history.push('/home')
     },
   });

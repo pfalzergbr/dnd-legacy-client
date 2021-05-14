@@ -14,9 +14,9 @@ interface IAuthContext {
 }
 
 interface IAuthActions {
-  login: (userData: UserInput) => void;
+  handleLogin: (userData: UserInput) => void;
   autoLogin: () => void;
-  logout: () => void;
+  handleLogout: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({ user: null, isAuth: false });
@@ -28,11 +28,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const isAuth = user?.id && user?.email ? true : false
 
-  const login = useCallback(({ id, email }) => {
+  const handleLogin = useCallback(({ id, email }) => {
     setUser({ id, email });
   }, []);
 
-  const logout = useCallback(() => {
+  const handleLogout = useCallback(() => {
     setUser(null)
   }, []);
 
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{user, isAuth}}>
-      <AuthActions.Provider value={{ login, logout, autoLogin }}>
+      <AuthActions.Provider value={{ handleLogin, handleLogout, autoLogin }}>
         {children}
       </AuthActions.Provider>
     </AuthContext.Provider>
