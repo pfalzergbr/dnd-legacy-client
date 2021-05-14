@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+// React Hook Form
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useLazyQuery } from '@apollo/client';
 import { useShowPassword } from '../Hooks/useShowPassword';
+// Context 
+import { AuthActions } from '../Context/AuthContext'
+// Apollo Client 
+import { useLazyQuery } from '@apollo/client';
+import { LOGIN } from '../GraphQL/authQueries';
+// Components
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
-import { LOGIN } from '../GraphQL/authQueries';
 import Loading from '../Components/Loading';
+//Types
 import { UserInput } from '../Typings/inputs';
-
 //TODO - Add error message after failed request
 
 export interface LoginProps {}
@@ -37,12 +43,11 @@ const Login: React.FC<LoginProps> = () => {
   });
   const { isValid } = useFormState({ control });
   const { isVisible, toggleVisible } = useShowPassword(false);
+  const { login } = useContext(AuthActions)
+  const [loginQuery, { loading }] = useLazyQuery(LOGIN, { onCompleted: (data) => login(data.login)})
 
-  const [login, { loading, data }] = useLazyQuery(LOGIN)
-
-  const onSubmit = (loginData: UserInput) => {
-    login({variables: {data: loginData}})
-    console.log(data)
+  const onSubmit = async (loginData: UserInput) => {
+    loginQuery({variables: {data: loginData}})
   };
 
   if (loading) return <Loading/>
