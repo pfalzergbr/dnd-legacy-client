@@ -1,5 +1,5 @@
 [[redirects]]
   from = "https://dnd35-server.herokuapp.com/graphql"
-  to= "https://dnd35-server.herokuapp.com/graphql"
-  status: 200
-  force: true
+  to = "https://dnd35-server.herokuapp.com/graphql"
+  status = 200
+  force = true
