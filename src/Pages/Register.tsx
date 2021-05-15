@@ -56,7 +56,8 @@ const Register: React.FC = () => {
     onCompleted: (data) => {
       handleLogin(data.createUser)
       history.push('/home')
-    }
+    },
+    onError: (error) => console.log(error.message)
   });
 
 
@@ -67,10 +68,6 @@ const Register: React.FC = () => {
         data: userData,
       }
     });
-
-    if (error) {
-      console.log(error);
-    }
   };
 
   if (loading) return <Loading />;
@@ -92,7 +89,7 @@ const Register: React.FC = () => {
             {...register('password')}
           />
           <button onClick={toggleVisible}>Show</button>
-          {/* <p role='alert'>{errors.password?.message}</p> */}
+          {error && <p role='alert'>{error.message}</p>}
           <ul>
             <li className={length ? 'verified' : ''}>At least 8 characters</li>
             <li className={symbol ? 'verified' : ''}>Symbol</li>
