@@ -30,7 +30,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required()
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/),
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[£"'`_+-=@$!%*#?&|,.<>()\\{}[\]])[A-Za-z\d£@"'`_+-=$!%*#?&|,.<>(){}\\[\]]{8,}$/),
 });
 
 const Register: React.FC = () => {
@@ -68,6 +68,7 @@ const Register: React.FC = () => {
         data: userData,
       }
     });
+
   };
 
   if (loading) return <Loading />;

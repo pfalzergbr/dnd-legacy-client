@@ -66,7 +66,7 @@ export const useValidation = (
   }, [target]);
 
   useEffect(() => {
-    const pattern = new RegExp(/[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g)
+    const pattern = new RegExp(/[ £`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g)
     if (target && pattern.test(target)) {
       dispatch({ type: 'SYMBOL', payload: true});
     } else {
