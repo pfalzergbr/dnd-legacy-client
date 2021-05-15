@@ -6,6 +6,7 @@ const httpLink = new HttpLink({
   headers: {
     'Access-Control-Allow-Credentials': true,
   },
+
   credentials: 'include',
 });
 

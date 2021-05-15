@@ -14,7 +14,7 @@ describe('Router navigation', () => {
       <MockedProvider addTypename={false}>
         <AppRouter />
       </MockedProvider>,
-      { wrapper: MemoryRouter }
+      { wrapper: MemoryRouter } 
     );
     const loginLink = await screen.findByRole('link', { name: /log in/i });
     userEvent.click(loginLink);
