@@ -1,5 +1,4 @@
 import { render, screen } from '../../Test-Utils/renderWithProviders';
-import { MemoryRouter } from 'react-router';
 import Start from '../Start';
 
 describe('Start page', () => {

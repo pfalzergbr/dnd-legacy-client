@@ -2,15 +2,16 @@ import { render as rtlRender } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter } from 'react-router-dom';
 
-function Wrapper({ children } : { children: React.ReactNode}) {
-  return (
-    <MockedProvider>
-      <MemoryRouter>{children}</MemoryRouter>
-    </MockedProvider>
-  );
-}
 
 function render(ui: React.ReactElement, options?: any) {
+  // const {...rest} = options
+  function Wrapper({ children } : { children: React.ReactNode}) {
+    return (
+      <MockedProvider>
+        <MemoryRouter>{children}</MemoryRouter>
+      </MockedProvider>
+    );
+  }
   return rtlRender(ui, { wrapper: Wrapper, ...options });
 }
 
