@@ -1,11 +1,17 @@
 import { screen, render,  } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
+import { MockedProvider } from '@apollo/client/testing'
 import { MemoryRouter } from 'react-router-dom';
 import ForgotPassword from '../ForgotPassword';
 
 describe('Forgot Password screen',  () => {
   test('should render form if not submitted yet', async () => {
-    render(<ForgotPassword />, { wrapper: MemoryRouter });
+    render(
+      <MockedProvider addTypename={false}>
+        <ForgotPassword />
+      </MockedProvider>,
+      { wrapper: MemoryRouter }
+    );
     const forgotHeader = await screen.findByText(/where should we/i)
     expect(forgotHeader).toBeInTheDocument()
   })
