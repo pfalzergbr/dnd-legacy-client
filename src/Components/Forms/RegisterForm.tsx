@@ -1,9 +1,10 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useShowPassword } from '../../Hooks/useShowPassword';
 import { useValidation } from '../../Hooks/useValidation';
 import { UserInput } from '../../Typings/inputs';
+import InputText from '../UI/FormElements/InputText';
+import InputPassword from '../UI/FormElements/InputPassword';
 import { ApolloError } from '@apollo/client';
 
 export interface RegisterFormProps {
@@ -40,32 +41,29 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
   const {
     validationState: { length, symbol, number, upperCase, lowerCase },
   } = useValidation(watchPassword);
-  const { isVisible, toggleVisible } = useShowPassword(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='formControl'>
-        <label htmlFor='email'>E-mail</label>
-        <input type='text' id='email' {...register('email')} />
-        <p role='alert'>{errors.email?.message}</p>
-      </div>
-      <div className='formControl'>
-        <label htmlFor='password'>Create Password</label>
-        <input
-          type={isVisible ? 'text' : 'password'}
-          id='password'
-          {...register('password')}
-        />
-        <button onClick={toggleVisible}>Show</button>
-        {error && <p role='alert'>{error.message}</p>}
-        <ul>
-          <li className={length ? 'verified' : ''}>At least 8 characters</li>
-          <li className={symbol ? 'verified' : ''}>Symbol</li>
-          <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
-          <li className={lowerCase ? 'verified' : ''}>Lowercase letter</li>
-          <li className={number ? 'verified' : ''}>A number</li>
-        </ul>
-      </div>
+      <InputText
+        name={'email'}
+        label={'E-mail'}
+        register={register}
+        errors={errors}
+      />
+      <InputPassword
+        name='password'
+        label='Create Password'
+        register={register}
+        errors={errors}
+      />
+      {error && <p role='alert'>{error.message}</p>}
+      <ul>
+        <li className={length ? 'verified' : ''}>At least 8 characters</li>
+        <li className={symbol ? 'verified' : ''}>Symbol</li>
+        <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
+        <li className={lowerCase ? 'verified' : ''}>Lowercase letter</li>
+        <li className={number ? 'verified' : ''}>A number</li>
+      </ul>
       <button disabled={!isValid}>Register</button>
     </form>
   );
