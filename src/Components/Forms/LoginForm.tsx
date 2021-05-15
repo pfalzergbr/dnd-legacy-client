@@ -1,7 +1,6 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-// import { useShowPassword } from '../../Hooks/useShowPassword';
 import { UserInput } from '../../Typings/inputs';
 import { ApolloError } from '@apollo/client';
 import InputText from '../UI/FormElements/InputText';
@@ -50,7 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
         errors={errors}
       />
       {error && <p role='alert'>{error.message}</p>}
-      <button disabled={!isValid}>Log In</button>
+      <button type='submit' disabled={!isValid}>Log In</button>
     </form>
   );
 };

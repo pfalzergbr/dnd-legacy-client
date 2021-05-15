@@ -26,7 +26,7 @@ const InputPassword: React.FC<InputPasswordProps<any>> = ({
         id={name}
         {...register(name)}
       />
-      <button onClick={toggleVisible}>Show</button>
+      <button type="button" onClick={toggleVisible}>Show</button>
       <p role='alert'>{errors[name]?.message}</p>
     </div>
   );
