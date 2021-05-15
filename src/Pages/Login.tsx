@@ -13,11 +13,8 @@ import Loading from '../Components/Loading';
 import LoginForm from '../Components/Forms/LoginForm'
 //Types
 import { UserInput } from '../Typings/inputs';
-//TODO - Add error message after failed request
 
 export interface LoginProps {}
-
-
 
 const Login: React.FC<LoginProps> = () => {
   //Router
