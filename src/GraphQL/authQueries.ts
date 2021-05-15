@@ -17,3 +17,9 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const LOGOUT = gql`
+  query {
+    logout
+  }
+`;

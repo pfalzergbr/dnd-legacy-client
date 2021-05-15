@@ -1,5 +1,8 @@
 import { createContext, useState, useCallback } from 'react';
+import { useLazyQuery } from '@apollo/client';
 import { UserInput } from '../Typings/inputs';
+import { client } from '../Services/client'
+import { LOGOUT } from '../GraphQL/authQueries';
 
 type User = {
   id: string;
@@ -24,6 +27,7 @@ export const AuthActions = createContext<IAuthActions>({} as IAuthActions);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState(null as User);
+  const [logout] = useLazyQuery(LOGOUT)
 
   const isAuth = user?.id && user?.email ? true : false;
 
@@ -31,9 +35,15 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser({ id, email });
   }, []);
 
-  const handleLogout = useCallback(() => {
-    setUser(null);
-  }, []);
+  const handleLogout = useCallback(async () => {
+    try {
+      await logout()
+      setUser(null);
+      client.clearStore()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [logout]);
 
   return (
     <AuthContext.Provider value={{ user, isAuth }}>
