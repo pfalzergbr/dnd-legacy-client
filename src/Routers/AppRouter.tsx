@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import { lazy } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { AuthContext } from '../Context/AuthContext';
+import { useQuery } from '@apollo/client';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { AuthContext, AuthActions } from '../Context/AuthContext';
 import Start from '../Pages/Start';
 import Loading from '../Components/Loading';
 import NotFound from '../Pages/NotFound';
 import RouteWithSuspense from './RouteWithSuspense';
+import {GET_USER} from '../GraphQL/authQueries'
 
 const Login = lazy(() => import('../Pages/Login'));
 const Register = lazy(() => import('../Pages/Register'));
@@ -14,6 +16,17 @@ const Home = lazy(() => import('../Pages/Home'));
 
 const AppRouter = () => {
   const { isAuth } = useContext(AuthContext);
+  const { handleLogin } = useContext(AuthActions);
+
+  const { loading } = useQuery(GET_USER, {
+    onCompleted: ({getUser}) => {
+      handleLogin(getUser)
+  
+    },
+    onError: (error) => {
+      console.log('not logged in')
+    },
+  });
 
   const publicRoutes = (
     <Switch>
@@ -40,8 +53,17 @@ const AppRouter = () => {
       <RouteWithSuspense fallback={<Loading />} path='/home'>
         <Home />
       </RouteWithSuspense>
+      <Redirect from="/" to="/home" />
+      <Redirect from="/login" to="/home" />
+      <Redirect from="/register" to="/home" />
+      <Redirect from="/forgot-password" to="/home" />
+      <Route path='*'>
+        <NotFound />
+      </Route>
     </Switch>
   );
+
+  if (loading) return <Loading />
 
   return (
     <>
