@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import ForgotPasswordForm from '../Components/Forms/ForgotPasswordForm';
+import ForgotPasswordForm from '../Components/Auth/Forms/ForgotPasswordForm';
 import { ForgotInputs } from '../Typings/inputs';
 //TODO - Add error message after failed request
 

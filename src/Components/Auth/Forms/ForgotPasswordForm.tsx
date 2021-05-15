@@ -1,7 +1,7 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { ForgotInputs } from '../../Typings/inputs';
+import { ForgotInputs } from '../../../Typings/inputs';
 
 export interface ForgotPasswordFormProps {
   onSubmit: (data: ForgotInputs) => void;

@@ -13,7 +13,7 @@ import Loading from '../Components/Loading';
 import { UserInput } from '../Typings/inputs';
 
 import './temp-css.css';
-import RegisterForm from '../Components/Forms/RegisterForm';
+import RegisterForm from '../Components/Auth/Forms/RegisterForm';
 
 const Register: React.FC = () => {
   const history = useHistory();

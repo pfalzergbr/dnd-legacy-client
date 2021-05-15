@@ -1,10 +1,10 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { UserInput } from '../../Typings/inputs';
+import { UserInput } from '../../../Typings/inputs';
 import { ApolloError } from '@apollo/client';
-import InputText from '../UI/FormElements/InputText';
-import InputPassword from '../UI/FormElements/InputPassword';
+import InputText from '../../UI/FormElements/InputText';
+import InputPassword from '../../UI/FormElements/InputPassword';
 
 export interface LoginFormProps {
   onSubmit: (loginData: UserInput) => Promise<void>;
@@ -22,7 +22,6 @@ const schema = yup.object().shape({
 });
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
-  // React Hook Form
   const {
     register,
     handleSubmit,

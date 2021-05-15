@@ -1,7 +1,6 @@
 import { DeepMap, FieldError, UseFormRegister } from 'react-hook-form';
 import { useShowPassword } from '../../../Hooks/useShowPassword';
 
-// TODO - figure out how to get rid of any here
 
 export interface InputPasswordProps<T> {
   label?: string;
@@ -10,6 +9,7 @@ export interface InputPasswordProps<T> {
   errors: DeepMap<T, FieldError>;
 }
 
+// TODO - figure out how to get rid of any here
 const InputPassword: React.FC<InputPasswordProps<any>> = ({
   label = 'Password',
   name = 'password',

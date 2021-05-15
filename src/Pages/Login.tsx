@@ -10,7 +10,7 @@ import { LOGIN } from '../GraphQL/authQueries';
 import AuthHeader from '../Components/Auth/AuthHeader';
 import AuthTemplate from '../Templates/AuthTemplate';
 import Loading from '../Components/Loading';
-import LoginForm from '../Components/Forms/LoginForm'
+import LoginForm from '../Components/Auth/Forms/LoginForm'
 //Types
 import { UserInput } from '../Typings/inputs';
 

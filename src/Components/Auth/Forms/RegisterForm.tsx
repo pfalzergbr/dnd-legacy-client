@@ -1,10 +1,10 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useValidation } from '../../Hooks/useValidation';
-import { UserInput } from '../../Typings/inputs';
-import InputText from '../UI/FormElements/InputText';
-import InputPassword from '../UI/FormElements/InputPassword';
+import { useValidation } from '../../../Hooks/useValidation';
+import { UserInput } from '../../../Typings/inputs';
+import InputText from '../../UI/FormElements/InputText';
+import InputPassword from '../../UI/FormElements/InputPassword';
 import { ApolloError } from '@apollo/client';
 
 export interface RegisterFormProps {

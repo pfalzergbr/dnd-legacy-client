@@ -1,6 +1,5 @@
 import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
 
-//TODO - Get rid of 'any'
 
 export interface InputTextProps<T> {
   label: string
@@ -9,6 +8,7 @@ export interface InputTextProps<T> {
   errors: DeepMap<T, FieldError>
 }
 
+//TODO - Get rid of 'any'
 const InputText: React.FC<InputTextProps<any>> = ({label, name, register, errors}) => {
   return (
     <div className='formControl'>
