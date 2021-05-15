@@ -42,6 +42,7 @@ const AppRouter = () => {
       <RouteWithSuspense fallback={<Loading />} path='/forgot-password'>
         <ForgotPassword />
       </RouteWithSuspense>
+      <Redirect from="/home" to="/" />
       <Route path='*'>
         <NotFound />
       </Route>

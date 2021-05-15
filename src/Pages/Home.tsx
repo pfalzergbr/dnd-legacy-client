@@ -1,11 +1,17 @@
 import { useContext } from 'react'
-import { AuthContext } from '../Context/AuthContext'
+import { AuthActions, AuthContext } from '../Context/AuthContext'
 
 const Home = () => {
   const { user } = useContext(AuthContext)
+  const { handleLogout } = useContext(AuthActions);
+
+  const onLogout = () => {
+    handleLogout()
+  }
 
   return (
     <div>
+      <button onClick={onLogout}>Logout</button>
       <h1>Yey, You`re in</h1>
       <p>TEST: Your e-mail is {user?.email}</p>
       <button>Create a character</button>
