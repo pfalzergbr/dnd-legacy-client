@@ -45,13 +45,13 @@ const Login: React.FC<LoginProps> = () => {
   const { isValid } = useFormState({ control });
   const { isVisible, toggleVisible } = useShowPassword(false);
   //Router
-  const history = useHistory()
+  const history = useHistory();
   // Auth
   const { handleLogin } = useContext(AuthActions);
-  const [loginQuery, { loading }] = useLazyQuery(LOGIN, {
+  const [loginQuery, { loading, error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
       handleLogin(data.login);
-      history.push('/home')
+      history.push('/home');
     },
   });
 
@@ -79,6 +79,7 @@ const Login: React.FC<LoginProps> = () => {
           />
           <button onClick={toggleVisible}>Show</button>
           <p role='alert'>{errors.password?.message}</p>
+          {error && <p role='alert'>{error.message}</p>}
         </div>
         <button disabled={!isValid}>Log In</button>
       </form>
