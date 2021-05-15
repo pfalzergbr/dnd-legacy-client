@@ -1,9 +1,11 @@
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useShowPassword } from '../../Hooks/useShowPassword';
+// import { useShowPassword } from '../../Hooks/useShowPassword';
 import { UserInput } from '../../Typings/inputs';
 import { ApolloError } from '@apollo/client';
+import InputText from '../UI/FormElements/InputText';
+import InputPassword from '../UI/FormElements/InputPassword';
 
 export interface LoginFormProps {
   onSubmit: (loginData: UserInput) => Promise<void>;
@@ -32,26 +34,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
     mode: 'onTouched',
   });
   const { isValid } = useFormState({ control });
-  const { isVisible, toggleVisible } = useShowPassword(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='formControl'>
-        <label htmlFor='email'>E-mail</label>
-        <input type='text' id='email' {...register('email')} />
-        <p role='alert'>{errors.email?.message}</p>
-      </div>
-      <div className='formControl'>
-        <label htmlFor='password'>Password</label>
-        <input
-          type={isVisible ? 'text' : 'password'}
-          id='password'
-          {...register('password')}
-        />
-        <button onClick={toggleVisible}>Show</button>
-        <p role='alert'>{errors.password?.message}</p>
-        {error && <p role='alert'>{error.message}</p>}
-      </div>
+      <InputText
+        name={'email'}
+        label={'E-mail'}
+        register={register}
+        errors={errors}
+      />
+      <InputPassword
+        name='password'
+        label='Password'
+        register={register}
+        errors={errors}
+      />
+      {error && <p role='alert'>{error.message}</p>}
       <button disabled={!isValid}>Log In</button>
     </form>
   );

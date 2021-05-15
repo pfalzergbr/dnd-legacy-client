@@ -4,9 +4,9 @@ import * as yup from 'yup';
 import { ForgotInputs } from '../../Typings/inputs';
 
 export interface ForgotPasswordFormProps {
-  onSubmit: (data: ForgotInputs) => void
+  onSubmit: (data: ForgotInputs) => void;
 }
- 
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -14,7 +14,9 @@ const schema = yup.object().shape({
     .email('That’s not a valid email address. It should contain a @'),
 });
 
-const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({onSubmit}) => {
+const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
+  onSubmit,
+}) => {
   const {
     register,
     handleSubmit,
@@ -26,14 +28,16 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({onSubmit}) => {
   });
   const { isValid } = useFormState({ control });
 
-  return ( <form onSubmit={handleSubmit(onSubmit)}>
-  <div className='formControl'>
-    <label htmlFor='email'>E-mail</label>
-    <input type='text' id='email' {...register('email')} />
-    <p role='alert'>{errors.email?.message}</p>
-  </div>
-  <button disabled={!isValid}>Send it</button>
-</form> );
-}
- 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className='formControl'>
+        <label htmlFor='email'>E-mail</label>
+        <input type='text' id='email' {...register('email')} />
+        <p role='alert'>{errors.email?.message}</p>
+      </div>
+      <button disabled={!isValid}>Send it</button>
+    </form>
+  );
+};
+
 export default ForgotPasswordForm;

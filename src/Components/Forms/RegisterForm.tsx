@@ -10,7 +10,7 @@ export interface RegisterFormProps {
   onSubmit: (userData: UserInput) => void;
   error: ApolloError | undefined;
 }
- 
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -19,10 +19,12 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required()
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[£"'`_+-=@$!%*#?&|,.<>()\\{}[\]])[A-Za-z\d£@"'`_+-=$!%*#?&|,.<>(){}\\[\]]{8,}$/),
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[£"'`_+-=@$!%*#?&|,.<>()\\{}[\]])[A-Za-z\d£@"'`_+-=$!%*#?&|,.<>(){}\\[\]]{8,}$/
+    ),
 });
 
-const RegisterForm: React.FC<RegisterFormProps> = ({onSubmit, error}) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
   const {
     register,
     handleSubmit,
@@ -40,31 +42,33 @@ const RegisterForm: React.FC<RegisterFormProps> = ({onSubmit, error}) => {
   } = useValidation(watchPassword);
   const { isVisible, toggleVisible } = useShowPassword(false);
 
-  return ( <form onSubmit={handleSubmit(onSubmit)}>
-  <div className='formControl'>
-    <label htmlFor='email'>E-mail</label>
-    <input type='text' id='email' {...register('email')} />
-    <p role='alert'>{errors.email?.message}</p>
-  </div>
-  <div className='formControl'>
-    <label htmlFor='password'>Create Password</label>
-    <input
-      type={isVisible ? 'text' : 'password'}
-      id='password'
-      {...register('password')}
-    />
-    <button onClick={toggleVisible}>Show</button>
-    {error && <p role='alert'>{error.message}</p>}
-    <ul>
-      <li className={length ? 'verified' : ''}>At least 8 characters</li>
-      <li className={symbol ? 'verified' : ''}>Symbol</li>
-      <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
-      <li className={lowerCase ? 'verified' : ''}>Lowercase letter</li>
-      <li className={number ? 'verified' : ''}>A number</li>
-    </ul>
-  </div>
-  <button disabled={!isValid}>Register</button>
-</form> );
-}
- 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className='formControl'>
+        <label htmlFor='email'>E-mail</label>
+        <input type='text' id='email' {...register('email')} />
+        <p role='alert'>{errors.email?.message}</p>
+      </div>
+      <div className='formControl'>
+        <label htmlFor='password'>Create Password</label>
+        <input
+          type={isVisible ? 'text' : 'password'}
+          id='password'
+          {...register('password')}
+        />
+        <button onClick={toggleVisible}>Show</button>
+        {error && <p role='alert'>{error.message}</p>}
+        <ul>
+          <li className={length ? 'verified' : ''}>At least 8 characters</li>
+          <li className={symbol ? 'verified' : ''}>Symbol</li>
+          <li className={upperCase ? 'verified' : ''}>Uppercase letter</li>
+          <li className={lowerCase ? 'verified' : ''}>Lowercase letter</li>
+          <li className={number ? 'verified' : ''}>A number</li>
+        </ul>
+      </div>
+      <button disabled={!isValid}>Register</button>
+    </form>
+  );
+};
+
 export default RegisterForm;
