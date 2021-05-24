@@ -1,5 +1,5 @@
-import { ICharacterLink } from '../../../Typings/characters';
-import CharacterListItem from '../CharacterListItem';
+import { ICharacterLink } from '../../Typings/characters';
+import CharacterListItem from './CharacterListItem';
 
 export interface ChracterListProps {
   characters: ICharacterLink[];

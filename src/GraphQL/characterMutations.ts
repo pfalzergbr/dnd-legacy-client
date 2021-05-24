@@ -10,7 +10,7 @@ export const CREATE_CHARACTER = gql`
 `;
 
 export const GET_CHARACTERS = gql`
-query GetCharacters(){
+query {
   getUser {
     id
     email  

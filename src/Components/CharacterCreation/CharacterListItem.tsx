@@ -11,7 +11,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({character}) => {
     <div>
       <h3>{name}</h3>
       <div>
-        <span>{level}</span>
+        <span>Lvl {level}</span>
         <span>{race}</span>
         <span>{character.class}</span>
       </div>
