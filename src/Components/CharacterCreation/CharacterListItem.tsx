@@ -1,22 +1,33 @@
-import { ICharacterLink } from "../../Typings/characters";
+import { ICharacterLink } from '../../Typings/characters';
 
 export interface CharacterListItemProps {
-  character: ICharacterLink
+  character: ICharacterLink;
+  onDelete: (id: string) => void
 }
- 
-const CharacterListItem: React.FC<CharacterListItemProps> = ({character}) => {
+
+const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, onDelete }) => {
   // Add handleDelete and delete button
-  const { name, race, level} = character
-  return ( <li>
-    <div>
-      <h3>{name}</h3>
+  const { characterId, name, race, level } = character;
+  const handleDelete = () => {
+    onDelete(characterId)
+  }
+  return (
+    <li>
       <div>
-        <span>Lvl {level}</span>
-        <span>{race}</span>
-        <span>{character.class}</span>
+        <div>
+          <h3>{name}</h3>
+          <span>
+            <button onClick={handleDelete}>x</button>
+          </span>
+        </div>
+        <div>
+          <span>Lvl {level}</span>
+          <span>{race}</span>
+          <span>{character.class}</span>
+        </div>
       </div>
-    </div>
-  </li> );
-}
- 
+    </li>
+  );
+};
+
 export default CharacterListItem;

@@ -8,7 +8,6 @@ import { GET_CHARACTERS } from '../GraphQL/characterMutations';
 
 const Home = () => {
   const history = useHistory();
-  // const { user } = useContext(AuthContext);
   const { handleLogout } = useContext(AuthActions);
   const { loading, data } = useQuery(GET_CHARACTERS);
   const onLogout = () => {

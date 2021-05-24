@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router';
 import CharacterNameForm from '../../Components/CharacterCreation/Forms/CharacterNameForm';
-import { CREATE_CHARACTER } from '../../GraphQL/characterMutations';
+import { CREATE_CHARACTER, GET_CHARACTERS } from '../../GraphQL/characterMutations';
 import Loading from '../../Components/Loading';
 
 export interface CharacternameProps {}
@@ -20,6 +20,9 @@ const Charactername: React.FC<CharacternameProps> = () => {
       variables: {
         name: data.name,
       },
+      refetchQueries: [
+        {query: GET_CHARACTERS}
+      ]
     });
   };
 
