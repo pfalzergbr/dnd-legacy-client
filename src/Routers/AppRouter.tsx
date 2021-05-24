@@ -13,6 +13,7 @@ const Login = lazy(() => import('../Pages/Login'));
 const Register = lazy(() => import('../Pages/Register'));
 const ForgotPassword = lazy(() => import('../Pages/ForgotPassword'));
 const Home = lazy(() => import('../Pages/Home'));
+const CharacterName = lazy(() => import('../Pages/CharacterCreation/CharacterName'))
 
 const AppRouter = () => {
   const { isAuth } = useContext(AuthContext);
@@ -53,6 +54,9 @@ const AppRouter = () => {
     <Switch>
       <RouteWithSuspense fallback={<Loading />} path='/home'>
         <Home />
+      </RouteWithSuspense>
+      <RouteWithSuspense fallback={<Loading />} path='/character-name'>
+        <CharacterName />
       </RouteWithSuspense>
       <Redirect from="/" to="/home" />
       <Redirect from="/login" to="/home" />
