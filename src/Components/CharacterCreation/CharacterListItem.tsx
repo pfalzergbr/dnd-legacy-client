@@ -12,21 +12,19 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, onDele
     onDelete(characterId)
   }
   return (
-    <li>
+    // <li>
       <div>
         <div>
           <h3>{name}</h3>
-          <span>
-            <button onClick={handleDelete}>x</button>
-          </span>
         </div>
         <div>
           <span>Lvl {level}</span>
           <span>{race}</span>
           <span>{character.class}</span>
         </div>
+            <button onClick={handleDelete}>x</button>
       </div>
-    </li>
+    // </li>
   );
 };
 
