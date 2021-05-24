@@ -89,7 +89,7 @@ describe('Password validation', () => {
     await waitFor(() => expect(upperCaseText).not.toHaveClass('verified'));
   });
 
-  test('should flip class of lowerrcase if text input includes lowercase letter', async () => {
+  test('should flip class of lowercase if text input includes lowercase letter', async () => {
     render(<Register />);
     const lowerCaseText = await screen.findByText(/lowercase/i);
     expect(lowerCaseText).not.toHaveClass('verified');
@@ -100,3 +100,18 @@ describe('Password validation', () => {
     await waitFor(() => expect(lowerCaseText).not.toHaveClass('verified'));
   });
 });
+
+describe('Register functionality', () => {
+  test('should redirect to Home page if registration is successful', () => {
+    
+  })
+
+  test('should display an error if the email is already taken', () => {
+    
+  })
+  
+  test('should display an error if the password is incorrect', () => {
+    
+  })
+  
+})

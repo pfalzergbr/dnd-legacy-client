@@ -1,7 +1,5 @@
 import { render, screen, waitFor } from '../../Test-Utils/renderWithProviders';
-import { MockedProvider } from '@apollo/client/testing'
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
 import AppRouter from '../AppRouter';
 
 describe('Router navigation', () => {
