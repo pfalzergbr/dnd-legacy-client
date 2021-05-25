@@ -1,15 +1,16 @@
-import { ICharacterLink } from '../../Typings/characters';
+import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
 
 export interface CharacterListItemProps {
   character: ICharacterLink;
   onDelete: (id: string) => void
+  openDeleteModal: (character: IMarkedCharacter) => void
 }
 
-const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, onDelete }) => {
+const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, openDeleteModal }) => {
   // Add handleDelete and delete button
   const { characterId, name, race, level } = character;
-  const handleDelete = () => {
-    onDelete(characterId)
+  const handleDeleteModal = () => {
+    openDeleteModal({characterId, name})
   }
   return (
     // <li>
@@ -22,7 +23,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, onDele
           <span>{race}</span>
           <span>{character.class}</span>
         </div>
-            <button onClick={handleDelete}>x</button>
+            <button onClick={handleDeleteModal}>x</button>
       </div>
     // </li>
   );

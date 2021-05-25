@@ -5,3 +5,8 @@ export interface ICharacterLink {
   class: string | null;
   level: number
 }
+
+export interface IMarkedCharacter {
+  name: string;
+  characterId: string;
+}
