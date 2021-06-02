@@ -29,7 +29,10 @@ const Home = () => {
       <button onClick={onLogout}>Logout</button>
       <h1>Yey, You`re in</h1>
       <CharacterList characters={data.getUser.characters} />
-      <button onClick={handleClick}>Create a character</button>
+
+      {data.getUser.characters.length < 5 ? <button onClick={handleClick}>Create a character</button> : 
+      <div> <p>Your character list is full</p>
+      <p>Delete a character to make some space</p></div>}
     </div>
   );
 };
