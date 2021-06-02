@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     .string()
     .required()
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[£"'`_+-=@$!%*#?&|,.<>()\\{}[\]])[A-Za-z\d£@"'`_+-=$!%*#?&|,.<>(){}\\[\]]{8,}$/
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[£"'`_+-=@$!%*#?&|,.<>()\\{}[\]])[A-Za-z\d£@"'`_+-=$!%*#?&|,.<>(){}\\[\]]{8,}$/ , "Invalid password. It should contain a number, a symbol, an upper and a lower case letter "
     ),
 });
 
