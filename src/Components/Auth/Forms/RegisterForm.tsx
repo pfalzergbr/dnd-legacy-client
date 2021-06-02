@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -32,6 +33,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
     watch,
     formState: { errors },
     control,
+    trigger
   } = useForm<UserInput>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
@@ -41,6 +43,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
   const {
     validationState: { length, symbol, number, upperCase, lowerCase },
   } = useValidation(watchPassword);
+
+  useEffect(() => {
+    if (watchPassword?.length >= 8 ){
+      trigger()
+    }
+  }, [watchPassword, trigger])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

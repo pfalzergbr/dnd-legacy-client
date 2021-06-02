@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -27,11 +28,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
     handleSubmit,
     formState: { errors },
     control,
+    watch,
+    trigger
   } = useForm<UserInput>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
   });
   const { isValid } = useFormState({ control });
+  const watchPassword = watch('password');
+
+  useEffect(() => {
+    if (watchPassword?.length >= 8 ){
+      trigger()
+    }
+  }, [watchPassword, trigger])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
