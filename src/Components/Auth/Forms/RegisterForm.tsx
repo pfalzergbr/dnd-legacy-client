@@ -55,6 +55,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, error }) => {
         label='Create Password'
         register={register}
         errors={errors}
+        validationMessage={false}
       />
       {error && <p role='alert'>{error.message}</p>}
       <ul>

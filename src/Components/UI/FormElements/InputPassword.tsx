@@ -7,6 +7,7 @@ export interface InputPasswordProps<T> {
   name?: string;
   register: UseFormRegister<T>;
   errors: DeepMap<T, FieldError>;
+  validationMessage?: boolean;
 }
 
 // TODO - figure out how to get rid of any here
@@ -15,6 +16,7 @@ const InputPassword: React.FC<InputPasswordProps<any>> = ({
   name = 'password',
   register,
   errors,
+  validationMessage = true
 }) => {
   const { isVisible, toggleVisible } = useShowPassword(false);
 
@@ -27,7 +29,7 @@ const InputPassword: React.FC<InputPasswordProps<any>> = ({
         {...register(name)}
       />
       <button type="button" onClick={toggleVisible}>Show</button>
-      <p role='alert'>{errors[name]?.message}</p>
+      {validationMessage && <p role='alert'>{errors[name]?.message}</p>}
     </div>
   );
 };
