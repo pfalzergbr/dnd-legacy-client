@@ -4,7 +4,7 @@ export interface AuthNavProps {}
 
 const AuthNav: React.FC<AuthNavProps> = () => {
   return (
-    <nav >
+    <nav>
       <NavLink to={'/login'}>Log In</NavLink>
       <NavLink to={'/register'}>Register</NavLink>
     </nav>
