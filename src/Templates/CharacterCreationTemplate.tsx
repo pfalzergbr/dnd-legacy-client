@@ -1,7 +1,7 @@
 import CharacterCreationNav from '../Components/CharacterCreation/CharacterCreationNav';
 
 export interface CharacterCreationTemplateProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const CharacterCreationTemplate: React.FC<CharacterCreationTemplateProps> = ({ children }) => {

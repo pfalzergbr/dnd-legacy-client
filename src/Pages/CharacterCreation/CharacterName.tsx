@@ -10,7 +10,7 @@ const Charactername: React.FC<CharacternameProps> = () => {
   const history = useHistory();
   const [createCharacter, { loading, error }] = useMutation(CREATE_CHARACTER, {
     onCompleted: (data) => {
-      history.push('/home');
+      history.push('/create-character');
     },
     onError: (error) => console.log(error.message),
   });
