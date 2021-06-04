@@ -9,6 +9,7 @@ import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
 import Loading from '../Loading';
 import CharacterListItem from './CharacterListItem';
 import DeleteCharacter from './DeleteCharacter';
+import { Link } from 'react-router-dom';
 
 export interface ChracterListProps {
   characters: ICharacterLink[];
@@ -52,12 +53,14 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
       </Modal>
       <ul>
         {characters.map((character) => (
+          <Link to="/create-character">
           <CharacterListItem
             character={character}
             onDelete={onDelete}
             key={character.characterId}
             openDeleteModal={openDeleteModal}
-          />
+            />
+          </Link>
         ))}
       </ul>
     </>
