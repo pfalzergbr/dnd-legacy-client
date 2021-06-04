@@ -9,7 +9,6 @@ import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
 import Loading from '../Loading';
 import CharacterListItem from './CharacterListItem';
 import DeleteCharacter from './DeleteCharacter';
-import { Link } from 'react-router-dom';
 
 export interface ChracterListProps {
   characters: ICharacterLink[];
