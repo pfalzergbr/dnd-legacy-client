@@ -1,3 +1,5 @@
+// import Dropdown from '../../Components/UI/Dropdown/DropdownItem'
+
 export interface CharacterRaceProps {}
 
 const CharacterRace: React.FC<CharacterRaceProps> = () => {
@@ -5,6 +7,7 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
     <div>
       <h2>CharacterName</h2>
       <h3>Pick a race</h3>
+  
     </div>
   );
 };
