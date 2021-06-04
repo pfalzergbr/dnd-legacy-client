@@ -1,4 +1,3 @@
-import RaceDetails from '../../Components/CharacterCreation/RaceDetails';
 import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup'
 import { IDropdownItem } from '../../Typings/UI';
 

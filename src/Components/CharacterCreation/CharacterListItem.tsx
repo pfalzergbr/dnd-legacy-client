@@ -1,20 +1,25 @@
+import { Link } from 'react-router-dom';
 import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
 
 export interface CharacterListItemProps {
   character: ICharacterLink;
-  onDelete: (id: string) => void
-  openDeleteModal: (character: IMarkedCharacter) => void
+  onDelete: (id: string) => void;
+  openDeleteModal: (character: IMarkedCharacter) => void;
 }
 
-const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, openDeleteModal }) => {
+const CharacterListItem: React.FC<CharacterListItemProps> = ({
+  character,
+  openDeleteModal,
+}) => {
   // Add handleDelete and delete button
   const { characterId, name, race, level } = character;
   const handleDeleteModal = () => {
-    openDeleteModal({characterId, name})
-  }
+    openDeleteModal({ characterId, name });
+  };
   return (
     // <li>
-      <div>
+    <div>
+      <Link to='/create-character'>
         <div>
           <h3>{name}</h3>
         </div>
@@ -23,8 +28,9 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({ character, openDe
           <span>{race}</span>
           <span>{character.class}</span>
         </div>
-            <button onClick={handleDeleteModal}>x</button>
-      </div>
+      </Link>
+      <button onClick={handleDeleteModal}>x</button>
+    </div>
     // </li>
   );
 };

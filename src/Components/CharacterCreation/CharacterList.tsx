@@ -53,14 +53,13 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
       </Modal>
       <ul>
         {characters.map((character) => (
-          <Link to="/create-character">
+
           <CharacterListItem
             character={character}
             onDelete={onDelete}
             key={character.characterId}
             openDeleteModal={openDeleteModal}
             />
-          </Link>
         ))}
       </ul>
     </>
