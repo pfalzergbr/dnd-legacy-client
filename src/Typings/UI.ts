@@ -1,5 +1,5 @@
-export interface IDropdownItem {
+export interface IDropdownItem<T> {
   id: string;
   title: string;
-  details: string;
+  details: T;
 }

@@ -3,13 +3,13 @@ import DropdownItem from './DropdownItem';
 import { IDropdownItem } from '../../../Typings/UI';
 
 export interface DropdownGroupProps {
-  items: IDropdownItem[];
+  items: IDropdownItem<string>[];
 }
 
 const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
-  const [selectedItem, setSelectedItem] = useState<IDropdownItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<IDropdownItem<string> | null>(null);
 
-  const handleOpenDropdown = (dropdownData: IDropdownItem) => {
+  const handleOpenDropdown = (dropdownData: IDropdownItem<string>) => {
     setSelectedItem(dropdownData);
   };
 

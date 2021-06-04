@@ -1,8 +1,8 @@
 import { IDropdownItem } from '../../../Typings/UI';
 
 export interface DropdownItemProps {
-  dropdownData: IDropdownItem;
-  handleOpenDropdown: (dropdownData: IDropdownItem) => void;
+  dropdownData: IDropdownItem<string>;
+  handleOpenDropdown: (dropdownData: IDropdownItem<string>) => void;
 }
 
 const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDropdown }) => {

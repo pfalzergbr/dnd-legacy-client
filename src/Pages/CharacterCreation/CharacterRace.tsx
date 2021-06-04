@@ -1,7 +1,8 @@
+import RaceDetails from '../../Components/CharacterCreation/RaceDetails';
 import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup'
 import { IDropdownItem } from '../../Typings/UI';
 
-const dummyData: IDropdownItem[] = [
+const dummyData: IDropdownItem<string>[] = [
   {
     id: '1',
     title: 'Human',
