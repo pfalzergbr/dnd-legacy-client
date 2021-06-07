@@ -22,7 +22,7 @@ const Home = lazy(() => import('../Pages/Home'));
 const CharacterName = lazy(
   () => import('../Pages/CharacterCreation/CharacterName')
 );
-const CreateCharacter = lazy(() => import('../Pages/CharacterCreation/NewCharacter'))
+const CharacterCreationTemplate = lazy(() => import('../Templates/CharacterCreationTemplate'))
 
 const AppRouter = () => {
   const { isAuth } = useContext(AuthContext);
@@ -71,7 +71,7 @@ const AppRouter = () => {
           <CharacterName />
         </RouteWithSuspense>
         <RouteWithSuspense fallback={<Loading />} path='/create-character'>
-          <CreateCharacter />
+          <CharacterCreationTemplate />
         </RouteWithSuspense>
         <Redirect from='/' to='/home' />
         <Redirect from='/login' to='/home' />
