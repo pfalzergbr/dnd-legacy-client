@@ -22,7 +22,7 @@ const CharacterNameForm: React.FC<CharacterNameFormProps> = ({
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm({ resolver: yupResolver(schema), mode: 'onTouched' });
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
   const { isValid } = useFormState({ control });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
