@@ -13,7 +13,7 @@ const CreateCharacter: React.FC<CreateCharacterProps> = () => {
           <Route exact path={path}>
             <p>This is where the creation flow starts. Add a dynamic redirect to the computed next step.</p>
           </Route>
-          <Route path={`${path}/:characterId/choose-race`}>
+          <Route path={`${path}/choose-race`}>
             <CharacterRace />
           </Route>
 

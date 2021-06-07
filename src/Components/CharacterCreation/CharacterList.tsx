@@ -15,7 +15,7 @@ export interface ChracterListProps {
 }
 
 const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
-  const [deleteCharacter, { loading }] = useMutation(DELETE_CHARACTER);
+  const [deleteCharacter, { loading, error }] = useMutation(DELETE_CHARACTER);
   const [markedCharacter, setMarkedCharacter] = useState<IMarkedCharacter>({
     name: '',
     characterId: '',
@@ -43,6 +43,11 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
   if (loading) {
     return <Loading />;
   }
+
+  if (error) {
+    return (<p>Internet demons rolled a critical against you. Looks like an error!</p>)
+  }
+
   return (
     <>
       <Modal isOpen={isModalOpen} onRequestClose={closeDeleteModal}>
