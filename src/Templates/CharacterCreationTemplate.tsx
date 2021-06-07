@@ -1,5 +1,5 @@
 import CharacterCreationNav from '../Components/CharacterCreation/CharacterCreationNav';
-import CreateCharacter from '../Pages/CharacterCreation/CreateCharacter';
+import CreateCharacter from '../Routers/CreateCharacter';
 
 export interface CharacterCreationTemplateProps {
   children?: React.ReactNode;
