@@ -3,3 +3,9 @@ export interface IDropdownItem<T> {
   title: string;
   details: T;
 }
+
+export interface ILinkControl {
+  name: string;
+  to: string;
+  active: boolean;
+}
