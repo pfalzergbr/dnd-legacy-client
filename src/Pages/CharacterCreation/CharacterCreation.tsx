@@ -1,8 +1,8 @@
-import CharacterCreationNav from '../Components/CharacterCreation/CharacterCreationNav';
-import CreateCharacter from '../Routers/CreateCharacter';
-import { ILinkControl } from '../Typings/UI';
+import CharacterCreationNav from '../../Components/CharacterCreation/CharacterCreationNav';
+import CreateCharacter from '../../Routers/CreateCharacter';
+import { ILinkControl } from '../../Typings/UI';
 
-export interface CharacterCreationTemplateProps {
+export interface CharacterCreationProps {
   children?: React.ReactNode;
 }
 
@@ -44,7 +44,7 @@ const dummyLinks: ILinkControl[] = [
   },
 ]
 
-const CharacterCreationTemplate: React.FC<CharacterCreationTemplateProps> = ({ children }) => {
+const CharacterCreation: React.FC<CharacterCreationProps> = ({ children }) => {
   return (
     <main>
       <CharacterCreationNav links={dummyLinks}/>
@@ -53,4 +53,4 @@ const CharacterCreationTemplate: React.FC<CharacterCreationTemplateProps> = ({ c
   );
 };
 
-export default CharacterCreationTemplate;
+export default CharacterCreation;
