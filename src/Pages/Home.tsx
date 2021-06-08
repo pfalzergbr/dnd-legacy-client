@@ -22,8 +22,6 @@ const Home = () => {
     return <Loading />;
   }
 
-  console.log(data.getUser.characters);
-
   return (
     <div>
       <button onClick={onLogout}>Logout</button>

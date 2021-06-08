@@ -70,7 +70,7 @@ const AppRouter = () => {
         <RouteWithSuspense fallback={<Loading />} path='/character-name'>
           <CharacterName />
         </RouteWithSuspense>
-        <RouteWithSuspense fallback={<Loading />} path='/create-character'>
+        <RouteWithSuspense fallback={<Loading />} path='/create-character/:characterId'>
           <CharacterCreation />
         </RouteWithSuspense>
         <Redirect from='/' to='/home' />
