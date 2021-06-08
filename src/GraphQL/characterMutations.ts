@@ -18,6 +18,7 @@ export const GET_CHARACTERS = gql`
         characterId
         name
         level
+        isCompleted
       }
     }
   }

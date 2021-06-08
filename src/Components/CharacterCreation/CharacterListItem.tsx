@@ -27,6 +27,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
           <span>Lvl {level}</span>
           <span>{race}</span>
           <span>{character.class}</span>
+          <p>In Progress</p>
         </div>
       </Link>
       <button onClick={handleDeleteModal}>x</button>
