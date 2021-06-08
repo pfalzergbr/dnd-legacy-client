@@ -1,51 +1,70 @@
-import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup'
+import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router';
+import Loading from '../../Components/Loading';
+import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup';
+import { GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
 import { IDropdownItem } from '../../Typings/UI';
 
 const dummyData: IDropdownItem<string>[] = [
   {
     id: '1',
     title: 'Human',
-    details: 'Has no special abilities, which makes him especially angry.'
+    details: 'Has no special abilities, which makes him especially angry.',
   },
   {
     id: '2',
     title: 'Elf',
-    details: 'Pointy ears, forests, bows and magic. What`s not to like?'
+    details: 'Pointy ears, forests, bows and magic. What`s not to like?',
   },
-  { 
+  {
     id: '3',
     title: 'Halfling',
-    details: 'Halflings are clever, capable opportunists. Halfling individuals and clans find room for themselves wherever they can. Often they are strangers and wanderers, and others react to them with suspicion or curiosity. Depending on the clan, halflings might be reliable, hard-working (if clannish) citizens, or they might be thieves just waiting for the opportunity to make a big score and disappear in the dead of night. Regardless, halflings are cunning, resourceful survivors.'
+    details:
+      'Halflings are clever, capable opportunists. Halfling individuals and clans find room for themselves wherever they can. Often they are strangers and wanderers, and others react to them with suspicion or curiosity. Depending on the clan, halflings might be reliable, hard-working (if clannish) citizens, or they might be thieves just waiting for the opportunity to make a big score and disappear in the dead of night. Regardless, halflings are cunning, resourceful survivors.',
   },
-  { 
+  {
     id: '4',
     title: 'Half-Elf',
-    details: 'Best of two words, For players who cannot decide.'
-  }, 
-  { 
+    details: 'Best of two words, For players who cannot decide.',
+  },
+  {
     id: '5',
     title: 'Dwarf',
-    details: 'Strong, compact, comes with a beard and an axe.'
-  }, 
-  { 
+    details: 'Strong, compact, comes with a beard and an axe.',
+  },
+  {
     id: '6',
     title: 'Gnome',
-    details: 'It`s not the size that matters, the but the illusion!'
-  }, 
-  { 
+    details: 'It`s not the size that matters, the but the illusion!',
+  },
+  {
     id: '7',
     title: 'Half- Orc',
-    details: 'Whoa, nearly forgot them guys.'
-  }, 
-]
-
+    details: 'Whoa, nearly forgot them guys.',
+  },
+];
 
 export interface CharacterRaceProps {}
 
 const CharacterRace: React.FC<CharacterRaceProps> = () => {
+  const { characterId } = useParams<{ characterId: string }>();
+  const { loading, error, data } = useQuery(GET_CHARACTER_BY_ID, {
+    variables: { id: characterId },
+  });
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  const { name } = data.getCharacterById;
+
   return (
     <div>
-      <h2>CharacterName</h2>
+      <h2>{name}</h2>
       <h3>Pick a race</h3>
       <DropdownGroup items={dummyData} />
     </div>

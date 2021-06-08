@@ -10,26 +10,29 @@ export interface CharacterCreationProps {
 }
 
 const CharacterCreation: React.FC<CharacterCreationProps> = () => {
-  const { characterId } = useParams<{characterId: string}>() 
-  const { loading, error, data } = useQuery(GET_CHARACTER_BY_ID , {variables: {id: characterId}});
-  
-  // Add route protection for non-active routes
-  
-  if (loading) {
-    return <Loading />
-  }
-  
-  if (error) {
-    return <p>Error</p>
-  }
-  
-  const { charCreationProgress } = data?.getCharacterById
+  const { characterId } = useParams<{ characterId: string }>();
+  const { loading, error, data } = useQuery(GET_CHARACTER_BY_ID, {
+    variables: { id: characterId },
+  });
 
+  // Add route protection for non-active routes
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  const { links, nextLink } = data?.getCharacterById.charCreationProgress;
 
   return (
     <main>
-      <CharacterCreationNav links={charCreationProgress.links}/>
-      <CreateCharacterRouter nextLink={`/create-character/${characterId}/${charCreationProgress.nextLink}`} />
+      <CharacterCreationNav links={links} />
+      <CreateCharacterRouter
+        nextLink={`/create-character/${characterId}/${nextLink}`}
+      />
     </main>
   );
 };

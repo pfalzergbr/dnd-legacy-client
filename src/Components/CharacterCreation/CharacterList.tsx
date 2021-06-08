@@ -8,6 +8,7 @@ import Loading from '../Loading';
 import CharacterListItem from './CharacterListItem';
 import DeleteCharacter from './DeleteCharacter';
 
+
 export interface ChracterListProps {
   characters: ICharacterLink[];
 }
@@ -70,5 +71,7 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
     </>
   );
 };
+
+Modal.setAppElement('#root')
 
 export default ChracterList;
