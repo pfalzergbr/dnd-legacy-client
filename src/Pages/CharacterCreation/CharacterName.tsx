@@ -11,7 +11,7 @@ const Charactername: React.FC<CharacternameProps> = () => {
   const history = useHistory();
   const [createCharacter, { loading, error }] = useMutation(CREATE_CHARACTER, {
     onCompleted: (data) => {
-      history.push('/create-character');
+      history.push(`/create-character/${data.createCharacter.id.toString()}/choose-race`);
     },
     onError: (error) => console.log(error.message),
   });
