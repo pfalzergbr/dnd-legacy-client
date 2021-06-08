@@ -12,14 +12,16 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
   openDeleteModal,
 }) => {
   // Add handleDelete and delete button
-  const { characterId, name, race, level } = character;
+  const { characterId, name, race, level, nextLink } = character;
   const handleDeleteModal = () => {
     openDeleteModal({ characterId, name });
   };
+  
   return (
     // <li>
+    // Add isCompleted check logic, before
     <div>
-      <Link to='/create-character'>
+      <Link to={nextLink}>
         <div>
           <h3>{name}</h3>
         </div>

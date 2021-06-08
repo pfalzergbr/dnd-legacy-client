@@ -8,7 +8,7 @@ export interface CharacterCreationNavProps {
 const CharacterCreationNav: React.FC<CharacterCreationNavProps> = ({links}) => {
   return (
     <nav>
-      {links.map(link => link.active ? <NavLink to={link.to}>{link.name}</NavLink> : <span>{link.name}</span>)}
+      {links.map(link => link.active ? <NavLink key={link.name} to={link.to}>{link.name}</NavLink> : <span key={link.name}>{link.name}</span>)}
     </nav>
   );
 };
