@@ -9,21 +9,6 @@ export const CREATE_CHARACTER = gql`
   }
 `;
 
-export const GET_CHARACTERS = gql`
-  query {
-    getUser {
-      id
-      email
-      characters {
-        characterId
-        name
-        level
-        isCompleted
-      }
-    }
-  }
-`;
-
 export const DELETE_CHARACTER = gql`
   mutation DeleteCharacter($id: String!) {
     deleteCharacter(id: $id)

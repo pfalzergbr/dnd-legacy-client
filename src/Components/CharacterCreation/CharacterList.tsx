@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { useMutation } from '@apollo/client';
-import {
-  DELETE_CHARACTER,
-  GET_CHARACTERS,
-} from '../../GraphQL/characterMutations';
+import { DELETE_CHARACTER } from '../../GraphQL/characterMutations';
+import { GET_CHARACTERS } from '../../GraphQL/characterQueries';
 import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
 import Loading from '../Loading';
 import CharacterListItem from './CharacterListItem';
@@ -45,25 +43,28 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
   }
 
   if (error) {
-    return (<p>Internet demons rolled a critical against you. Looks like an error!</p>)
+    return (
+      <p>Internet demons rolled a critical against you. Looks like an error!</p>
+    );
   }
 
   return (
     <>
       <Modal isOpen={isModalOpen} onRequestClose={closeDeleteModal}>
-        <DeleteCharacter character={markedCharacter}
-        closeDeleteModal={closeDeleteModal} 
-        onDelete={onDelete}/>
+        <DeleteCharacter
+          character={markedCharacter}
+          closeDeleteModal={closeDeleteModal}
+          onDelete={onDelete}
+        />
       </Modal>
       <ul>
         {characters.map((character) => (
-
           <CharacterListItem
             character={character}
             onDelete={onDelete}
             key={character.characterId}
             openDeleteModal={openDeleteModal}
-            />
+          />
         ))}
       </ul>
     </>

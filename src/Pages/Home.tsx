@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import Loading from '../Components/Loading';
 import CharacterList from '../Components/CharacterCreation/CharacterList';
 import { AuthActions } from '../Context/AuthContext';
-import { GET_CHARACTERS } from '../GraphQL/characterMutations';
+import { GET_CHARACTERS } from '../GraphQL/characterQueries';
 
 const Home = () => {
   const history = useHistory();

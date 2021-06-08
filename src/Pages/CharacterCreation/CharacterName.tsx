@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router';
 import CharacterNameForm from '../../Components/CharacterCreation/Forms/CharacterNameForm';
-import { CREATE_CHARACTER, GET_CHARACTERS } from '../../GraphQL/characterMutations';
+import { CREATE_CHARACTER } from '../../GraphQL/characterMutations';
+import { GET_CHARACTERS } from '../../GraphQL/characterQueries'
 import Loading from '../../Components/Loading';
 
 export interface CharacternameProps {}
