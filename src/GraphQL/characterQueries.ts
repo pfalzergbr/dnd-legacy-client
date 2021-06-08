@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-
 export const GET_CHARACTERS = gql`
   query {
     getUser {
@@ -12,6 +11,23 @@ export const GET_CHARACTERS = gql`
         level
         isCompleted
         nextLink
+      }
+    }
+  }
+`;
+
+export const GET_CHARACTER_BY_ID = gql`
+  query GetCharacterById ($id: String!){
+    getCharacterById(id: $id) {
+      id
+      name
+      charCreationProgress {
+        nextLink
+        links {
+          name
+          to
+          active
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Route, Switch, useRouteMatch, Redirect, useParams } from 'react-router';
+import { Route, Switch, useRouteMatch, Redirect } from 'react-router';
 
 const CharacterRace = lazy(() => import('../Pages/CharacterCreation/CharacterRace'))
 
@@ -9,11 +9,7 @@ export interface CreateCharacterRouterProps {
 
 const CreateCharacterRouter: React.FC<CreateCharacterRouterProps> = ({nextLink}) => {
   const { path } = useRouteMatch()
-  const characterId = useParams()
-
-
-  console.log(characterId)
-  // Add route protection for non-active routes
+  
   return (
     <>
         <Switch>
