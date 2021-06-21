@@ -11,7 +11,7 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDro
   }
   return (
     <div onClick={openDropdown}>
-      <h4>{dropdownData.title}🔽</h4>
+      <h4>{dropdownData.name}🔽</h4>
     </div>
   );
 };

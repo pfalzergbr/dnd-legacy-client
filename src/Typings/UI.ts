@@ -1,6 +1,6 @@
 export interface IDropdownItem<T> {
   id: string;
-  title: string;
+  name: string;
   details: T;
 }
 

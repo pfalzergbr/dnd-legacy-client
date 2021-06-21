@@ -32,7 +32,7 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
   const Details = (
     <div>
       <div onClick={handleCloseDropdown}>
-        <h4>{selectedItem?.title}🔼</h4>
+        <h4>{selectedItem?.name}🔼</h4>
       </div>
       <p>{selectedItem?.details}</p>
     </div>
