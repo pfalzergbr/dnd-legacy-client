@@ -9,11 +9,11 @@ import CharacterListItem from './CharacterListItem';
 import DeleteCharacter from './DeleteCharacter';
 
 
-export interface ChracterListProps {
+export interface CharacterListProps {
   characters: ICharacterLink[];
 }
 
-const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
+const CharacterList: React.FC<CharacterListProps> = ({ characters }) => {
   const [deleteCharacter, { loading, error }] = useMutation(DELETE_CHARACTER);
   const [markedCharacter, setMarkedCharacter] = useState<IMarkedCharacter>({
     name: '',
@@ -74,4 +74,4 @@ const ChracterList: React.FC<ChracterListProps> = ({ characters }) => {
 
 Modal.setAppElement('#root')
 
-export default ChracterList;
+export default CharacterList;

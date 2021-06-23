@@ -8,6 +8,7 @@ export const GET_CHARACTERS = gql`
       characters {
         characterId
         name
+        race
         level
         isCompleted
         nextLink
