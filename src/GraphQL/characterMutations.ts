@@ -14,3 +14,15 @@ export const DELETE_CHARACTER = gql`
     deleteCharacter(id: $id)
   }
 `;
+
+export const CHOOSE_RACE = gql`
+  mutation ChooseRace($characterId: String!, $raceId: String!){
+    chooseRace(characterId:$characterId, raceId:$raceId){
+      name
+      characterRace {
+        raceName
+        raceId
+      }
+    }
+  }
+`
