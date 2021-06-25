@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import DropdownItem from './DropdownItem';
 import { IDropdownItem } from '../../../Typings/UI';
+import RaceDetails from './RaceDetails';
 
 export interface DropdownGroupProps {
   items: IDropdownItem<string>[];
 }
 
 const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
-  const [selectedItem, setSelectedItem] = useState<IDropdownItem<string> | null>(null);
+  const [selectedItem, setSelectedItem] =
+    useState<IDropdownItem<string> | null>(null);
 
   const handleOpenDropdown = (dropdownData: IDropdownItem<string>) => {
     setSelectedItem(dropdownData);
@@ -19,61 +21,26 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
 
   const DropdownList = (
     <div>
-      {items.map((item) => (
-        <DropdownItem
-          key={item.id}
-          dropdownData={item}
-          handleOpenDropdown={handleOpenDropdown}
-        />
-      ))}
-    </div>
-  );
-
-  const Details = (
-    <div>
-      <div onClick={handleCloseDropdown}>
-        <h4>{selectedItem?.name}🔼</h4>
+      <div>
+        {items.map((item) => (
+          <DropdownItem
+            key={item.id}
+            dropdownData={item}
+            handleOpenDropdown={handleOpenDropdown}
+          />
+        ))}
       </div>
       <div>
-        <p>{selectedItem?.description}</p>
-        <br></br>
-        <div>
-          <h3>Racial Traits</h3>
-          <h4>General</h4>
-          <ul>
-            {selectedItem?.generalTraits.map(trait => <div>
-              <strong>{trait.traitName}</strong>
-              <p>{trait.traitDescription}</p>
-            </div>)}
-          </ul>
-          <h4>Checks and Saves</h4>
-          <ul>
-            {selectedItem?.checksAndSaves.map(modifier => <div>
-              <strong>{modifier.name}</strong>
-              <p>{modifier.description}</p>
-            </div>)}
-          </ul>
-        </div>
-        <div>
-          <h4>Languages</h4>
-          <strong>Base</strong>
-          <ul>
-            {selectedItem?.languages.baseLanguages.map(language => <li>{language}</li>)}
-          </ul>
-          <strong>Bonus</strong>
-          <ul>
-            {selectedItem?.languages.extraLanguages.map(language => <li>{language}</li>)}
-          </ul>
-        </div>
-        <div>
-          <h4>Favoured Class: {selectedItem?.favouredClass} </h4>
-          <p>A multiclass {selectedItem?.name}’s {selectedItem?.favouredClass} class does not count when determining whether she take an experience point penalty for multiclassing. </p>
-        </div>
+        <button>Next</button>
       </div>
     </div>
   );
 
-  return <>{selectedItem ? Details : DropdownList}</>;
+
+  return <>{selectedItem ? 
+    // Details
+  <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
+  : DropdownList}</>;
 };
 
 export default DropdownGroup;
