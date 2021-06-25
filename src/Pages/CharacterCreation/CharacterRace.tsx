@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router';
 import Loading from '../../Components/Loading';
 import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup';
+import RaceDetails from '../../Components/UI/Dropdown/RaceDetails';
 import { GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
 import { GET_RACES } from '../../GraphQL/raceQueries';
 
@@ -34,7 +35,7 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
     <div>
       <h2>{name}</h2>
       <h3>Pick a race</h3>
-      <DropdownGroup items={racesData.getAllRaces} />
+      <DropdownGroup items={racesData.getAllRaces} contentElement={RaceDetails}/>
     </div>
   );
 };

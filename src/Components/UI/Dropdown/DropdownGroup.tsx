@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import DropdownItem from './DropdownItem';
 import { IDropdownItem } from '../../../Typings/UI';
-import RaceDetails from './RaceDetails';
 
 export interface DropdownGroupProps {
   items: IDropdownItem<string>[];
+  contentElement: any;
 }
 
-const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
+const DropdownGroup: React.FC<DropdownGroupProps> = ({ items, contentElement}) => {
   const [selectedItem, setSelectedItem] =
     useState<IDropdownItem<string> | null>(null);
 
   const handleOpenDropdown = (dropdownData: IDropdownItem<string>) => {
     setSelectedItem(dropdownData);
   };
+
+  const DetailsElement = contentElement;
 
   const handleCloseDropdown = () => {
     setSelectedItem(null);
@@ -38,8 +40,9 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({ items }) => {
 
 
   return <>{selectedItem ? 
-    // Details
-  <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
+
+  <DetailsElement selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
+  // <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
   : DropdownList}</>;
 };
 
