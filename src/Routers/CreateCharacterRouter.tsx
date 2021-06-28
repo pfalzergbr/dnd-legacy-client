@@ -20,6 +20,10 @@ const CreateCharacterRouter: React.FC<CreateCharacterRouterProps> = ({nextLink})
           <Route path={`${path}/choose-race`}>
             <CharacterRace />
           </Route>
+          <Route path={`${path}/choose-class`}>
+            <p>CharacterClass</p>
+            {/* <CharacterRace /> */}
+          </Route>
 
         </Switch>
     </>

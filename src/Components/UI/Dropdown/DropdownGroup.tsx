@@ -5,6 +5,7 @@ import { IDropdownItem } from '../../../Typings/UI';
 export interface DropdownGroupProps {
   items: IDropdownItem<string>[];
   contentElement: any;
+  // Add typing here, and possibly generics.
 }
 
 const DropdownGroup: React.FC<DropdownGroupProps> = ({ items, contentElement}) => {

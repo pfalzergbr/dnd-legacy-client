@@ -31,7 +31,7 @@ const CharacterCreation: React.FC<CharacterCreationProps> = () => {
 
   return (
     <main>
-      <CharacterCreationNav links={links} />
+      <CharacterCreationNav links={links} id={characterId} />
       <CreateCharacterRouter
         nextLink={`/create-character/${characterId}/${nextLink}`}
       />
