@@ -2,12 +2,13 @@ import { IDropdownItem } from '../../../Typings/UI';
 
 const RaceDetails = ({selectedItem, handleCloseDropdown}: {
   selectedItem: IDropdownItem<string>,
-  handleCloseDropdown: () => void}
+  handleCloseDropdown: () => void,
+}
 ) => {
   return (
     <div>
       <div >
-        <h4>{selectedItem?.name}<span onClick={handleCloseDropdown}>🔼</span></h4>
+        <h4>{selectedItem?.name}</h4><span onClick={handleCloseDropdown}>🔼</span>
       </div>
       <div>
         <p>{selectedItem?.description}</p>
@@ -17,7 +18,7 @@ const RaceDetails = ({selectedItem, handleCloseDropdown}: {
           <h4>General</h4>
           <ul>
             {selectedItem?.generalTraits.map((trait) => (
-              <div>
+              <div key={trait.traitName}>
                 <strong>{trait.traitName}</strong>
                 <p>{trait.traitDescription}</p>
               </div>
@@ -26,7 +27,7 @@ const RaceDetails = ({selectedItem, handleCloseDropdown}: {
           <h4>Checks and Saves</h4>
           <ul>
             {selectedItem?.checksAndSaves.map((modifier) => (
-              <div>
+              <div key={modifier.name}>
                 <strong>{modifier.name}</strong>
                 <p>{modifier.description}</p>
               </div>
@@ -38,13 +39,13 @@ const RaceDetails = ({selectedItem, handleCloseDropdown}: {
           <strong>Base</strong>
           <ul>
             {selectedItem?.languages.baseLanguages.map((language) => (
-              <li>{language}</li>
+              <li key={language}>{language}</li>
             ))}
           </ul>
           <strong>Bonus</strong>
           <ul>
             {selectedItem?.languages.extraLanguages.map((language) => (
-              <li>{language}</li>
+              <li key={language}>{language}</li>
             ))}
           </ul>
         </div>
