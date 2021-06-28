@@ -1,16 +1,18 @@
-import { useState, useCallback } from 'react';
-import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router';
+import { useQuery, useMutation } from '@apollo/client';
+import { useParams, useHistory } from 'react-router';
 import Loading from '../../Components/Loading';
 import DropdownGroup from '../../Components/UI/Dropdown/DropdownGroup';
 import RaceDetails from '../../Components/UI/Dropdown/RaceDetails';
-import { GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
+import { GET_CHARACTERS, GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
 import { GET_RACES } from '../../GraphQL/raceQueries';
+import { CHOOSE_RACE } from '../../GraphQL/characterMutations';
 
 export interface CharacterRaceProps {}
 
 const CharacterRace: React.FC<CharacterRaceProps> = () => {
+  const history = useHistory();
   const { characterId } = useParams<{ characterId: string }>();
+
   const {
     loading: characterLoading,
     error: characterError,
@@ -18,21 +20,31 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
   } = useQuery(GET_CHARACTER_BY_ID, {
     variables: { id: characterId },
   });
+
   const {
     loading: racesLoading,
     error: racesError,
     data: racesData,
   } = useQuery(GET_RACES);
-  const [chosenRace, setChosenRace] = useState('');
 
-  const chooseRace = useCallback(
-    (race: string) => {
-      setChosenRace(race);
-    },
-    [setChosenRace]
-  );
+  const [chooseRace, { loading: choiceLoading, error: choiceError }] =
+    useMutation(CHOOSE_RACE, {
+      onCompleted: (data) => {
+        history.push(
+          `/create-character/${characterId}/choose-class`
+        );
+      },
+    });
 
-  if (characterLoading || racesLoading) {
+  const handleChooseRace = ( raceId: string ) => {
+    console.log(raceId)
+    chooseRace({ variables: { characterId, raceId }, refetchQueries: [
+      {query: GET_CHARACTERS}
+    ] });
+  };
+
+
+  if (characterLoading || racesLoading || choiceLoading) {
     return <Loading />;
   }
 
@@ -44,6 +56,10 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
     return <p>Error. Races not found</p>;
   }
 
+  if (choiceError) {
+    return <p>Error. Please try again.</p>;
+  }
+
   const { name } = characterData.getCharacterById;
 
   return (
@@ -53,7 +69,7 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
       <DropdownGroup
         items={racesData.getAllRaces}
         contentElement={RaceDetails}
-        chooseItem={chooseRace}
+        chooseItem={handleChooseRace}
       />
     </div>
   );

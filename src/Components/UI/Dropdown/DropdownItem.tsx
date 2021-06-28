@@ -4,7 +4,7 @@ export interface DropdownItemProps {
   dropdownData: IDropdownItem<string>;
   handleOpenDropdown: (dropdownData: IDropdownItem<string>) => void;
   isSelected: boolean;
-  handleSelect: (id: string) => void
+  handleSelect: (dropdownData: IDropdownItem<string>) => void
 }
 
 const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDropdown, isSelected, handleSelect }) => {
@@ -13,7 +13,7 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDro
   }
 
   const selectItem = () => {
-    handleSelect(dropdownData.id);
+    handleSelect(dropdownData);
   }
 
   return (

@@ -5,39 +5,55 @@ import { IDropdownItem } from '../../../Typings/UI';
 export interface DropdownGroupProps {
   items: IDropdownItem<string>[];
   contentElement: any;
-  chooseItem: (item: string) => void;
   // Add typing here, and possibly generics.
+  chooseItem: (choiceId: string) => void;
 }
 
 const DropdownGroup: React.FC<DropdownGroupProps> = ({
   items,
   contentElement,
-  chooseItem
+  chooseItem,
 }) => {
   const [selectedItem, setSelectedItem] =
     useState<IDropdownItem<string> | null>(null);
-
-  const [highlightedItem, setHighlightedItem] = useState('');
+  const [ isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleOpenDropdown = (dropdownData: IDropdownItem<string>) => {
     setSelectedItem(dropdownData);
-    chooseItem(dropdownData.id);
+    setIsDropdownOpen(true);
   };
 
-  const handleSelect = (id: string) => {
-    chooseItem(id);
-    setHighlightedItem(id);
-  }
+  const handleSelect = (dropdownData: IDropdownItem<string>) => {
+    setSelectedItem(dropdownData)
+  };
 
   const handleCloseDropdown = () => {
     setSelectedItem(null);
+    setIsDropdownOpen(false);
+  };
+
+  const handleChoice = () => {
+    if (selectedItem) chooseItem(selectedItem.id);
   };
 
   const DetailsElement = contentElement;
 
   const collapsedButtons = (
     <div>
-      <button>Next</button>
+      <button disabled={!selectedItem} onClick={handleChoice} type='button'>
+        Next
+      </button>
+    </div>
+  );
+
+  const openButtons = (
+    <div>
+      <button onClick={handleChoice} type='button'>
+        Choose Race
+      </button>
+      <button onClick={handleCloseDropdown}>
+        Cancel
+      </button>
     </div>
   );
 
@@ -50,7 +66,7 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({
             dropdownData={item}
             handleOpenDropdown={handleOpenDropdown}
             handleSelect={handleSelect}
-            isSelected={highlightedItem === item.id ? true : false}
+            isSelected={selectedItem && selectedItem?.id === item.id ? true : false}
           />
         ))}
       </div>
@@ -60,13 +76,15 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({
 
   return (
     <>
-      {selectedItem ? (
+      {selectedItem && isDropdownOpen ? (
+        <>
         <DetailsElement
           selectedItem={selectedItem}
           handleCloseDropdown={handleCloseDropdown}
         />
+        {openButtons}
+        </>
       ) : (
-        // <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/>
         DropdownList
       )}
     </>
