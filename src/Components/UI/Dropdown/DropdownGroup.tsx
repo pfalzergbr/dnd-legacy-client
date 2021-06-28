@@ -8,7 +8,10 @@ export interface DropdownGroupProps {
   // Add typing here, and possibly generics.
 }
 
-const DropdownGroup: React.FC<DropdownGroupProps> = ({ items, contentElement}) => {
+const DropdownGroup: React.FC<DropdownGroupProps> = ({
+  items,
+  contentElement,
+}) => {
   const [selectedItem, setSelectedItem] =
     useState<IDropdownItem<string> | null>(null);
 
@@ -22,6 +25,12 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({ items, contentElement}) =
     setSelectedItem(null);
   };
 
+  const collapsedButtons = (
+    <div>
+      <button>Next</button>
+    </div>
+  );
+
   const DropdownList = (
     <div>
       <div>
@@ -33,18 +42,23 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({ items, contentElement}) =
           />
         ))}
       </div>
-      <div>
-        <button>Next</button>
-      </div>
+      {collapsedButtons}
     </div>
   );
 
-
-  return <>{selectedItem ? 
-
-  <DetailsElement selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
-  // <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/> 
-  : DropdownList}</>;
+  return (
+    <>
+      {selectedItem ? (
+        <DetailsElement
+          selectedItem={selectedItem}
+          handleCloseDropdown={handleCloseDropdown}
+        />
+      ) : (
+        // <RaceDetails selectedItem={selectedItem} handleCloseDropdown={handleCloseDropdown}/>
+        DropdownList
+      )}
+    </>
+  );
 };
 
 export default DropdownGroup;

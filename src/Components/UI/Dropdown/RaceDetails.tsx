@@ -6,8 +6,8 @@ const RaceDetails = ({selectedItem, handleCloseDropdown}: {
 ) => {
   return (
     <div>
-      <div onClick={handleCloseDropdown}>
-        <h4>{selectedItem?.name}🔼</h4>
+      <div >
+        <h4>{selectedItem?.name}<span onClick={handleCloseDropdown}>🔼</span></h4>
       </div>
       <div>
         <p>{selectedItem?.description}</p>
