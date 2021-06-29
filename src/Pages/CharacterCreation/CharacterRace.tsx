@@ -39,7 +39,8 @@ const CharacterRace: React.FC<CharacterRaceProps> = () => {
   const handleChooseRace = ( raceId: string ) => {
     console.log(raceId)
     chooseRace({ variables: { characterId, raceId }, refetchQueries: [
-      {query: GET_CHARACTERS}
+      {query: GET_CHARACTERS},
+      {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
     ] });
   };
 

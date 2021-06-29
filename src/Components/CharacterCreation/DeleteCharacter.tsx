@@ -1,4 +1,4 @@
-import {IMarkedCharacter } from '../../Typings/characters';
+import { IMarkedCharacter } from '../../Typings/characters';
 
 export interface DeleteCharacterProps {
   character: IMarkedCharacter;
