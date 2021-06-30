@@ -16,9 +16,11 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDro
     handleSelect(dropdownData);
   }
 
+  console.log(dropdownData);
+  
   return (
     <div>
-      <h4 onClick={selectItem} style={isSelected ? {background: 'grey'} : {}}>{dropdownData.name}</h4><span onClick={openDropdown}>🔽</span>
+      <h4 onClick={selectItem} style={isSelected ? {background: 'grey'} : {}}>{dropdownData.name }</h4><span onClick={openDropdown}>🔽</span>
     </div>
   );
 };

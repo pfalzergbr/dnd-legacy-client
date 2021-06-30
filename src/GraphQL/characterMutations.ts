@@ -26,3 +26,15 @@ export const CHOOSE_RACE = gql`
     }
   }
 `
+
+export const CHOOSE_CLASS = gql`
+  mutation ChooseClass($characterId: Strin!, $classId: String!){
+    chooseClass(characterId: $characterId, classId: $classId){
+      name, 
+      chracterClass {
+        className
+        classId
+      }
+    }
+  }
+`
