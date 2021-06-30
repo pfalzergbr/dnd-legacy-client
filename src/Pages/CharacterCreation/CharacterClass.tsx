@@ -38,6 +38,8 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
 
   const handleChooseRace = ( classId: string ) => {
     console.log(classId)
+    // Comment the original back once ready.
+    console.log(chooseRace ,GET_CHARACTERS)
     // chooseRace({ variables: { characterId, raceId }, refetchQueries: [
     //   {query: GET_CHARACTERS},
     //   {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
