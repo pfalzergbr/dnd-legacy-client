@@ -3,7 +3,8 @@ import DropdownItem from './DropdownItem';
 import { IDropdownItem } from '../../../Typings/UI';
 
 export interface DropdownGroupProps {
-  items: IDropdownItem<string>[];
+  // Fix the generics here, once figured out how to.
+  items: any[];
   contentElement: any;
   // Add typing here, and possibly generics.
   chooseItem: (choiceId: string) => void;

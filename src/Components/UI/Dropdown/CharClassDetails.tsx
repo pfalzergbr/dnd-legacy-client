@@ -1,17 +1,22 @@
 import { IDropdownItem } from '../../../Typings/UI';
 
-const CharClassDetails = ({selectedItem, handleCloseDropdown}: {
-  selectedItem: IDropdownItem<string>,
-  handleCloseDropdown: () => void,
-}
-) => {
+const CharClassDetails = ({
+  selectedItem,
+  handleCloseDropdown,
+}: {
+  selectedItem: IDropdownItem<string>;
+  handleCloseDropdown: () => void;
+}) => {
   return (
     <div>
-      <p>Class info comes here.</p>
-      {/* <div >
-        <h4>{selectedItem?.name}</h4><span onClick={handleCloseDropdown}>🔼</span>
+      <div>
+        <h4>{selectedItem?.name}</h4>
+        <span onClick={handleCloseDropdown}>🔼</span>
       </div>
       <div>
+        <p>Class info comes here.</p>
+      </div>
+      {/* <div>
         <p>{selectedItem?.description}</p>
         <br></br>
         <div>
@@ -57,8 +62,8 @@ const CharClassDetails = ({selectedItem, handleCloseDropdown}: {
             class does not count when determining whether she take an experience
             point penalty for multiclassing.{' '}
           </p>
-        </div>
-      </div> */}
+       </div> */}
+      {/* </div> */}
     </div>
   );
 };

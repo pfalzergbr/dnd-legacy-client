@@ -36,12 +36,12 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
       },
     });
 
-  const handleChooseRace = ( raceId: string ) => {
-    console.log(raceId)
-    chooseRace({ variables: { characterId, raceId }, refetchQueries: [
-      {query: GET_CHARACTERS},
-      {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
-    ] });
+  const handleChooseRace = ( classId: string ) => {
+    console.log(classId)
+    // chooseRace({ variables: { characterId, raceId }, refetchQueries: [
+    //   {query: GET_CHARACTERS},
+    //   {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
+    // ] });
   };
 
 
