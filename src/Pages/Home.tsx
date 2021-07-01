@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useContext } from 'react';
 import { useHistory } from 'react-router';
 import Loading from '../Components/Loading';
-import CharacterList from '../Components/CharacterCreation/CharacterList';
+import CharacterList from '../Components/CharacterCreation/CharacterList/CharacterList';
 import { AuthActions } from '../Context/AuthContext';
 import { GET_CHARACTERS } from '../GraphQL/characterQueries';
 

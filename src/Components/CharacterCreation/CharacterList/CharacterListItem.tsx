@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ICharacterLink, IMarkedCharacter } from '../../Typings/characters';
+import { ICharacterLink, IMarkedCharacter } from '../../../Typings/characters';
 
 export interface CharacterListItemProps {
   character: ICharacterLink;
