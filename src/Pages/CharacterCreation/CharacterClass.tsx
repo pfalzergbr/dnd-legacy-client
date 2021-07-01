@@ -27,23 +27,23 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
     data: classesData,
   } = useQuery(GET_CLASSES);
 
-  const [chooseRace, { loading: choiceLoading, error: choiceError }] =
+  const [chooseClass, { loading: choiceLoading, error: choiceError }] =
     useMutation(CHOOSE_CLASS, {
       onCompleted: (data) => {
+        console.log(data)
         history.push(
           `/create-character/${characterId}/choose-class`
         );
       },
     });
 
-  const handleChooseRace = ( classId: string ) => {
-    console.log(classId)
-    // Comment the original back once ready.
-    console.log(chooseRace ,GET_CHARACTERS)
-    // chooseRace({ variables: { characterId, raceId }, refetchQueries: [
-    //   {query: GET_CHARACTERS},
-    //   {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
-    // ] });
+  const handleChooseClass = ( classId: string ) => {
+    chooseClass({ variables: { characterId, classId }, 
+      refetchQueries: [
+      {query: GET_CHARACTERS},
+      {query: GET_CHARACTER_BY_ID, variables: {id: characterId}}
+    ] 
+  });
   };
 
 
@@ -72,7 +72,7 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
       <DropdownGroup
         items={classesData.getAllClasses}
         contentElement={CharClassDetails}
-        chooseItem={handleChooseRace}
+        chooseItem={handleChooseClass}
       />
     </div>
   );

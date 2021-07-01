@@ -28,10 +28,10 @@ export const CHOOSE_RACE = gql`
 `
 
 export const CHOOSE_CLASS = gql`
-  mutation ChooseClass($characterId: Strin!, $classId: String!){
+  mutation ChooseClass($characterId: String!, $classId: String!){
     chooseClass(characterId: $characterId, classId: $classId){
-      name, 
-      chracterClass {
+      name
+      characterClass {
         className
         classId
       }

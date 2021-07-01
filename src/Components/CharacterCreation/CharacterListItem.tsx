@@ -12,7 +12,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
   openDeleteModal,
 }) => {
   // Add handleDelete and delete button
-  const { characterId, name, race, level, nextLink } = character;
+  const { characterId, name, race, class: charClass, level, nextLink } = character;
   const handleDeleteModal = () => {
     openDeleteModal({ characterId, name });
   };
@@ -28,7 +28,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
         <div>
           <span>Lvl {level}</span>
           <span>{race}</span>
-          <span>{character.class}</span>
+          <p>{charClass}</p>
           <p>In Progress</p>
         </div>
       </Link>
