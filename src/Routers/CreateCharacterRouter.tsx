@@ -3,6 +3,7 @@ import { Route, Switch, useRouteMatch, Redirect } from 'react-router';
 
 const CharacterRace = lazy(() => import('../Pages/CharacterCreation/CharacterRace'))
 const CharacterClass = lazy(() => import('../Pages/CharacterCreation/CharacterClass'))
+const CharacterAbilities = lazy(() => import('../Pages/CharacterCreation/CharacterAbilities'))
 export interface CreateCharacterRouterProps {
   nextLink: string;
 }
@@ -22,8 +23,9 @@ const CreateCharacterRouter: React.FC<CreateCharacterRouterProps> = ({nextLink})
           </Route>
           <Route path={`${path}/choose-class`}>
             <CharacterClass />
-            {/* <p>CharacterClass</p> */}
-            {/* <CharacterRace /> */}
+          </Route>
+          <Route path={`${path}/abilities`}>
+            <CharacterAbilities />
           </Route>
 
         </Switch>
