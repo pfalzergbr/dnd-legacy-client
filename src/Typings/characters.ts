@@ -12,3 +12,18 @@ export interface IMarkedCharacter {
   name: string;
   characterId: string;
 }
+
+export interface ICharacterSnippet {
+  id: string;
+  name: string;
+  characterRace: {
+    raceName: string;
+  };
+  characterClass: [
+    {
+      className: string;
+      classLevel: string;
+    }
+  ];
+
+}

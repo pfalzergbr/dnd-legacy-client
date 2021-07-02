@@ -34,3 +34,20 @@ export const GET_CHARACTER_BY_ID = gql`
     }
   }
 `;
+
+
+export const GET_CHARACTER_ABILITIES_SNIPPET = gql`
+ query GetCharacterById ($id: String!){
+    getCharacterById(id: $id) {
+      id
+      name
+      characterRace {
+      raceName
+      }
+  	  characterClass {
+        className
+        classLevel
+      }
+    }
+  }
+`
