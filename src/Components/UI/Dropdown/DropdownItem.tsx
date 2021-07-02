@@ -15,8 +15,6 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ dropdownData, handleOpenDro
   const selectItem = () => {
     handleSelect(dropdownData);
   }
-
-  console.log(dropdownData);
   
   return (
     <div>
