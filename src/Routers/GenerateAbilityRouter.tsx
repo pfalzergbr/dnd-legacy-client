@@ -11,6 +11,7 @@ export interface GenerateAbilityRouterProps {
 
 const GenerateAbilityRouter: React.FC<GenerateAbilityRouterProps> = () => {
   const { path } = useRouteMatch()
+
   
   return (
     <>
