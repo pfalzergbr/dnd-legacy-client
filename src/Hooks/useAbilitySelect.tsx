@@ -1,10 +1,10 @@
-import React, { Reducer, useReducer, useEffect } from 'react';
+import React, { Reducer, useReducer } from 'react';
 
 type AbilityState = {
-  budget: {
-    maxBudget: number;
-    remaining: number;
-  };
+  // budget: {
+  //   maxBudget: number;
+  //   remaining: number;
+  // };
   abilities: {
     strength: number;
     dexterity: number;
@@ -15,7 +15,8 @@ type AbilityState = {
   };
 };
 
-type AbilityActionType =
+type AbilityActionType = 
+// {type: 'SET_ABILITY', payload: {ability: string, value: number}}
   | { type: 'STRENGTH'; payload: number }
   | { type: 'DEXTERITY'; payload: number }
   | { type: 'CONSTITUTION'; payload: number }
@@ -24,10 +25,10 @@ type AbilityActionType =
   | { type: 'CHARISMA'; payload: number };
 
 const initialState: AbilityState = {
-  budget: {
-    maxBudget: 0,
-    remaining: 0
-  },
+  // budget: {
+  //   maxBudget: 0,
+  //   remaining: 0
+  // },
   abilities: {
     strength: 0,
     dexterity: 0,
@@ -44,6 +45,9 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
   action
 ): AbilityState => {
   switch (action.type) {
+    case 'STRENGTH': {
+      return {...state, abilities: {...state.abilities, strength: action.payload}}
+    }
     default: {
       return state;
     }
@@ -51,12 +55,12 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
 };
 
 export const useAbilitySelect = (): {
-  // abilityState: AbilityState;
-  // dispatch: React.Dispatch<AbilityActionType>;
+  abilityState: AbilityState;
+  dispatch: React.Dispatch<AbilityActionType>;
 } => {
   const [abilityState, dispatch] = useReducer(abilityReducer, initialState);
   return {
-    // abilityState,
-    // dispatch,
+    abilityState,
+    dispatch,
   };
 };
