@@ -1,26 +1,61 @@
-import AbilityHeader from "./AbilityHeader";
+import { useAbilitySelect } from '../../../Hooks/useAbilitySelect';
+import AbilityHeader from './AbilityHeader';
+import AbilitySelect from './AbilitySelect';
 
-export interface AbilityCustomProps {
-  
-}
+export interface AbilityCustomProps {}
 
 const AbilityCustom: React.FC<AbilityCustomProps> = () => {
-  
-  return ( <div>
-    <AbilityHeader />
-    <div>
-      <h2>Custom allocation</h2>
-      <p>Total: 0</p>
-    </div>
-    <div>
-      <label htmlFor="strength">Strength</label>
-      <select name="strength">
-        {}
-      </select>
+  const { abilityState, dispatch } = useAbilitySelect();
+  const {
+    abilities: {
+      strength,
+      dexterity,
+      constitution,
+      intelligence,
+      charisma,
+      wisdom,
+    },
+  } = abilityState;
 
+  return (
+    <div>
+      <AbilityHeader />
+      <div>
+        <h2>Custom allocation</h2>
+        <p>Total: 0</p>
+      </div>
+      <AbilitySelect
+        selectName='strength'
+        valueRef={strength}
+        dispatch={dispatch}
+      />
+      <AbilitySelect
+        selectName='dexterity'
+        valueRef={dexterity}
+        dispatch={dispatch}
+      />
+      <AbilitySelect
+        selectName='constitution'
+        valueRef={constitution}
+        dispatch={dispatch}
+      />
+      <AbilitySelect
+        selectName='intelligence'
+        valueRef={intelligence}
+        dispatch={dispatch}
+      />
+      <AbilitySelect
+        selectName='charisma'
+        valueRef={charisma}
+        dispatch={dispatch}
+      />
+      <AbilitySelect
+        selectName='wisdom'
+        valueRef={wisdom}
+        dispatch={dispatch}
+      />
     </div>
+  );
+};
 
-  </div> );
-}
- 
 export default AbilityCustom;

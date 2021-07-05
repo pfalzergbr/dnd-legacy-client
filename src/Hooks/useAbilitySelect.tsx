@@ -1,6 +1,6 @@
 import React, { Reducer, useReducer } from 'react';
 
-type AbilityState = {
+export type AbilityState = {
   // budget: {
   //   maxBudget: number;
   //   remaining: number;
@@ -15,7 +15,7 @@ type AbilityState = {
   };
 };
 
-type AbilityActionType = 
+export type AbilityActionType = 
 // {type: 'SET_ABILITY', payload: {ability: string, value: number}}
   | { type: 'STRENGTH'; payload: number }
   | { type: 'DEXTERITY'; payload: number }
@@ -47,6 +47,21 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
   switch (action.type) {
     case 'STRENGTH': {
       return {...state, abilities: {...state.abilities, strength: action.payload}}
+    }
+    case 'DEXTERITY': {
+      return {...state, abilities: {...state.abilities, dexterity: action.payload}}
+    }
+    case 'CONSTITUTION': {
+      return {...state, abilities: {...state.abilities, constitution: action.payload}}
+    }
+    case 'INTELLIGENCE': {
+      return {...state, abilities: {...state.abilities, intelligence: action.payload}}
+    }
+    case 'CHARISMA': {
+      return {...state, abilities: {...state.abilities, charisma: action.payload}}
+    }
+    case 'WISDOM': {
+      return {...state, abilities: {...state.abilities, wisdom: action.payload}}
     }
     default: {
       return state;

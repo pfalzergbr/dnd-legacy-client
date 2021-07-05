@@ -27,6 +27,7 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
       <div>
         <button
           type='button'
+          disabled={true}
           onClick={() => handleSelect(`${path}/point-buy`)}
           style={
             selectedOption === `${path}/point-buy`
