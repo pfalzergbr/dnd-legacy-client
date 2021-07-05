@@ -19,6 +19,8 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
     if (selectedOption) history.push(selectedOption);
   };
 
+  //REFACTOR - Extract buttons to a reusable component. 
+
   return (
     <div>
       <h3>Choose Methods</h3>
@@ -48,6 +50,18 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
         >
           <h4>Roll 4d6, drop the lowest</h4>
           <p>The classic way of rolling your points.</p>
+        </button>
+        <button
+          type='button'
+          onClick={() => handleSelect(`${path}/ability`)}
+          style={
+            selectedOption === `${path}/ability`
+              ? { border: '1px solid green' }
+              : {}
+          }
+        >
+          <h4>Custom</h4>
+          <p>Total freedom over point allocation.</p>
         </button>
       </div>
       <div>

@@ -25,5 +25,4 @@ export interface ICharacterSnippet {
       classLevel: string;
     }
   ];
-
 }
