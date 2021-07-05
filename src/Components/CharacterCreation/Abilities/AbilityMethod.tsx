@@ -53,9 +53,9 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
         </button>
         <button
           type='button'
-          onClick={() => handleSelect(`${path}/ability`)}
+          onClick={() => handleSelect(`${path}/custom`)}
           style={
-            selectedOption === `${path}/ability`
+            selectedOption === `${path}/custom`
               ? { border: '1px solid green' }
               : {}
           }
