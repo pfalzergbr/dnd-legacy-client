@@ -2,6 +2,8 @@ import { useState } from 'react';
 import AbilityResultBox from './AbilityResultBox';
 import AbilityResultConfirm from './AbilityResultConfirm';
 import AbilityDropFields from './AbilityDropFields';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 export interface AbilityRollResultsProps {
   abilityValues: number[];
@@ -20,6 +22,7 @@ const AbilityRollResults: React.FC<AbilityRollResultsProps> = ({
 
   return (
     <div>
+      <DndProvider backend={HTML5Backend}>
       {!keepResults && (
         <p>Roll 4d6 six times, and always drop the lowest number. </p>
       )}
@@ -36,6 +39,7 @@ const AbilityRollResults: React.FC<AbilityRollResultsProps> = ({
           confirmResults={confirmResults}
         />
       )}
+      </DndProvider>
     </div>
   );
 };
