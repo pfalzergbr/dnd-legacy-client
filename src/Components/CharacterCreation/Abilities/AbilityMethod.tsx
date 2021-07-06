@@ -25,7 +25,7 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
     <div>
       <h3>Choose Methods</h3>
       <div>
-        <button
+        {/* <button
           type='button'
           disabled={true}
           onClick={() => handleSelect(`${path}/point-buy`)}
@@ -39,7 +39,7 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
           <p>
             Distribute a set number of points to your liking across abilities
           </p>
-        </button>
+        </button> */}
         <button
           type='button'
           onClick={() => handleSelect(`${path}/classic-roll`)}

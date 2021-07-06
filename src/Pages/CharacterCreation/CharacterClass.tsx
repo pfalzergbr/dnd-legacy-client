@@ -32,7 +32,7 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
       onCompleted: (data) => {
         console.log(data)
         history.push(
-          `/create-character/${characterId}/choose-class`
+          `/create-character/${characterId}/abilities`
         );
       },
     });
