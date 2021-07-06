@@ -10,6 +10,9 @@ const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result }) => {
     item: {result},
     collect: (monitor) => ({
       result,
+      options: {
+        dropEffect: 'move'
+      },
       isDragging: monitor.isDragging(),
     }),
     // end: (item: any, monitor) => {

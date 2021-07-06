@@ -9,7 +9,7 @@ export const useRollingState = () => {
     setIsRolling(true);
     setTimeout(() => {
       setIsRolling(false);
-    }, 3000);
+    }, 1500);
   };
 
   return { isRolling, firstRollDone, startRoll };
