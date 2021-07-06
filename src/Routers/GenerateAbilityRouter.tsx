@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
 
 const AbilityClassicRoll = lazy(
-  () => import('../Components/CharacterCreation/Abilities/AbilityClassicRoll')
+  () => import('../Components/CharacterCreation/Abilities/ClassicRoll/AbilityClassicRoll')
 );
 const AbilityPointBuy = lazy(
   () => import('../Components/CharacterCreation/Abilities/AbilityPointBuy')
