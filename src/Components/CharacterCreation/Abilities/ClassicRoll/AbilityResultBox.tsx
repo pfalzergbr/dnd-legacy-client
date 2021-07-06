@@ -6,10 +6,13 @@ const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result }) => {
   return (
     <div
       style={{
-        display: 'inline-block',
-        marginRight: '.5rem',
+        display: 'flex',
+        width: '50px',
+        height: '50px',
+        margin: '.5rem',
         marginBottom: '1rem',
-        padding: '1rem',
+        alignItems: 'center',
+        justifyContent: 'center',
         border: '1px solid black',
       }}
     >
