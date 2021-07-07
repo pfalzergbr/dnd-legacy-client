@@ -17,9 +17,12 @@ const AbilityClassicRoll: React.FC<AbilityClassicRollProps> = () => {
     startRoll();
     rollAbilities();
   }
+  
 
   const beforeFirstRoll = !firstRollDone && !isRolling;
   const afterFirstRoll = firstRollDone && !isRolling;
+
+  console.log(rollResult)
 
   return (
     <div>

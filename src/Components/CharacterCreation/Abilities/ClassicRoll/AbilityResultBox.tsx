@@ -6,10 +6,10 @@ export interface AbilityResultBoxProps {
   index: number;
 }
 
-const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result }) => {
+const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result, index }) => {
   return (
     <div>
-      {result ? <AbilityDrag value={result} /> : <AbilityDropContainer />}
+      {result && result !== 0? <AbilityDrag value={result} isBaseResult={true} index={index}/> : <AbilityDropContainer />}
     </div>
   );
 };

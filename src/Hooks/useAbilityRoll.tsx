@@ -38,16 +38,18 @@ export const useAbilityRoll = () => {
   }
 
   const clearValue = (index: number): void => {
-    const updatedRollResult = rollResult;
+    const updatedRollResult = [...rollResult];
     updatedRollResult[index] = 0;
+    console.log(updatedRollResult)
     setRollResult(updatedRollResult)
+    console.log(rollResult)
   }
 
   const setValue = (index: number, value: number):void => {
-    const updatedRollResult = rollResult;
+    const updatedRollResult = [...rollResult];
     updatedRollResult[index] = value;
     setRollResult(updatedRollResult);
   }
 
-  return {rollResult, rollAbilities, clearValue, setValue}
+  return {rollResult, rollAbilities, setRollResult, clearValue, setValue}
 };
