@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDrop } from 'react-dnd';
+import { itemTypes } from '../../../../Utils/itemTypes'
 
 export interface AbilityDropBoxProps {
   label: string;
@@ -8,19 +9,16 @@ export interface AbilityDropBoxProps {
 const AbilityDropBox: React.FC<AbilityDropBoxProps> = ({ label }) => {
   const [value, setValue] = useState('');
   const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'ABILITY_BOX',
+    accept: itemTypes.ABILITY_BOX,
     drop: (item: any, monitor) => {
       // console.log('dropped', item, monitor)
-      setValue(item.result)
+      setValue(item.result);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-
   }));
-
-
 
   return (
     <div style={{ margin: '1rem', width: '150px' }}>
@@ -35,9 +33,10 @@ const AbilityDropBox: React.FC<AbilityDropBoxProps> = ({ label }) => {
           alignItems: 'center',
           justifyContent: 'center',
           border: isOver ? '1px solid green' : '1px solid black',
-          background: isOver? '#90EE90' : ''
+          background: isOver ? '#90EE90' : '',
         }}
-      >{value}
+      >
+        {value}
       </div>
     </div>
   );

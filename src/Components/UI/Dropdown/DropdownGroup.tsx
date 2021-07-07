@@ -50,7 +50,7 @@ const DropdownGroup: React.FC<DropdownGroupProps> = ({
   const openButtons = (
     <div>
       <button onClick={handleChoice} type='button'>
-        Choose Race
+        Choose
       </button>
       <button onClick={handleCloseDropdown}>
         Cancel

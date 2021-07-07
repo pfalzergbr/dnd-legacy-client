@@ -28,7 +28,6 @@ const CharacterAbilities: React.FC<CharacterAbilitiesProps> = () => {
       <CharacterSnippet
         characterData={data.getCharacterById as ICharacterSnippet}
       />
-      <h3>Point generation method</h3>
       <GenerateAbilityRouter />
     </div>
   );

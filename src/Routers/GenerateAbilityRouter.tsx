@@ -1,8 +1,12 @@
 import { lazy } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
+import { AbilityProvider } from '../Context/AbilityContext';
 
 const AbilityClassicRoll = lazy(
-  () => import('../Components/CharacterCreation/Abilities/ClassicRoll/AbilityClassicRoll')
+  () =>
+    import(
+      '../Components/CharacterCreation/Abilities/ClassicRoll/AbilityClassicRoll'
+    )
 );
 const AbilityPointBuy = lazy(
   () => import('../Components/CharacterCreation/Abilities/AbilityPointBuy')
@@ -29,7 +33,9 @@ const GenerateAbilityRouter: React.FC<GenerateAbilityRouterProps> = () => {
           <AbilityPointBuy />
         </Route>
         <Route path={`${path}/classic-roll`}>
-          <AbilityClassicRoll />
+          <AbilityProvider>
+            <AbilityClassicRoll />
+          </AbilityProvider>
         </Route>
         <Route path={`${path}/custom`}>
           <p>Custom</p>

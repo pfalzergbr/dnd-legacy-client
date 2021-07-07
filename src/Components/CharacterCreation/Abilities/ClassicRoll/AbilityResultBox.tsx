@@ -1,4 +1,5 @@
 import { useDrag } from 'react-dnd';
+import { itemTypes } from '../../../../Utils/itemTypes'
 
 export interface AbilityResultBoxProps {
   result: number;
@@ -6,13 +7,10 @@ export interface AbilityResultBoxProps {
 
 const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'ABILITY_BOX',
+    type: itemTypes.ABILITY_BOX,
     item: {result},
     collect: (monitor) => ({
       result,
-      options: {
-        dropEffect: 'move'
-      },
       isDragging: monitor.isDragging(),
     }),
     // end: (item: any, monitor) => {

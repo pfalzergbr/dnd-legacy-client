@@ -23,22 +23,22 @@ const AbilityRollResults: React.FC<AbilityRollResultsProps> = ({
   return (
     <div>
       <DndProvider backend={HTML5Backend}>
-      {!keepResults && (
-        <p>Roll 4d6 six times, and always drop the lowest number. </p>
-      )}
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {abilityValues.map((value, index) => (
-          <AbilityResultBox key={index} result={value} />
-        ))}
-      </div>
-      {keepResults ? (
-        <AbilityDropFields />
-      ) : (
-        <AbilityResultConfirm
-          handleRoll={handleRoll}
-          confirmResults={confirmResults}
-        />
-      )}
+        {!keepResults && (
+          <p>Roll 4d6 six times, and always drop the lowest number. </p>
+        )}
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          {abilityValues.map((value, index) => (
+            <AbilityResultBox key={index} result={value} />
+          ))}
+        </div>
+        {keepResults ? (
+          <AbilityDropFields />
+        ) : (
+          <AbilityResultConfirm
+            handleRoll={handleRoll}
+            confirmResults={confirmResults}
+          />
+        )}
       </DndProvider>
     </div>
   );

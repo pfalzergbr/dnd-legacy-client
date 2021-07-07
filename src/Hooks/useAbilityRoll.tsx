@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-type AbilityRollResult = number[];
+export type AbilityRollResult = number[];
 
 export const useAbilityRoll = () => {
   const [rollResult, setRollResult] = useState<AbilityRollResult>([]);

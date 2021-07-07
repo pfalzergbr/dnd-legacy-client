@@ -23,6 +23,7 @@ const AbilityMethods: React.FC<AbilityMethodsProps> = () => {
 
   return (
     <div>
+      <h3>Point generation method</h3>
       <h3>Choose Methods</h3>
       <div>
         {/* <button
