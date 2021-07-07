@@ -13,7 +13,7 @@ const AbilityDropBox: React.FC<AbilityDropBoxProps> = ({ label }) => {
     <div style={{ margin: '1rem', width: '150px' }}>
       <h4>{label}</h4>
       {value ? (
-        <AbilityDrag value={value} />
+        <AbilityDrag value={value} setValue={setValue} />
       ) : (
         <AbilityDropZone setValue={setValue} />
       )}

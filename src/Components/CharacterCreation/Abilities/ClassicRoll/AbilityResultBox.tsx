@@ -9,7 +9,7 @@ export interface AbilityResultBoxProps {
 const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result, index }) => {
   return (
     <div>
-      {result && result !== 0? <AbilityDrag value={result} isBaseResult={true} index={index}/> : <AbilityDropContainer />}
+      {result && result !== 0? <AbilityDrag value={result} isBaseResult={true} index={index}/> : <AbilityDropContainer index={index} />}
     </div>
   );
 };

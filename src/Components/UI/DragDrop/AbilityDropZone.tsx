@@ -26,6 +26,7 @@ const AbilityDropZone: React.FC<AbilityDropZoneProps> = ({ setValue }) => {
         width: '50px',
         height: '50px',
         marginBottom: '1rem',
+        margin: '.5rem',
         alignItems: 'center',
         justifyContent: 'center',
         border: isOver ? '1px solid green' : '1px solid black',
