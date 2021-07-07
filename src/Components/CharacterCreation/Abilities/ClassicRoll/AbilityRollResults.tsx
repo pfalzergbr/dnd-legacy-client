@@ -28,7 +28,7 @@ const AbilityRollResults: React.FC<AbilityRollResultsProps> = ({
         )}
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           {abilityValues.map((value, index) => (
-            <AbilityResultBox key={index} result={value} />
+            <AbilityResultBox key={index} result={value} index={index} />
           ))}
         </div>
         {keepResults ? (

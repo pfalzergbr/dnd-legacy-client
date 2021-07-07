@@ -3,6 +3,7 @@ import { itemTypes } from '../../../../Utils/itemTypes'
 
 export interface AbilityResultBoxProps {
   result: number;
+  index: number;
 }
 
 const AbilityResultBox: React.FC<AbilityResultBoxProps> = ({ result }) => {

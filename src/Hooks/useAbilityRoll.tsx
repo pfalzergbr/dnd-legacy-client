@@ -20,7 +20,7 @@ export const useAbilityRoll = () => {
     return rollValues.reduce((total, current) => total + current);
   }
 
-  const rollSingleAbility = () => {
+  const rollSingleAbility = (): number => {
     const rollResults = []
     for (let i = 0; i < 4; i++){
       rollResults.push(rolld6());
@@ -29,7 +29,7 @@ export const useAbilityRoll = () => {
     return sumResults(remainingResults)
   }
 
-  const rollAbilities = () => {
+  const rollAbilities = ():void => {
     const rollResults = [];
     for (let i = 0; i < 6; i++){
       rollResults.push(rollSingleAbility());
@@ -37,5 +37,17 @@ export const useAbilityRoll = () => {
     setRollResult(rollResults);
   }
 
-  return {rollResult, rollAbilities}
+  const clearValue = (index: number): void => {
+    const updatedRollResult = rollResult;
+    updatedRollResult[index] = 0;
+    setRollResult(updatedRollResult)
+  }
+
+  const setValue = (index: number, value: number):void => {
+    const updatedRollResult = rollResult;
+    updatedRollResult[index] = value;
+    setRollResult(updatedRollResult);
+  }
+
+  return {rollResult, rollAbilities, clearValue, setValue}
 };
