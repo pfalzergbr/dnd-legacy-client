@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export type AbilityRollResult = number[];
 
 export const useAbilityRoll = () => {
   const [rollResult, setRollResult] = useState<AbilityRollResult>([]);
-
+  
   const rolld6 = (): number => {
     return Math.ceil(Math.random() * 6);
   };
@@ -18,38 +18,46 @@ export const useAbilityRoll = () => {
 
   const sumResults = (rollValues: number[]): number => {
     return rollValues.reduce((total, current) => total + current);
-  }
+  };
 
   const rollSingleAbility = (): number => {
-    const rollResults = []
-    for (let i = 0; i < 4; i++){
+    const rollResults = [];
+    for (let i = 0; i < 4; i++) {
       rollResults.push(rolld6());
     }
-    const remainingResults = dropLowest(rollResults)
-    return sumResults(remainingResults)
-  }
+    const remainingResults = dropLowest(rollResults);
+    return sumResults(remainingResults);
+  };
 
-  const rollAbilities = ():void => {
+  const rollAbilities = (): void => {
     const rollResults = [];
-    for (let i = 0; i < 6; i++){
+    for (let i = 0; i < 6; i++) {
       rollResults.push(rollSingleAbility());
     }
     setRollResult(rollResults);
-  }
+  };
 
-  const clearValue = (index: number): void => {
-    const updatedRollResult = [...rollResult];
-    updatedRollResult[index] = 0;
-    console.log(updatedRollResult)
-    setRollResult(updatedRollResult)
-    console.log(rollResult)
-  }
+  const clearValue = useCallback(
+    (index: number): void => {
+      setRollResult(rollResult => {
+        const updatedRollResult = [...rollResult];
+        updatedRollResult[index] = 0;
+        return updatedRollResult});
+    },
+    []
+  );
 
-  const setValue = (index: number, value: number):void => {
-    const updatedRollResult = [...rollResult];
-    updatedRollResult[index] = value;
-    setRollResult(updatedRollResult);
-  }
+  const setValue = useCallback(
+    (index: number, value: number): void => {
+      setRollResult(rollResult => {
+        const updatedRollResult = [...rollResult];
+        updatedRollResult[index] = value;
+        return updatedRollResult
+      });
+    },
+    []
+  );
 
-  return {rollResult, rollAbilities, setRollResult, clearValue, setValue}
+
+  return { rollResult, rollAbilities, setRollResult, clearValue, setValue };
 };

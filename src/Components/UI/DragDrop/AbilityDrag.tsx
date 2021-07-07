@@ -7,11 +7,10 @@ import { itemTypes } from '../../../Utils/itemTypes';
 export interface AbilityDragProps {
   value: number | null;
   setValue?: (value: number | null) => void;
-  isBaseResult?: boolean
   index?: number;
 }
 
-const AbilityDrag: React.FC<AbilityDragProps> = ({ value, isBaseResult = null, index, setValue }) => {
+const AbilityDrag: React.FC<AbilityDragProps> = ({ value, index, setValue }) => {
   const { clearValue } = useContext(AbilityActions)
   const [{ isDragging }, drag] = useDrag(() => ({
     type: itemTypes.ABILITY_BOX,
@@ -21,14 +20,17 @@ const AbilityDrag: React.FC<AbilityDragProps> = ({ value, isBaseResult = null, i
       isDragging: monitor.isDragging(),
     }),
     end: (item: any, monitor) => {
-      if (isBaseResult && index){
-        // const dropResult = monitor.getDropResult()
-        clearValue(index);
-        console.log(item, index)
-      }
-      if (setValue) {
-        setValue(null)
-      }
+      const didDrop = monitor.didDrop()
+      if (didDrop){
+        if ( index || index === 0){
+          // const dropResult = monitor.getDropResult()
+          clearValue(index);
+          // console.log(item, index)
+        }
+        if (setValue) {
+          setValue(null)
+        }
+      } 
     }
   }));
 

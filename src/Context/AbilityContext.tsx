@@ -8,7 +8,7 @@ export interface IAbilityContext {
 
 export interface IAbilityActions {
   rollAbilities: () => void;
-  clearValue: (index: number) => void;
+  clearValue: (index: number,) => void;
   setValue: (value: number, index: number) => void;
 }
 
@@ -22,6 +22,7 @@ export const AbilityActions = createContext<IAbilityActions>({} as IAbilityActio
 export const AbilityProvider = ({children}: {children: React.ReactNode}) => {
   const { rollResult, rollAbilities, clearValue, setValue } = useAbilityRoll(); 
 
+  console.log(clearValue);
 
   return (
     <AbilityContext.Provider value={{ rollResult }}>
