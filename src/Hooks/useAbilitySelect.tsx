@@ -1,14 +1,18 @@
 import React, { Reducer, useReducer } from 'react';
 
+export type AbilityType = {
+  value: number;
+  bonus: number;
+};
 
 export type AbilityState = {
   abilities: {
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
+    strength: AbilityType;
+    dexterity: AbilityType;
+    constitution: AbilityType;
+    intelligence: AbilityType;
+    wisdom: AbilityType;
+    charisma: AbilityType;
   };
   isComplete: boolean;
 };
@@ -30,37 +34,55 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
     case 'STRENGTH': {
       return {
         ...state,
-        abilities: { ...state.abilities, strength: action.payload },
+        abilities: {
+          ...state.abilities,
+          strength: { value: action.payload, bonus: 0 },
+        },
       };
     }
     case 'DEXTERITY': {
       return {
         ...state,
-        abilities: { ...state.abilities, dexterity: action.payload },
+        abilities: {
+          ...state.abilities,
+          dexterity: { value: action.payload, bonus: 0 },
+        },
       };
     }
     case 'CONSTITUTION': {
       return {
         ...state,
-        abilities: { ...state.abilities, constitution: action.payload },
+        abilities: {
+          ...state.abilities,
+          constitution: { value: action.payload, bonus: 0 },
+        },
       };
     }
     case 'INTELLIGENCE': {
       return {
         ...state,
-        abilities: { ...state.abilities, intelligence: action.payload },
+        abilities: {
+          ...state.abilities,
+          intelligence: { value: action.payload, bonus: 0 },
+        },
       };
     }
     case 'CHARISMA': {
       return {
         ...state,
-        abilities: { ...state.abilities, charisma: action.payload },
+        abilities: {
+          ...state.abilities,
+          charisma: { value: action.payload, bonus: 0 },
+        },
       };
     }
     case 'WISDOM': {
       return {
         ...state,
-        abilities: { ...state.abilities, wisdom: action.payload },
+        abilities: {
+          ...state.abilities,
+          wisdom: { value: action.payload, bonus: 0 },
+        },
       };
     }
     default: {
@@ -77,14 +99,14 @@ export const useAbilitySelect = (
 } => {
   const initialState: AbilityState = {
     abilities: {
-      strength: initialValue,
-      dexterity: initialValue,
-      constitution: initialValue,
-      intelligence: initialValue,
-      wisdom: initialValue,
-      charisma: initialValue,
+      strength: { value: initialValue, bonus: 0 },
+      dexterity: { value: initialValue, bonus: 0 },
+      constitution: { value: initialValue, bonus: 0 },
+      intelligence: { value: initialValue, bonus: 0 },
+      wisdom: { value: initialValue, bonus: 0 },
+      charisma: { value: initialValue, bonus: 0 },
     },
-    isComplete: false
+    isComplete: false,
   };
 
   const [abilityState, dispatch] = useReducer(abilityReducer, initialState);

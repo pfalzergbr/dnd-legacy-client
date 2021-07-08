@@ -22,12 +22,12 @@ export const AbilityContext = createContext<IAbilityContext>({
   rollResult: [],
   abilityState: {
     abilities: {
-      strength: 0,
-      dexterity: 0,
-      constitution: 0,
-      intelligence: 0,
-      wisdom: 0,
-      charisma: 0,
+      strength: {value: 0, bonus: 0},
+      dexterity: {value: 0, bonus: 0},
+      constitution: {value: 0, bonus: 0},
+      intelligence: {value: 0, bonus: 0},
+      wisdom: {value: 0, bonus: 0},
+      charisma: {value: 0, bonus: 0},
     },
     isComplete: false,
   },

@@ -26,32 +26,32 @@ const AbilityCustom: React.FC<AbilityCustomProps> = () => {
       </div>
       <AbilitySelect
         selectName='strength'
-        valueRef={strength}
+        valueRef={strength.value}
         dispatch={dispatch}
       />
       <AbilitySelect
         selectName='dexterity'
-        valueRef={dexterity}
+        valueRef={dexterity.value}
         dispatch={dispatch}
       />
       <AbilitySelect
         selectName='constitution'
-        valueRef={constitution}
+        valueRef={constitution.value}
         dispatch={dispatch}
       />
       <AbilitySelect
         selectName='intelligence'
-        valueRef={intelligence}
+        valueRef={intelligence.value}
         dispatch={dispatch}
       />
       <AbilitySelect
         selectName='charisma'
-        valueRef={charisma}
+        valueRef={charisma.value}
         dispatch={dispatch}
       />
       <AbilitySelect
         selectName='wisdom'
-        valueRef={wisdom}
+        valueRef={wisdom.value}
         dispatch={dispatch}
       />
     </div>
