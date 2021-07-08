@@ -5,7 +5,7 @@ import AbilitySelect from './AbilitySelect';
 export interface AbilityCustomProps {}
 
 const AbilityCustom: React.FC<AbilityCustomProps> = () => {
-  const { abilityState, dispatch } = useAbilitySelect();
+  const { abilityState, dispatch } = useAbilitySelect(10);
   const {
     abilities: {
       strength,
