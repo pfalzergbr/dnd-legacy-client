@@ -10,6 +10,7 @@ export type AbilityState = {
     wisdom: number;
     charisma: number;
   };
+  isComplete: boolean;
 };
 
 export type AbilityActionType =
@@ -83,6 +84,7 @@ export const useAbilitySelect = (
       wisdom: initialValue,
       charisma: initialValue,
     },
+    isComplete: false
   };
 
   const [abilityState, dispatch] = useReducer(abilityReducer, initialState);

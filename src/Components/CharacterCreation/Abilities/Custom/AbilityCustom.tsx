@@ -1,6 +1,6 @@
-import { useAbilitySelect } from '../../../Hooks/useAbilitySelect';
-import AbilityHeader from './AbilityHeader';
-import AbilitySelect from './AbilitySelect';
+import { useAbilitySelect } from '../../../../Hooks/useAbilitySelect';
+import AbilityHeader from '../Shared/AbilityHeader';
+import AbilitySelect from '../Shared/AbilitySelect';
 
 export interface AbilityCustomProps {}
 

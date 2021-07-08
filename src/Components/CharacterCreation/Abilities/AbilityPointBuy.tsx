@@ -1,4 +1,4 @@
-import AbilityHeader from './AbilityHeader';
+import AbilityHeader from './Shared/AbilityHeader';
 
 export interface AbilityPointBuyProps {}
 

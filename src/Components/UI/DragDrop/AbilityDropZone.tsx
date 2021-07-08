@@ -2,7 +2,6 @@ import { useDrop } from 'react-dnd';
 import { itemTypes } from '../../../Utils/itemTypes';
 
 export interface AbilityDropZoneProps {
-  // value: number | null;
   setValue: (value: number) => void;
 }
 

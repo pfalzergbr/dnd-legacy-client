@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useRollingState } from '../../../../Hooks/useRollingState';
-import AbilityHeader from '../AbilityHeader';
+import AbilityHeader from '../Shared/AbilityHeader';
 import AbilityRollStart from './AbilityRollStart';
 import AbilityRollResults from './AbilityRollResults';
 import {

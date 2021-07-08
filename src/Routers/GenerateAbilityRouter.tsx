@@ -15,7 +15,7 @@ const AbilityMethod = lazy(
   () => import('../Components/CharacterCreation/Abilities/AbilityMethod')
 );
 const AbilityCustom = lazy(
-  () => import('../Components/CharacterCreation/Abilities/AbilityCustom')
+  () => import('../Components/CharacterCreation/Abilities/Custom/AbilityCustom')
 );
 
 export interface GenerateAbilityRouterProps {}

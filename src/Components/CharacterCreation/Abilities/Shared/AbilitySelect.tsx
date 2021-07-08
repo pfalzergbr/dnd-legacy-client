@@ -1,4 +1,4 @@
-import { AbilityActionType } from '../../../Hooks/useAbilitySelect';
+import { AbilityActionType } from '../../../../Hooks/useAbilitySelect';
 
 export type AbilityType =
   | 'strength'
