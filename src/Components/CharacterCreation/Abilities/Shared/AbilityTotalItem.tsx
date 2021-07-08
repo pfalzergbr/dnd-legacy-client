@@ -37,7 +37,7 @@ const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({
           <span>{raceBonus}</span>
         </div>
         <div>
-          <span>Bonus: </span>
+          <span>Modifier: </span>
           <span style={bonusStyle}>
             {ability.bonus > 0 && '+'}
             {ability.bonus}
