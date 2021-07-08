@@ -26,6 +26,10 @@ export type AbilityActionType =
   | { type: 'WISDOM'; payload: number }
   | { type: 'CHARISMA'; payload: number };
 
+export const bonusCalcArray = [
+  0, -5, -4, -4, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
+];
+
 export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
   state,
   action
@@ -36,7 +40,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          strength: { value: action.payload, bonus: 0 },
+          strength: { value: action.payload, bonus: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -45,7 +49,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          dexterity: { value: action.payload, bonus: 0 },
+          dexterity: { value: action.payload, bonus: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -54,7 +58,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          constitution: { value: action.payload, bonus: 0 },
+          constitution: { value: action.payload, bonus: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -63,7 +67,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          intelligence: { value: action.payload, bonus: 0 },
+          intelligence: { value: action.payload, bonus: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -72,7 +76,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          charisma: { value: action.payload, bonus: 0 },
+          charisma: { value: action.payload, bonus: bonusCalcArray[action.payload]},
         },
       };
     }
@@ -81,7 +85,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          wisdom: { value: action.payload, bonus: 0 },
+          wisdom: { value: action.payload, bonus: bonusCalcArray[action.payload] },
         },
       };
     }

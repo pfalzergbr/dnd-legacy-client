@@ -10,12 +10,12 @@ const AbilityTotals: React.FC<AbilityTotalsProps> = ( ) => {
   const { abilityState: {abilities} } = useContext(AbilityContext)
   return (
     <div>
-      <AbilityTotalItem abilityName="Strength" value={abilities.strength.value}/>
-      <AbilityTotalItem abilityName="Dexterity" value={abilities.dexterity.value}/>
-      <AbilityTotalItem abilityName="Constitution" value={abilities.constitution.value}/>
-      <AbilityTotalItem abilityName="Intelligence" value={abilities.intelligence.value}/>
-      <AbilityTotalItem abilityName="Charisma" value={abilities.charisma.value}/>
-      <AbilityTotalItem abilityName="Wisdom" value={abilities.wisdom.value}/>
+      <AbilityTotalItem abilityName="Strength" ability={abilities.strength}/>
+      <AbilityTotalItem abilityName="Dexterity" ability={abilities.dexterity}/>
+      <AbilityTotalItem abilityName="Constitution" ability={abilities.constitution}/>
+      <AbilityTotalItem abilityName="Intelligence" ability={abilities.intelligence}/>
+      <AbilityTotalItem abilityName="Charisma" ability={abilities.charisma}/>
+      <AbilityTotalItem abilityName="Wisdom" ability={abilities.wisdom}/>
     </div>
   )
 }

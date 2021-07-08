@@ -1,22 +1,36 @@
+import { AbilityType } from '../../../../Hooks/useAbilitySelect';
 
 interface AbilityTotalItemProps {
   abilityName: string;
-  value: number;
+  ability: AbilityType;
   raceBonus?: number;
 }
 
-const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({ abilityName, value, raceBonus = 0} ) => {
-  const total = value;
+const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({
+  abilityName,
+  ability,
+  raceBonus = 0,
+}) => {
+  const total = ability.value;
+
+  const bonusStyle =
+    ability.bonus !== 0
+      ? ability.bonus >= 0
+        ? { color: 'green' }
+        : { color: 'red' }
+      : {};
+
   return (
     <div>
       <div>
-        <h3>{abilityName}:    <span>{total}</span></h3>
-   
+        <h3>
+          {abilityName}: <span>{total}</span>
+        </h3>
       </div>
       <div>
         <div>
           <span>Base: </span>
-          <span>{value}</span>
+          <span>{ability.value}</span>
         </div>
         <div>
           <span>Race: </span>
@@ -24,11 +38,14 @@ const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({ abilityName, value,
         </div>
         <div>
           <span>Bonus: </span>
-          <span>todo!</span>
+          <span style={bonusStyle}>
+            {ability.bonus > 0 && '+'}
+            {ability.bonus}
+          </span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AbilityTotalItem
+export default AbilityTotalItem;
