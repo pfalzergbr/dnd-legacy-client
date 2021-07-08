@@ -3,15 +3,18 @@ import { useDrag } from 'react-dnd';
 import { AbilityActions } from '../../../Context/AbilityContext';
 import { itemTypes } from '../../../Utils/itemTypes';
 
-
 export interface AbilityDragProps {
   value: number | null;
   setValue?: (value: number | null) => void;
   index?: number;
 }
 
-const AbilityDrag: React.FC<AbilityDragProps> = ({ value, index, setValue }) => {
-  const { clearValue } = useContext(AbilityActions)
+const AbilityDrag: React.FC<AbilityDragProps> = ({
+  value,
+  index,
+  setValue,
+}) => {
+  const { clearValue } = useContext(AbilityActions);
   const [{ isDragging }, drag] = useDrag(() => ({
     type: itemTypes.ABILITY_BOX,
     item: { value },
@@ -20,18 +23,18 @@ const AbilityDrag: React.FC<AbilityDragProps> = ({ value, index, setValue }) => 
       isDragging: monitor.isDragging(),
     }),
     end: (item: any, monitor) => {
-      const didDrop = monitor.didDrop()
-      if (didDrop){
-        if ( index || index === 0){
+      const didDrop = monitor.didDrop();
+      if (didDrop) {
+        if (index || index === 0) {
           // const dropResult = monitor.getDropResult()
           clearValue(index);
           // console.log(item, index)
         }
         if (setValue) {
-          setValue(null)
+          setValue(null);
         }
-      } 
-    }
+      }
+    },
   }));
 
   return (

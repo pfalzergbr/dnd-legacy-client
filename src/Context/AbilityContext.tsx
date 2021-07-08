@@ -34,7 +34,6 @@ export const AbilityProvider = ({children}: {children: React.ReactNode}) => {
   const { rollResult, rollAbilities, clearValue, setValue } = useAbilityRoll(); 
   const { abilityState, dispatch } = useAbilitySelect(0)
 
-  console.log(abilityState);
 
   return (
     <AbilityContext.Provider value={{ rollResult, abilityState }}>

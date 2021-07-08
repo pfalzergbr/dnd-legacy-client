@@ -9,7 +9,7 @@ export interface AbilityDropZoneProps {
 const AbilityDropZone: React.FC<AbilityDropZoneProps> = ({ setValue }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: itemTypes.ABILITY_BOX,
-    drop: (item: any, monitor) => {
+    drop: (item: any) => {
       setValue(item.value);
     },
     collect: (monitor) => ({
@@ -32,8 +32,7 @@ const AbilityDropZone: React.FC<AbilityDropZoneProps> = ({ setValue }) => {
         border: isOver ? '1px solid green' : '1px solid black',
         background: isOver ? '#90EE90' : '',
       }}
-    >
-    </div>
+    ></div>
   );
 };
 
