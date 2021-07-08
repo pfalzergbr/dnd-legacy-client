@@ -6,7 +6,8 @@ export const useAbilityRoll = () => {
   const [rollResult, setRollResult] = useState<AbilityRollResult>([]);
   
   const rolld6 = (): number => {
-    return Math.ceil(Math.random() * 6);
+    const diceSides = 6;
+    return Math.ceil(Math.random() * diceSides);
   };
 
   const dropLowest = (rollResult: number[]): number[] => {
@@ -30,8 +31,9 @@ export const useAbilityRoll = () => {
   };
 
   const rollAbilities = (): void => {
+    const numberOfRolls = 6;
     const rollResults = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < numberOfRolls; i++) {
       rollResults.push(rollSingleAbility());
     }
     setRollResult(rollResults);
