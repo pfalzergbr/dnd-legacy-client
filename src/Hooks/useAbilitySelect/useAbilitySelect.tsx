@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { useHistory } from 'react-router';
 import { useMutation, ApolloError } from '@apollo/client';
 import { SET_ABILITIES } from '../../GraphQL/characterMutations';
 import { GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
@@ -18,21 +19,21 @@ export const useAbilitySelect = (
   loading: boolean;
   error: ApolloError | undefined;
 } => {
+  const history = useHistory();
   const initialState= getInitialState(initialValue);
   const [abilityState, dispatch] = useReducer(abilityReducer, initialState);
   
   const [setAbilities, { loading, error }] = useMutation(SET_ABILITIES, {
-    onCompleted: () => {
-      console.log('sent');
-      // history.push(`/create-character/${characterId}/skills`);
+    onCompleted: (data) => {
+      console.log(data)
+      const { id: characterId } = data.setInitialAbilities
+      // Get characterId from data
+      history.push(`/create-character/${characterId}/skills`);
     },
   });
 
-
-
   const handleAbilityMutation = (characterId: string) => {
     const abilities = getAbilityPayload(abilityState);
-    console.log(abilities);
     setAbilities({
       variables: { characterId, abilityValues: abilities },
       refetchQueries: [
