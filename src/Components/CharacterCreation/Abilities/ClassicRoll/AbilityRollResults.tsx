@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import AbilityResultBox from './AbilityResultBox';
 import AbilityResultConfirm from './AbilityResultConfirm';
-import AbilityDropFields from './AbilityDropFields';
-import AbilityTotals from '../Shared/AbilityTotals';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
+import AbilityResults from './AbilityResults';
 
 export interface AbilityRollResultsProps {
   abilityValues: number[];
@@ -33,10 +32,7 @@ const AbilityRollResults: React.FC<AbilityRollResultsProps> = ({
           ))}
         </div>
         {keepResults ? (
-          <div>
-            <AbilityDropFields />
-            <AbilityTotals />
-          </div>
+          <AbilityResults />
         ) : (
           <AbilityResultConfirm
             handleRoll={handleRoll}
