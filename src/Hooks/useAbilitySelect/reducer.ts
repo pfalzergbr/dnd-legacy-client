@@ -1,14 +1,16 @@
 import { Reducer } from 'react';
 import { AbilityState, AbilityActionType } from './types'
 import { modifierCalcArray } from './utils'
+import { abilityActionTypes } from './abilityActionTypes'
 
+const { STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, CHARISMA, WISDOM } = abilityActionTypes
 
 export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
   state,
   action
 ): AbilityState => {
   switch (action.type) {
-    case 'STRENGTH': {
+    case STRENGTH: {
       return {
         ...state,
         abilities: {
@@ -20,7 +22,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         },
       };
     }
-    case 'DEXTERITY': {
+    case DEXTERITY: {
       return {
         ...state,
         abilities: {
@@ -32,7 +34,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         },
       };
     }
-    case 'CONSTITUTION': {
+    case CONSTITUTION: {
       return {
         ...state,
         abilities: {
@@ -44,7 +46,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         },
       };
     }
-    case 'INTELLIGENCE': {
+    case INTELLIGENCE: {
       return {
         ...state,
         abilities: {
@@ -56,7 +58,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         },
       };
     }
-    case 'CHARISMA': {
+    case CHARISMA: {
       return {
         ...state,
         abilities: {
@@ -68,7 +70,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         },
       };
     }
-    case 'WISDOM': {
+    case WISDOM: {
       return {
         ...state,
         abilities: {
