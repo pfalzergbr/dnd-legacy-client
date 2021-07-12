@@ -1,11 +1,11 @@
 import { ApolloError } from '@apollo/client';
 import { createContext } from 'react';
 import { useAbilityRoll, AbilityRollResult } from '../Hooks/useAbilityRoll';
+import { useAbilitySelect } from '../Hooks/useAbilitySelect/useAbilitySelect';
 import {
   AbilityState,
-  useAbilitySelect,
   AbilityActionType,
-} from '../Hooks/useAbilitySelect';
+} from '../Hooks/useAbilitySelect/types';
 
 export interface IAbilityContext {
   rollResult: AbilityRollResult;

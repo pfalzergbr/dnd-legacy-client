@@ -1,4 +1,4 @@
-import { useAbilitySelect } from '../../../../Hooks/useAbilitySelect';
+import { useAbilitySelect } from '../../../../Hooks/useAbilitySelect/useAbilitySelect';
 import AbilityHeader from '../Shared/AbilityHeader';
 import AbilitySelect from '../Shared/AbilitySelect';
 

@@ -1,4 +1,4 @@
-import { AbilityType } from '../../../../Hooks/useAbilitySelect';
+import { AbilityType } from '../../../../Hooks/useAbilitySelect/types';
 
 interface AbilityTotalItemProps {
   abilityName: string;
