@@ -1,16 +1,32 @@
-export type AbilityType = {
+export type AbilityType =
+  | 'strength'
+  | 'dexterity'
+  | 'constitution'
+  | 'intelligence'
+  | 'charisma'
+  | 'wisdom';
+  
+export type DispatchType =
+  | 'STRENGTH'
+  | 'DEXTERITY'
+  | 'CONSTITUTION'
+  | 'INTELLIGENCE'
+  | 'WISDOM'
+  | 'CHARISMA';
+
+export type AbilityFieldType = {
   value: number;
   modifier: number;
 };
 
 export type AbilityState = {
   abilities: {
-    strength: AbilityType;
-    dexterity: AbilityType;
-    constitution: AbilityType;
-    intelligence: AbilityType;
-    wisdom: AbilityType;
-    charisma: AbilityType;
+    strength: AbilityFieldType;
+    dexterity: AbilityFieldType;
+    constitution: AbilityFieldType;
+    intelligence: AbilityFieldType;
+    wisdom: AbilityFieldType;
+    charisma: AbilityFieldType;
   };
   isComplete: boolean;
 };

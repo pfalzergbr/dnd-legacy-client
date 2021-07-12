@@ -1,19 +1,19 @@
-import { AbilityActionType } from '../../../../Hooks/useAbilitySelect/types';
+import { AbilityActionType, AbilityType, DispatchType } from '../../../../Hooks/useAbilitySelect/types';
 
-export type AbilityType =
-  | 'strength'
-  | 'dexterity'
-  | 'constitution'
-  | 'intelligence'
-  | 'charisma'
-  | 'wisdom';
-export type DispatchType =
-  | 'STRENGTH'
-  | 'DEXTERITY'
-  | 'CONSTITUTION'
-  | 'INTELLIGENCE'
-  | 'WISDOM'
-  | 'CHARISMA';
+// export type AbilityType =
+//   | 'strength'
+//   | 'dexterity'
+//   | 'constitution'
+//   | 'intelligence'
+//   | 'charisma'
+//   | 'wisdom';
+// export type DispatchType =
+//   | 'STRENGTH'
+//   | 'DEXTERITY'
+//   | 'CONSTITUTION'
+//   | 'INTELLIGENCE'
+//   | 'WISDOM'
+//   | 'CHARISMA';
 
 export interface AbilitySelectProps {
   selectName: AbilityType;

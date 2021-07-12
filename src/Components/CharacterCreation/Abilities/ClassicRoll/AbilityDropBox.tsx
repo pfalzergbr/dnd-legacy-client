@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useMemo } from 'react';
 import { AbilityActions } from '../../../../Context/AbilityContext';
 import AbilityDrag from '../../../UI/DragDrop/AbilityDrag';
 import AbilityDropZone from '../../../UI/DragDrop/AbilityDropZone';
-import { DispatchType } from '../Shared/AbilitySelect';
+import { DispatchType } from '../../../../Hooks/useAbilitySelect/types';
 
 export interface AbilityDropBoxProps {
   label:

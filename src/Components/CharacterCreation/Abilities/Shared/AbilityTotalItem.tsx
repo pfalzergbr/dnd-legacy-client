@@ -1,8 +1,8 @@
-import { AbilityType } from '../../../../Hooks/useAbilitySelect/types';
+import { AbilityFieldType } from '../../../../Hooks/useAbilitySelect/types';
 
 interface AbilityTotalItemProps {
   abilityName: string;
-  ability: AbilityType;
+  ability: AbilityFieldType;
   raceBonus?: number;
 }
 
