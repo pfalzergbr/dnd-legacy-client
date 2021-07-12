@@ -34,3 +34,16 @@ export const getAbilityPayload = (
   };
   return abilities;
 };
+
+
+export const validateAbilities = (state: AbilityState): boolean => {
+  const abilities = Object.values(state.abilities);
+  let isValid = true;
+  for (let i = 0; i < abilities.length; i++){
+    if (abilities[i].value === 0){
+      isValid = false
+      break
+    } 
+  }
+  return isValid;
+}

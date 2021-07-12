@@ -1,9 +1,12 @@
 import { Reducer } from 'react';
 import { AbilityState, AbilityActionType } from './types'
-import { modifierCalcArray } from './utils'
+import { modifierCalcArray, validateAbilities } from './utils'
 import { abilityActionTypes } from './abilityActionTypes'
 
 const { STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, CHARISMA, WISDOM } = abilityActionTypes
+
+// Add logic to handle validation
+
 
 export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
   state,
@@ -20,6 +23,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     case DEXTERITY: {
@@ -32,6 +36,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     case CONSTITUTION: {
@@ -44,6 +49,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     case INTELLIGENCE: {
@@ -56,6 +62,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     case CHARISMA: {
@@ -68,6 +75,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     case WISDOM: {
@@ -80,6 +88,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
             modifier: modifierCalcArray[action.payload],
           },
         },
+        isComplete: validateAbilities(state)
       };
     }
     default: {

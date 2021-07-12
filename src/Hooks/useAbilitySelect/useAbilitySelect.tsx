@@ -27,7 +27,6 @@ export const useAbilitySelect = (
     onCompleted: (data) => {
       console.log(data)
       const { id: characterId } = data.setInitialAbilities
-      // Get characterId from data
       history.push(`/create-character/${characterId}/skills`);
     },
   });
