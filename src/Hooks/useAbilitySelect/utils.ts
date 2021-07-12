@@ -1,10 +1,10 @@
-import { AbilityState, AbilityPayload } from './types'
+import { AbilityState, AbilityPayload } from './types';
 
 export const modifierCalcArray = [
   0, -5, -4, -4, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
 ];
 
-export const getInitialState = (initialValue : number ): AbilityState => {
+export const getInitialState = (initialValue: number): AbilityState => {
   return {
     abilities: {
       strength: { value: initialValue, modifier: 0 },
@@ -16,8 +16,7 @@ export const getInitialState = (initialValue : number ): AbilityState => {
     },
     isComplete: false,
   };
-}
-
+};
 
 export const getAbilityPayload = (
   abilityState: AbilityState
@@ -35,15 +34,14 @@ export const getAbilityPayload = (
   return abilities;
 };
 
-
 export const validateAbilities = (state: AbilityState): boolean => {
   const abilities = Object.values(state.abilities);
   let isValid = true;
-  for (let i = 0; i < abilities.length; i++){
-    if (abilities[i].value === 0){
-      isValid = false
-      break
-    } 
+  for (let i = 0; i < abilities.length; i++) {
+    if (abilities[i].value === 0) {
+      isValid = false;
+      break;
+    }
   }
   return isValid;
-}
+};

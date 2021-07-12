@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import AbilityDropFields from './AbilityDropFields';
 import AbilityTotals from '../Shared/AbilityTotals';
 import Loading from '../../../Loading';
-import { AbilityActions, AbilityStates } from '../../../../Context/AbilityContext';
+import { AbilityActions, AbilityContext, AbilityStates } from '../../../../Context/AbilityContext';
 import { useParams } from 'react-router-dom';
 export interface AbilityResultsProps {
 }
@@ -11,11 +11,12 @@ const AbilityResults: React.FC<AbilityResultsProps> = () => {
   const { characterId } = useParams<{ characterId: string }>()
   const { loading, error} = useContext(AbilityStates);
   const { handleAbilityMutation } = useContext(AbilityActions);
+  const { abilityState } = useContext(AbilityContext)
   
   const handleNext = () => {
     handleAbilityMutation(characterId);
   }
-
+  
   if (loading) {
     return <Loading />
   }
@@ -27,7 +28,7 @@ const AbilityResults: React.FC<AbilityResultsProps> = () => {
   return (
     <div>
       <AbilityDropFields />
-      <button onClick={handleNext}>Next</button>
+      <button disabled={!abilityState.isComplete} onClick={handleNext}>Next</button>
       <AbilityTotals />
     </div>
   );
