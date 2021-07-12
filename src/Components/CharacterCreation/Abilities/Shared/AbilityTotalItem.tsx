@@ -14,8 +14,8 @@ const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({
   const total = ability.value;
 
   const bonusStyle =
-    ability.bonus !== 0
-      ? ability.bonus >= 0
+    ability.modifier !== 0
+      ? ability.modifier >= 0
         ? { color: 'green' }
         : { color: 'red' }
       : {};
@@ -39,8 +39,8 @@ const AbilityTotalItem: React.FC<AbilityTotalItemProps> = ({
         <div>
           <span>Modifier: </span>
           <span style={bonusStyle}>
-            {ability.bonus > 0 && '+'}
-            {ability.bonus}
+            {ability.modifier > 0 && '+'}
+            {ability.modifier}
           </span>
         </div>
       </div>

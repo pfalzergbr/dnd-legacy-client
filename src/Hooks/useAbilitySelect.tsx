@@ -2,7 +2,7 @@ import React, { Reducer, useReducer } from 'react';
 
 export type AbilityType = {
   value: number;
-  bonus: number;
+  modifier: number;
 };
 
 export type AbilityState = {
@@ -40,7 +40,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          strength: { value: action.payload, bonus: bonusCalcArray[action.payload] },
+          strength: { value: action.payload, modifier: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -49,7 +49,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          dexterity: { value: action.payload, bonus: bonusCalcArray[action.payload] },
+          dexterity: { value: action.payload, modifier: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -58,7 +58,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          constitution: { value: action.payload, bonus: bonusCalcArray[action.payload] },
+          constitution: { value: action.payload, modifier: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -67,7 +67,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          intelligence: { value: action.payload, bonus: bonusCalcArray[action.payload] },
+          intelligence: { value: action.payload, modifier: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -76,7 +76,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          charisma: { value: action.payload, bonus: bonusCalcArray[action.payload]},
+          charisma: { value: action.payload, modifier: bonusCalcArray[action.payload]},
         },
       };
     }
@@ -85,7 +85,7 @@ export const abilityReducer: Reducer<AbilityState, AbilityActionType> = (
         ...state,
         abilities: {
           ...state.abilities,
-          wisdom: { value: action.payload, bonus: bonusCalcArray[action.payload] },
+          wisdom: { value: action.payload, modifier: bonusCalcArray[action.payload] },
         },
       };
     }
@@ -103,12 +103,12 @@ export const useAbilitySelect = (
 } => {
   const initialState: AbilityState = {
     abilities: {
-      strength: { value: initialValue, bonus: 0 },
-      dexterity: { value: initialValue, bonus: 0 },
-      constitution: { value: initialValue, bonus: 0 },
-      intelligence: { value: initialValue, bonus: 0 },
-      wisdom: { value: initialValue, bonus: 0 },
-      charisma: { value: initialValue, bonus: 0 },
+      strength: { value: initialValue, modifier: 0 },
+      dexterity: { value: initialValue, modifier: 0 },
+      constitution: { value: initialValue, modifier: 0 },
+      intelligence: { value: initialValue, modifier: 0 },
+      wisdom: { value: initialValue, modifier: 0 },
+      charisma: { value: initialValue, modifier: 0 },
     },
     isComplete: false,
   };
