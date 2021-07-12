@@ -16,8 +16,8 @@ export const DELETE_CHARACTER = gql`
 `;
 
 export const CHOOSE_RACE = gql`
-  mutation ChooseRace($characterId: String!, $raceId: String!){
-    chooseRace(characterId:$characterId, raceId:$raceId){
+  mutation ChooseRace($characterId: String!, $raceId: String!) {
+    chooseRace(characterId: $characterId, raceId: $raceId) {
       name
       characterRace {
         raceName
@@ -25,11 +25,11 @@ export const CHOOSE_RACE = gql`
       }
     }
   }
-`
+`;
 
 export const CHOOSE_CLASS = gql`
-  mutation ChooseClass($characterId: String!, $classId: String!){
-    chooseClass(characterId: $characterId, classId: $classId){
+  mutation ChooseClass($characterId: String!, $classId: String!) {
+    chooseClass(characterId: $characterId, classId: $classId) {
       name
       characterClass {
         className
@@ -37,4 +37,49 @@ export const CHOOSE_CLASS = gql`
       }
     }
   }
-`
+`;
+
+export const SET_ABILITIES = gql`
+  mutation SetAbilities($characterId: String!, $abilityValues: AbilityInput!) {
+    setInitialAbilities(
+      characterId: $characterId
+      abilityValues: $abilityValues
+    ) {
+      id
+      name
+      characterRace {
+        raceName
+      }
+      characterClass {
+        className
+        classLevel
+      }
+      characterAbilities {
+        strength {
+          baseValue
+          modifier
+        }
+        dexterity {
+          baseValue
+          modifier
+        }
+        constitution {
+          baseValue
+          modifier
+        }
+        intelligence {
+          baseValue
+          modifier
+        }
+        charisma {
+          baseValue
+          modifier
+        }
+        wisdom {
+          baseValue
+          modifier
+        }
+      }
+    }
+  }
+`;
