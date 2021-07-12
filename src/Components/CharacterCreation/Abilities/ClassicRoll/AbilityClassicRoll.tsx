@@ -6,9 +6,8 @@ import AbilityRollResults from './AbilityRollResults';
 import {
   AbilityContext,
   AbilityActions,
-  AbilityStates,
 } from '../../../../Context/AbilityContext';
-import Loading from '../../../Loading';
+
 
 export interface AbilityClassicRollProps {}
 
@@ -16,7 +15,7 @@ const AbilityClassicRoll: React.FC<AbilityClassicRollProps> = () => {
   const { isRolling, firstRollDone, startRoll } = useRollingState();
   const { rollResult } = useContext(AbilityContext);
   const { rollAbilities } = useContext(AbilityActions);
-  const { loading, error} = useContext(AbilityStates);
+
 
   const beforeFirstRoll = !firstRollDone && !isRolling;
   const afterFirstRoll = firstRollDone && !isRolling;
@@ -25,14 +24,6 @@ const AbilityClassicRoll: React.FC<AbilityClassicRollProps> = () => {
     startRoll();
     rollAbilities();
   };
-
-  if (loading) {
-    return <Loading />
-  }
-
-  if (error) {
-    return <p>Cannot set abilities. Please try again.</p>
-  }
 
   return (
     <div>

@@ -172,8 +172,9 @@ export const useAbilitySelect = (
 
   const handleAbilityMutation = (characterId: string) => {
     const abilities = getAbilityPayload(abilityState);
+    console.log(abilities)
     setAbilities({
-      variables: { characterId, abilities },
+      variables: { characterId, abilityValues: abilities },
       refetchQueries: [
         { query: GET_CHARACTER_BY_ID, variables: { id: characterId } },
       ],
