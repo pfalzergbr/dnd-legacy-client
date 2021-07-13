@@ -30,7 +30,6 @@ const CharacterClass: React.FC<CharacterClassProps> = () => {
   const [chooseClass, { loading: choiceLoading, error: choiceError }] =
     useMutation(CHOOSE_CLASS, {
       onCompleted: (data) => {
-        console.log(data)
         history.push(
           `/create-character/${characterId}/abilities`
         );

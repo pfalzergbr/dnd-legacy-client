@@ -25,7 +25,6 @@ export const useAbilitySelect = (
   
   const [setAbilities, { loading, error }] = useMutation(SET_ABILITIES, {
     onCompleted: (data) => {
-      console.log(data)
       const { id: characterId } = data.setInitialAbilities
       history.push(`/create-character/${characterId}/skills`);
     },
