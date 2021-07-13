@@ -18,7 +18,9 @@ const AbilityCustom = lazy(
   () => import('../Components/CharacterCreation/Abilities/Custom/AbilityCustom')
 );
 
-export interface GenerateAbilityRouterProps {}
+export interface GenerateAbilityRouterProps {
+  // abilities: Object | null;
+}
 
 const GenerateAbilityRouter: React.FC<GenerateAbilityRouterProps> = () => {
   const { path } = useRouteMatch();

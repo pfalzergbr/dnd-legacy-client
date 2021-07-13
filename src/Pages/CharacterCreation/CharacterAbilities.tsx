@@ -14,6 +14,8 @@ const CharacterAbilities: React.FC<CharacterAbilitiesProps> = () => {
   const { data, loading, error } = useQuery(GET_CHARACTER_ABILITIES_SNIPPET, {
     variables: { id: characterId },
   });
+  // const isAllocated = data.getCharacterById.characterAbilities.isAllocated
+
 
   if (loading) {
     return <Loading />;
@@ -23,6 +25,8 @@ const CharacterAbilities: React.FC<CharacterAbilitiesProps> = () => {
     return <p>Error. Character not found.</p>;
   }
 
+  console.log(data)
+  
   return (
     <div>
       <CharacterSnippet
