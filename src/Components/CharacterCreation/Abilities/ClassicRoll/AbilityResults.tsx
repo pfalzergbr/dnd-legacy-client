@@ -1,9 +1,9 @@
 import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import AbilityDropFields from './AbilityDropFields';
 import AbilityTotals from '../Shared/AbilityTotals';
 import Loading from '../../../Loading';
 import { AbilityActions, AbilityContext, AbilityStates } from '../../../../Context/AbilityContext';
-import { useParams } from 'react-router-dom';
 export interface AbilityResultsProps {
 }
 
