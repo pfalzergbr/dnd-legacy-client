@@ -34,8 +34,6 @@ const CharacterAbilities: React.FC<CharacterAbilitiesProps> = () => {
     return <p>Error. Character not found.</p>;
   }
 
-  console.log(data);
-
   return (
     <div>
       <CharacterSnippet
@@ -43,7 +41,7 @@ const CharacterAbilities: React.FC<CharacterAbilitiesProps> = () => {
       />
       {
         showExistingAbilities ? 
-        <AllocatedAbilities handleStartAgain={handleShowRouter}/> :
+        <AllocatedAbilities handleStartAgain={handleShowRouter} abilities={data?.getCharacterById.characterAbilities} /> :
         <GenerateAbilityRouter /> 
 
       }
