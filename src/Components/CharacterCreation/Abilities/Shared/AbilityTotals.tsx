@@ -6,6 +6,7 @@ interface AbilityTotalsProps {
 
 }
 
+// TODO - Decrease the coupleing here! Not reusable at this form.
 const AbilityTotals: React.FC<AbilityTotalsProps> = ( ) => {
   const { abilityState: {abilities} } = useContext(AbilityContext)
   return (
