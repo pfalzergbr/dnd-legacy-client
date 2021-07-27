@@ -3,21 +3,32 @@ import { graphql, rest } from 'msw';
 export const handlers = [
   graphql.query('Login', (req, res, ctx) => {
     const { email } = req.variables.data;
-    console.log('login hit');
-    return res(
-      ctx.cookie(
-        'jwt',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTgxMzI1NDU1MDRjMGViZGYxYzg2OSIsImVtYWlsIjoibWVAbWUuY28iLCJpYXQiOjE2MjczNjM4ODEsImV4cCI6MTYyNzk2ODY4MX0.v6Nm2rg1ZpDP-a4338G_gvHq7lruDNSfUX66SWga62g'
-      ),
-      ctx.data({
-        login: {
-          id: '609a33ae190f4c0b9cacf8b2',
-          email,
-          __typename: 'User',
-        },
-      })
-    );
+
+    if (email === 'jon.snow@nights-watch.gov') {
+      return res(
+        ctx.cookie(
+          'jwt',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTgxMzI1NDU1MDRjMGViZGYxYzg2OSIsImVtYWlsIjoibWVAbWUuY28iLCJpYXQiOjE2MjczNjM4ODEsImV4cCI6MTYyNzk2ODY4MX0.v6Nm2rg1ZpDP-a4338G_gvHq7lruDNSfUX66SWga62g'
+        ),
+        ctx.data({
+          login: {
+            id: '609a33ae190f4c0b9cacf8b2',
+            email,
+            __typename: 'User',
+          },
+        })
+      );
+    }
+
+    if (email !== 'jon.snow@nights-watch.gov') {
+      return res(
+        ctx.errors([
+          { message: 'We cannot find this user. Please check the email.' },
+        ])
+      );
+    }
   }),
+
   graphql.query('GetUser', (req, res, ctx) => {
     const { jwt } = req.cookies;
     return res(

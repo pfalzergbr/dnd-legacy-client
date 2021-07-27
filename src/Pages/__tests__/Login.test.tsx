@@ -49,19 +49,33 @@ describe('Login functionality', () => {
     userEvent.type(emailInput, 'jon.snow@nights-watch.gov');
     userEvent.type(passwordInput, 'W1nterIsC@ming');
     await waitFor(() => expect(loginButton).toBeEnabled(), {
-      timeout: 5000,
+      timeout: 0,
     });
     userEvent.click(loginButton);
     await waitFor(() => new Promise((res) => setTimeout(res, 0)));
     const loadingMessage = await screen.findByText(/loading/i);
     expect(loadingMessage).toBeInTheDocument();
-    // screen.debug();
     await waitFor(() => expect(mockHistoryPush).toHaveBeenCalledWith('/home'));
-    // const welcome = await screen.findByText(/yey/i);
-    // expect(welcome).toBeInTheDocument();
   });
 
-  test('should display an error if the user is not found', async () => {});
+  test('should display an error if the user is not found', async () => {
+    await renderWithApollo(<Login />);
+    const emailInput = await screen.findByLabelText(/e-mail/i);
+    const passwordInput = await screen.findByLabelText(/password/i);
+    const loginButton = await screen.findByRole('button', { name: /log in/i });
+    userEvent.type(emailInput, 'no1girl@faceless.br');
+    userEvent.type(passwordInput, 'V@l@rMorghul1s');
+    await waitFor(() => expect(loginButton).toBeEnabled(), {
+      timeout: 0,
+    });
+    userEvent.click(loginButton);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const loadingMessage = await screen.findByText(/loading/i);
+    expect(loadingMessage).toBeInTheDocument();
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const errorMessage = await screen.findByText(/cannot find this user/i);
+    expect(errorMessage).toBeInTheDocument();
+  });
 
   test('should display an error if the password is incorrect', async () => {});
 });
