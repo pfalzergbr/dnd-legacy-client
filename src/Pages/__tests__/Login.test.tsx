@@ -32,14 +32,12 @@ describe('Login component', () => {
 });
 
 const mockHistoryPush = jest.fn();
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory: () => ({
     push: mockHistoryPush,
   }),
 }));
-
 describe('Login functionality', () => {
   test('should redirect to Home page if login is successful', async () => {
     await renderWithApollo(<Login />);

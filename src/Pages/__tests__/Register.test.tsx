@@ -3,6 +3,15 @@ import { render as renderWithApollo } from '../../Test-Utils/renderWithApollo';
 import userEvent from '@testing-library/user-event';
 import Register from '../Register';
 
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
+
 describe('Register component', () => {
   test('should render register component correctly', async () => {
     render(<Register />);
@@ -105,10 +114,43 @@ describe('Password validation', () => {
 describe('Register functionality', () => {
   test('should redirect to Home page if registration is successful', async () => {
     renderWithApollo(<Register />);
+    const emailInput = await screen.findByLabelText(/e-mail/i);
+    const passwordInput = await screen.findByLabelText(/password/i);
+    const registerButton = await screen.findByRole('button', {
+      name: /register/i,
+    });
+    userEvent.type(emailInput, 'rincewind@ankh-morpork.dw');
+    userEvent.type(passwordInput, 'great@-tu1n');
+    await waitFor(() => expect(registerButton).toBeEnabled(), {
+      timeout: 0,
+    });
+    userEvent.click(registerButton);
     await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const loadingMessage = await screen.findByText(/loading/i);
+    expect(loadingMessage).toBeInTheDocument();
+    await waitFor(() => expect(mockHistoryPush).toHaveBeenCalledWith('/home'));
   });
 
-  test('should display an error if the email is already taken', () => {});
-
-  test('should display an error if the password is incorrect', () => {});
+  test('should display an error if the email is already taken', async () => {
+    renderWithApollo(<Register />);
+    const emailInput = await screen.findByLabelText(/e-mail/i);
+    const passwordInput = await screen.findByLabelText(/password/i);
+    const registerButton = await screen.findByRole('button', {
+      name: /register/i,
+    });
+    userEvent.type(emailInput, 'twoflower@ankh-morpork.dw');
+    userEvent.type(passwordInput, 'The1ugg@gE');
+    await waitFor(() => expect(registerButton).toBeEnabled(), {
+      timeout: 0,
+    });
+    userEvent.click(registerButton);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const loadingMessage = await screen.findByText(/loading/i);
+    expect(loadingMessage).toBeInTheDocument();
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const errorMessage = await screen.findByText(
+      /address is already registered/i
+    );
+    expect(errorMessage).toBeInTheDocument();
+  });
 });

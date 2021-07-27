@@ -4,6 +4,7 @@ export const handlers = [
   graphql.query('Login', (req, res, ctx) => {
     const { email, password } = req.variables.data;
 
+    // Successful login
     if (
       email === 'jon.snow@nights-watch.gov' &&
       password === 'W1nterIsC@ming'
@@ -23,6 +24,7 @@ export const handlers = [
       );
     }
 
+    // User doesn't exist
     if (email !== 'jon.snow@nights-watch.gov') {
       return res(
         ctx.errors([
@@ -30,7 +32,7 @@ export const handlers = [
         ])
       );
     }
-
+    // Password is incorrect
     if (
       email === 'jon.snow@nights-watch.gov' &&
       password !== 'W1nterIsC@ming'
@@ -39,6 +41,31 @@ export const handlers = [
         ctx.errors([{ message: 'Incorrect password. Please try again' }])
       );
     }
+  }),
+
+  graphql.mutation('CreateUser', (req, res, ctx) => {
+    const { email } = req.variables.data;
+
+    // Email already taken
+    if (email === 'twoflower@ankh-morpork.dw')
+      return res(
+        ctx.errors([
+          {
+            message:
+              'This e-mail address is already registered. Please use log in instead.',
+          },
+        ])
+      );
+    // Successful response
+    if (email)
+      return res(
+        ctx.data({
+          createUser: {
+            id: '609a33ae190f4c0b9cacf8b2',
+            email,
+          },
+        })
+      );
   }),
 
   graphql.query('GetUser', (req, res, ctx) => {
