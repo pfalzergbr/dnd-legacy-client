@@ -1,12 +1,12 @@
-import { render, screen, waitFor } from '../../Test-Utils/renderWithProviders'
+import { render, screen, waitFor } from '../../Test-Utils/renderWithProviders';
+import { render as renderWithApollo } from '../../Test-Utils/renderWithApollo';
 import userEvent from '@testing-library/user-event';
 import Register from '../Register';
 
 describe('Register component', () => {
-  // const mocks = [];
-
   test('should render register component correctly', async () => {
     render(<Register />);
+
     const title = await screen.findByText(/3.5 wizard/i);
     const email = await screen.findByLabelText(/e-mail/i);
     const password = await screen.findByLabelText(/create password/i);
@@ -26,6 +26,7 @@ describe('Register component', () => {
     userEvent.type(emailInput, 'gimli@moria.me');
     userEvent.type(passwordInput, 'My@xe1sYourz');
     userEvent.click(registerButton);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
     //TODO - ADD testing the call
   });
 });
@@ -102,16 +103,12 @@ describe('Password validation', () => {
 });
 
 describe('Register functionality', () => {
-  test('should redirect to Home page if registration is successful', () => {
-    
-  })
+  test('should redirect to Home page if registration is successful', async () => {
+    renderWithApollo(<Register />);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+  });
 
-  test('should display an error if the email is already taken', () => {
-    
-  })
-  
-  test('should display an error if the password is incorrect', () => {
-    
-  })
-  
-})
+  test('should display an error if the email is already taken', () => {});
+
+  test('should display an error if the password is incorrect', () => {});
+});
