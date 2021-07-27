@@ -6,8 +6,7 @@ import { GET_CHARACTERS } from '../../../GraphQL/characterQueries';
 import { ICharacterLink, IMarkedCharacter } from '../../../Typings/characters';
 import Loading from '../../Loading';
 import CharacterListItem from './CharacterListItem';
-import DeleteCharacter from './DeleteCharacter'
-
+import DeleteCharacter from './DeleteCharacter';
 
 export interface CharacterListProps {
   characters: ICharacterLink[];
@@ -71,7 +70,5 @@ const CharacterList: React.FC<CharacterListProps> = ({ characters }) => {
     </>
   );
 };
-
-Modal.setAppElement('#root')
 
 export default CharacterList;

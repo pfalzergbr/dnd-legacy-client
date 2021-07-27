@@ -10,7 +10,7 @@ export const LOGIN = gql`
 `;
 
 export const GET_USER = gql`
-  query {
+  query GetUser {
     getUser {
       id
       email
@@ -19,7 +19,7 @@ export const GET_USER = gql`
 `;
 
 export const LOGOUT = gql`
-  query {
+  query LogOut {
     logout
   }
 `;

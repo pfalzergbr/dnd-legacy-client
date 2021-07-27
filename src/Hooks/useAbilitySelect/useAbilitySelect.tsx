@@ -3,10 +3,7 @@ import { useHistory } from 'react-router';
 import { useMutation, ApolloError } from '@apollo/client';
 import { SET_ABILITIES } from '../../GraphQL/characterMutations';
 import { GET_CHARACTER_BY_ID } from '../../GraphQL/characterQueries';
-import {
-  AbilityState,
-  AbilityActionType,
-} from './types';
+import { AbilityState, AbilityActionType } from './types';
 import { abilityReducer } from './reducer';
 import { getAbilityPayload, getInitialState } from './utils';
 
@@ -20,13 +17,13 @@ export const useAbilitySelect = (
   error: ApolloError | undefined;
 } => {
   const history = useHistory();
-  const initialState= getInitialState(initialValue);
+  const initialState = getInitialState(initialValue);
   const [abilityState, dispatch] = useReducer(abilityReducer, initialState);
-  
+
   const [setAbilities, { loading, error }] = useMutation(SET_ABILITIES, {
     onCompleted: (data) => {
-      console.log(data)
-      const { id: characterId } = data.setInitialAbilities
+      console.log(data);
+      const { id: characterId } = data.setInitialAbilities;
       history.push(`/create-character/${characterId}/skills`);
     },
   });
