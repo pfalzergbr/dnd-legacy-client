@@ -2,9 +2,12 @@ import { graphql, rest } from 'msw';
 
 export const handlers = [
   graphql.query('Login', (req, res, ctx) => {
-    const { email } = req.variables.data;
+    const { email, password } = req.variables.data;
 
-    if (email === 'jon.snow@nights-watch.gov') {
+    if (
+      email === 'jon.snow@nights-watch.gov' &&
+      password === 'W1nterIsC@ming'
+    ) {
       return res(
         ctx.cookie(
           'jwt',
@@ -25,6 +28,15 @@ export const handlers = [
         ctx.errors([
           { message: 'We cannot find this user. Please check the email.' },
         ])
+      );
+    }
+
+    if (
+      email === 'jon.snow@nights-watch.gov' &&
+      password !== 'W1nterIsC@ming'
+    ) {
+      return res(
+        ctx.errors([{ message: 'Incorrect password. Please try again' }])
       );
     }
   }),

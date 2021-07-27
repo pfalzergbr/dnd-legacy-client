@@ -77,5 +77,22 @@ describe('Login functionality', () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  test('should display an error if the password is incorrect', async () => {});
+  test('should display an error if the password is incorrect', async () => {
+    await renderWithApollo(<Login />);
+    const emailInput = await screen.findByLabelText(/e-mail/i);
+    const passwordInput = await screen.findByLabelText(/password/i);
+    const loginButton = await screen.findByRole('button', { name: /log in/i });
+    userEvent.type(emailInput, 'jon.snow@nights-watch.gov');
+    userEvent.type(passwordInput, 'V@l@rMorghul1s');
+    await waitFor(() => expect(loginButton).toBeEnabled(), {
+      timeout: 0,
+    });
+    userEvent.click(loginButton);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const loadingMessage = await screen.findByText(/loading/i);
+    expect(loadingMessage).toBeInTheDocument();
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const errorMessage = await screen.findByText(/incorrect password/i);
+    expect(errorMessage).toBeInTheDocument();
+  });
 });
