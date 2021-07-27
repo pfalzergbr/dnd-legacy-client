@@ -31,22 +31,34 @@ describe('Login component', () => {
   });
 });
 
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
+
 describe('Login functionality', () => {
   test('should redirect to Home page if login is successful', async () => {
     await renderWithApollo(<Login />);
     const emailInput = await screen.findByLabelText(/e-mail/i);
     const passwordInput = await screen.findByLabelText(/password/i);
     const loginButton = await screen.findByRole('button', { name: /log in/i });
-    // // console.log(loginButton);
     userEvent.type(emailInput, 'jon.snow@nights-watch.gov');
     userEvent.type(passwordInput, 'W1nterIsC@ming');
-    // // userEvent.click(loginButton);
-    // await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    await waitFor(() => expect(loginButton).toBeEnabled(), {
+      timeout: 5000,
+    });
+    userEvent.click(loginButton);
+    await waitFor(() => new Promise((res) => setTimeout(res, 0)));
+    const loadingMessage = await screen.findByText(/loading/i);
+    expect(loadingMessage).toBeInTheDocument();
     // screen.debug();
-    // const loadingMessage = await screen.findByText(/loading/i);
-    // waitFor(() => expect(loadingMessage).toBeInTheDocument());
-    // // const welcome = await screen.findByText(/yey/i);
-    // // expect(welcome).toBeInTheDocument();
+    await waitFor(() => expect(mockHistoryPush).toHaveBeenCalledWith('/home'));
+    // const welcome = await screen.findByText(/yey/i);
+    // expect(welcome).toBeInTheDocument();
   });
 
   test('should display an error if the user is not found', async () => {});

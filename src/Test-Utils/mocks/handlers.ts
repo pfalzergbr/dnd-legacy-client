@@ -2,7 +2,8 @@ import { graphql, rest } from 'msw';
 
 export const handlers = [
   graphql.query('Login', (req, res, ctx) => {
-    const { email } = req.variables;
+    const { email } = req.variables.data;
+    console.log('login hit');
     return res(
       ctx.cookie(
         'jwt',
@@ -11,7 +12,7 @@ export const handlers = [
       ctx.data({
         login: {
           id: '609a33ae190f4c0b9cacf8b2',
-          email: email,
+          email,
           __typename: 'User',
         },
       })
